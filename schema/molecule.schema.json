@@ -1,0 +1,57 @@
+{
+  "$id": "https://w3id.org/xenosite/xenobase/schema/molecule",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "content_id": {
+      "pattern": "^mol:",
+      "type": "string"
+    },
+    "cxsmiles": {
+      "type": "string"
+    },
+    "id": {
+      "pattern": "^xbm:[0-9]{7}$",
+      "type": "string"
+    },
+    "inchikey": {
+      "type": "string"
+    },
+    "into": {
+      "pattern": "^xbm:[0-9]{7}$",
+      "type": "string"
+    },
+    "iri": {
+      "type": "string"
+    },
+    "names": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "smiles": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "active",
+        "retired",
+        "merged"
+      ]
+    },
+    "xrefs": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "type": "object"
+    }
+  },
+  "required": [
+    "id",
+    "iri",
+    "status"
+  ],
+  "title": "XenoBase public molecule",
+  "type": "object"
+}

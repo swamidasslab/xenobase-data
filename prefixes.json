@@ -1,0 +1,19 @@
+{
+  "base": "https://w3id.org/xenosite/xenobase/",
+  "deferred": {
+    "dataset": "Imported collections, nested SOM datasets, Xenobase Annotations. CURIE not settled.",
+    "pathway": "Inferred path for a reaction. CURIE not settled.",
+    "site": "Site of metabolism. Must not key by SMILES atom index.",
+    "source": "Papers, figures, tables, passages, records under a dataset. Prefer doi:/pmid:/orcid: when they exist.",
+    "sssom": "Mapping files wait until subject, object, and predicate CURIEs are all settled.",
+    "xbn": "Network accessions exist in private xenobase (headline molecule); public schema not approved."
+  },
+  "prefixes": {
+    "xbm": "https://w3id.org/xenosite/xenobase/molecule/",
+    "xbr": "https://w3id.org/xenosite/xenobase/reaction/"
+  },
+  "settled": [
+    "xbr",
+    "xbm"
+  ]
+}

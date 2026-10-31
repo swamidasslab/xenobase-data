@@ -1,0 +1,10 @@
+#!/bin/sh
+# Reject non-canonical or invalid archive files. Does not rewrite.
+root=$(git rev-parse --show-toplevel)
+cd "$root" || exit 1
+python3 scripts/check.py --staged
+status=$?
+if [ "$status" -ne 0 ]; then
+  echo "xenobase-data: pre-commit check failed (scripts/check.py --staged)" >&2
+fi
+exit "$status"

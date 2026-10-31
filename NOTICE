@@ -1,0 +1,17 @@
+XenoBase data is a compilation. Cite XenoBase and the snapshot you used
+(git commit or Zenodo version DOI). Also cite the databases and papers
+behind each record.
+
+Upstream (not exhaustive; see the XenoBase Sources page):
+
+- MetXBioDB / BioTransformer (Wishart Lab). NORMAN-SLE S73 copy CC BY 4.0;
+  BioTransformer distribution LGPL.
+- ChEMBL metabolism records: CC BY-SA 3.0. Share-alike may apply to rows
+  derived from ChEMBL.
+- SwissPharma24, HSDBTPS, REFTPS, UACCSCEC via PubChem Transformations /
+  LCSB ECI / NORMAN-SLE: CC BY 4.0.
+- PubChem (NCBI/NLM/NIH): US government work; deposited data keeps its
+  depositors' terms.
+
+This compilation is offered under CC BY 4.0 (LICENSE). That does not replace
+upstream terms.

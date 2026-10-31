@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+title: XenoBase data
+message: Cite XenoBase and this git commit or Zenodo version DOI, plus the source databases and papers.
+type: dataset
+authors:
+  - family-names: Swamidass
+    given-names: S. Joshua
+    orcid: https://orcid.org/0000-0003-2191-0778
+    affiliation: Washington University in St. Louis
+license: CC-BY-4.0
+repository-code: https://github.com/swamidasslab/xenobase-data
+url: https://w3id.org/xenosite/xenobase

@@ -1,0 +1,29 @@
+{
+  "creators": [
+    {
+      "affiliation": "Washington University in St. Louis",
+      "name": "Swamidass, S. Joshua",
+      "orcid": "0000-0003-2191-0778"
+    }
+  ],
+  "keywords": [
+    "xenobiotic metabolism",
+    "biotransformation",
+    "cheminformatics"
+  ],
+  "license": "CC-BY-4.0",
+  "related_identifiers": [
+    {
+      "identifier": "https://w3id.org/xenosite/xenobase",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://github.com/swamidasslab/xenobase-data",
+      "relation": "isDerivedFrom",
+      "scheme": "url"
+    }
+  ],
+  "title": "XenoBase data",
+  "upload_type": "dataset"
+}

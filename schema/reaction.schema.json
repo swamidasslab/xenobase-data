@@ -1,0 +1,44 @@
+{
+  "$id": "https://w3id.org/xenosite/xenobase/schema/reaction",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "content_id": {
+      "pattern": "^rxn:",
+      "type": "string"
+    },
+    "id": {
+      "pattern": "^xbr:[0-9]{7}$",
+      "type": "string"
+    },
+    "into": {
+      "pattern": "^xbr:[0-9]{7}$",
+      "type": "string"
+    },
+    "iri": {
+      "type": "string"
+    },
+    "product": {
+      "pattern": "^xbm:[0-9]{7}$",
+      "type": "string"
+    },
+    "reactant": {
+      "pattern": "^xbm:[0-9]{7}$",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "active",
+        "retired",
+        "merged"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "iri",
+    "status"
+  ],
+  "title": "XenoBase public reaction",
+  "type": "object"
+}
