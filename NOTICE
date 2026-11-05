@@ -17,10 +17,12 @@ they were published under:
 - PubChem (NCBI/NLM/NIH): US government work; deposited data keeps its
   depositors' terms.
 - Hazardous Substances Data Bank (HSDB): US government work.
-- EFSA Public MetaPath MamTox (Zenodo 10.5281/zenodo.22918585):
-  CC BY 4.0 on the Zenodo record; the record's intellectual-property
-  notice may still restrict third-party content. Cite EFSA and the
-  Zenodo DOI.
+- EFSA Public MetaPath (Zenodo 10.5281/zenodo.22918585), MamTox maps:
+  EFSA confirmed the data are public when properly cited. Cite as:
+  European Food Safety Authority (EFSA). (2026). EFSA's Public MetaPath
+  database (Version 4) [Dataset]. Zenodo.
+  https://doi.org/10.5281/zenodo.22918585
+  (Zenodo also lists CC BY 4.0.)
 
 Cite XenoBase and the snapshot you used (git commit or Zenodo version
 DOI). Also cite the databases and papers behind each record. See the
