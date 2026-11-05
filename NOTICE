@@ -1,17 +1,27 @@
-XenoBase data is a compilation. Cite XenoBase and the snapshot you used
-(git commit or Zenodo version DOI). Also cite the databases and papers
-behind each record.
+XenoBase data is a compilation. Unless otherwise noted, this compilation
+(standardized structures, reaction accessions, networks, inferred
+pathways and related files) is licensed under CC BY-NC 4.0 (LICENSE):
+free for academic and other non-commercial use. Commercial use requires
+a license from the Swamidass Lab (https://swami.wustl.edu/).
 
-Upstream (not exhaustive; see the XenoBase Sources page):
+That does not replace upstream terms. Source records keep the licenses
+they were published under:
 
-- MetXBioDB / BioTransformer (Wishart Lab). NORMAN-SLE S73 copy CC BY 4.0;
-  BioTransformer distribution LGPL.
+- MetXBioDB (NORMAN-SLE S73): CC BY 4.0. BioTransformer software is LGPL.
 - ChEMBL metabolism records: CC BY-SA 3.0. Share-alike may apply to rows
   derived from ChEMBL.
-- SwissPharma24, HSDBTPS, REFTPS, UACCSCEC via PubChem Transformations /
-  LCSB ECI / NORMAN-SLE: CC BY 4.0.
+- SwissPharma24 (S113), HSDBTPS (S68), REFTPS (S74), UACCSCEC (S79) via
+  PubChem Transformations / LCSB ECI / NORMAN-SLE: CC BY 4.0.
+- LCSB ECI PubChem Transformations merge: CC BY 4.0 (attribution
+  University of Luxembourg / LCSB ECI, plus each row's citations).
 - PubChem (NCBI/NLM/NIH): US government work; deposited data keeps its
   depositors' terms.
+- Hazardous Substances Data Bank (HSDB): US government work.
+- EFSA Public MetaPath MamTox (Zenodo 10.5281/zenodo.22918585):
+  CC BY 4.0 on the Zenodo record; the record's intellectual-property
+  notice may still restrict third-party content. Cite EFSA and the
+  Zenodo DOI.
 
-This compilation is offered under CC BY 4.0 (LICENSE). That does not replace
-upstream terms.
+Cite XenoBase and the snapshot you used (git commit or Zenodo version
+DOI). Also cite the databases and papers behind each record. See the
+XenoBase Sources page.

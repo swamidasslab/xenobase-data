@@ -19,18 +19,21 @@ import tempfile
 from pathlib import Path
 
 CHURN = {"version", "built_at", "commit", "mapping_date", "mapping_set_version"}
-CURIE = re.compile(r"^(xb[rm]):([0-9]{7})$")
+CURIE = re.compile(r"^(xb[rmn]):([0-9]{7})$")
+KIND_FILES = {"xbm": "molecules", "xbr": "reactions", "xbn": "networks"}
+PREFIX_KIND = {"xbm": "molecule", "xbr": "reaction", "xbn": "network"}
 ALLOWED_DATA = {
     "molecules.jsonl": ("molecule", "xbm"),
     "reactions.jsonl": ("reaction", "xbr"),
+    "networks.jsonl": ("network", "xbn"),
     "ids/molecules.jsonl": ("id_event", "xbm"),
     "ids/reactions.jsonl": ("id_event", "xbr"),
+    "ids/networks.jsonl": ("id_event", "xbn"),
 }
 DEFERRED_DATA = {
-    "datasets.jsonl", "sources.jsonl", "networks.jsonl", "pathways.jsonl", "sites.jsonl",
-    "ids/networks.jsonl", "ids/datasets.jsonl", "ids/sources.jsonl", "ids/pathways.jsonl", "ids/sites.jsonl",
+    "datasets.jsonl", "sources.jsonl", "pathways.jsonl", "sites.jsonl",
+    "ids/datasets.jsonl", "ids/sources.jsonl", "ids/pathways.jsonl", "ids/sites.jsonl",
 }
-SETTLED_FILES = ("molecules.jsonl", "reactions.jsonl", "ids/molecules.jsonl", "ids/reactions.jsonl")
 DUMP = dict(sort_keys=True, ensure_ascii=False)
 
 
@@ -193,8 +196,18 @@ def check_root(root: Path) -> list[str]:
         problems.append(err("prefixes.json", 1, "need prefixes and settled"))
         return problems
 
+    settled = list(prefixes.get("settled") or [])
+    required = []
+    schema_names = ["id_event"]
+    for prefix in settled:
+        stem, kind = KIND_FILES.get(prefix), PREFIX_KIND.get(prefix)
+        if stem:
+            required.extend([f"{stem}.jsonl", f"ids/{stem}.jsonl"])
+        if kind:
+            schema_names.append(kind)
+
     schemas = {}
-    for name in ("molecule", "reaction", "id_event"):
+    for name in schema_names:
         p = root / "schema" / f"{name}.schema.json"
         if not p.exists():
             problems.append(err(p.as_posix(), 0, "missing schema"))
@@ -202,17 +215,21 @@ def check_root(root: Path) -> list[str]:
         problems.extend(canonical_file(p))
         schemas[name] = load_json(p)
 
-    present = [rel for rel in SETTLED_FILES if (root / rel).exists()]
-    if present and set(present) != set(SETTLED_FILES):
-        missing = sorted(set(SETTLED_FILES) - set(present))
+    present = [rel for rel in required if (root / rel).exists()]
+    if present and set(present) != set(required):
+        missing = sorted(set(required) - set(present))
         problems.append(err(missing[0], 0, f"settled kinds must be published together; missing {missing}"))
 
+    settled_set = set(settled)
+    for rel, (_kind, prefix) in ALLOWED_DATA.items():
+        if prefix not in settled_set and (root / rel).exists():
+            problems.append(err(rel, 0, "CURIE not settled; do not add this file"))
     for rel in DEFERRED_DATA:
-        if (root / rel).exists() or list(root.glob("*.sssom.tsv")):
-            if rel.endswith(".jsonl") and (root / rel).exists():
-                problems.append(err(rel, 0, "CURIE not settled; do not add this file"))
+        if (root / rel).exists():
+            problems.append(err(rel, 0, "CURIE not settled; do not add this file"))
     for sssom in root.glob("**/*.sssom.tsv"):
-        problems.append(err(sssom.relative_to(root).as_posix(), 0, "SSSOM held until subject, object, and predicate CURIEs are settled"))
+        problems.append(err(sssom.relative_to(root).as_posix(), 0,
+                            "SSSOM held until subject, object, and predicate CURIEs are settled"))
 
     extra = []
     for p in root.rglob("*.jsonl"):
@@ -224,8 +241,10 @@ def check_root(root: Path) -> list[str]:
 
     records: dict[str, list[dict]] = {}
     events: dict[str, list[dict]] = {}
-    if set(present) == set(SETTLED_FILES) and schemas:
+    if required and set(present) == set(required) and schemas:
         for rel, (kind, prefix) in ALLOWED_DATA.items():
+            if prefix not in settled_set:
+                continue
             probs, objs = check_jsonl_kind(root, rel, kind, prefix, schemas, prefixes)
             problems.extend(probs)
             if kind == "id_event":
@@ -234,10 +253,10 @@ def check_root(root: Path) -> list[str]:
                 records[prefix] = objs
 
         for prefix, evs in events.items():
-            state, replay_probs = replay(evs, f"ids/{'molecules' if prefix == 'xbm' else 'reactions'}.jsonl")
+            log = f"{KIND_FILES[prefix]}.jsonl"
+            state, replay_probs = replay(evs, f"ids/{log}")
             problems.extend(replay_probs)
             by_id = {r["id"]: r for r in records.get(prefix, [])}
-            log = f"{'molecules' if prefix == 'xbm' else 'reactions'}.jsonl"
             for acc, last in state.items():
                 rec = by_id.get(acc)
                 if rec is None:
@@ -254,12 +273,44 @@ def check_root(root: Path) -> list[str]:
 
         mols = {r["id"] for r in records.get("xbm", [])}
         for n, rec in enumerate(records.get("xbr", []), 1):
+            if rec.get("status") == "merged":
+                continue
             for side in ("reactant", "product"):
                 curie = rec.get(side)
-                if rec.get("status") == "merged":
-                    continue
-                if curie and curie not in mols:
+                if rec.get("status") == "active" and not curie:
+                    problems.append(err("reactions.jsonl", n, f"{side} missing on {rec.get('id')}"))
+                elif curie and curie not in mols:
                     problems.append(err("reactions.jsonl", n, f"{side} {curie} not in molecules.jsonl"))
+
+        rxset = {r["id"] for r in records.get("xbr", [])}
+        netset = {r["id"] for r in records.get("xbn", [])}
+        for n, rec in enumerate(records.get("xbn", []), 1):
+            if rec.get("status") == "merged":
+                continue
+            mol = rec.get("molecule")
+            if rec.get("status") == "active" and not mol:
+                problems.append(err("networks.jsonl", n, f"molecule missing on {rec.get('id')}"))
+            elif mol and mol not in mols:
+                problems.append(err("networks.jsonl", n, f"molecule {mol} not in molecules.jsonl"))
+            for acc in rec.get("reactions") or []:
+                if acc not in rxset:
+                    problems.append(err("networks.jsonl", n, f"reaction {acc} not in reactions.jsonl"))
+            for acc in rec.get("molecules") or []:
+                if acc not in mols:
+                    problems.append(err("networks.jsonl", n, f"member {acc} not in molecules.jsonl"))
+            for acc in rec.get("inferred") or []:
+                if acc not in mols:
+                    problems.append(err("networks.jsonl", n, f"inferred {acc} not in molecules.jsonl"))
+            for acc in rec.get("contained_in") or []:
+                if acc not in netset:
+                    problems.append(err("networks.jsonl", n, f"contained_in {acc} not in networks.jsonl"))
+            for e in rec.get("edges") or []:
+                if e.get("id") not in rxset:
+                    problems.append(err("networks.jsonl", n, f"edge {e.get('id')} not in reactions.jsonl"))
+                if e.get("source") and e["source"] not in mols:
+                    problems.append(err("networks.jsonl", n, f"edge source {e['source']} not in molecules.jsonl"))
+                if e.get("target") and e["target"] not in mols:
+                    problems.append(err("networks.jsonl", n, f"edge target {e['target']} not in molecules.jsonl"))
     return problems
 
 

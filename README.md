@@ -16,17 +16,21 @@ Zenodo version DOI once minted).
 |---|---|---|
 | `molecules.jsonl` | standardized structure | `xbm:NNNNNNN` |
 | `reactions.jsonl` | observed reactant → product | `xbr:NNNNNNN` |
+| `networks.jsonl` | forward graph from a headline molecule | `xbn:NNNNNNN` |
 | `ids/molecules.jsonl` | mint / retire / revive / relink / merge | same `xbm:` |
 | `ids/reactions.jsonl` | mint / retire / revive / relink / merge | same `xbr:` |
+| `ids/networks.jsonl` | mint / retire / revive / relink / merge | same `xbn:` |
 | `schema/` | public JSON Schema for those files | |
 | `prefixes.json` | compact URI map | |
 
-`id` is the CURIE. `reactant` / `product` are `xbm:` CURIEs. Internal content
+`id` is the CURIE. `reactant` / `product` are `xbm:` CURIEs. A network's
+`molecule` is the headline `xbm:`; `reactions` / `molecules` / `edges` use
+settled CURIEs. Graph membership does not remint `xbn:`. Internal content
 hashes, if present, are `content_id`. Rows are sorted by accession. JSON keys are
 sorted. There is no version string in the files.
 
 Not yet published (CURIE or public schema not settled): datasets, sources,
-networks, pathways, sites, SSSOM mappings. See [TODO.md](TODO.md).
+pathways, sites, SSSOM mappings. See [TODO.md](TODO.md).
 
 ## Cite
 
@@ -66,5 +70,9 @@ Zenodo GitHub app.
 
 ## License
 
-[CC BY 4.0](LICENSE). See [NOTICE](NOTICE) for upstream databases (including
-ChEMBL CC BY-SA 3.0).
+Unless otherwise noted, this compilation is [CC BY-NC 4.0](LICENSE): free
+for academic and other non-commercial use. Commercial use requires a license
+from the [Swamidass Lab](https://swami.wustl.edu/). See [NOTICE](NOTICE) for
+upstream databases (ChEMBL CC BY-SA 3.0; MetXBioDB, SwissPharma24, HSDBTPS,
+REFTPS, UACCSCEC and the LCB merge CC BY 4.0; PubChem and HSDB are US
+government works). Those source licenses are not replaced.

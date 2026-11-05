@@ -11,7 +11,7 @@
     "biotransformation",
     "cheminformatics"
   ],
-  "license": "CC-BY-4.0",
+  "license": "CC-BY-NC-4.0",
   "related_identifiers": [
     {
       "identifier": "https://w3id.org/xenosite/xenobase",

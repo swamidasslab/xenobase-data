@@ -1,0 +1,97 @@
+{
+  "$id": "https://w3id.org/xenosite/xenobase/schema/network",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "contained_in": {
+      "items": {
+        "pattern": "^xbn:[0-9]{7}$",
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "content_id": {
+      "pattern": "^net:",
+      "type": "string"
+    },
+    "edges": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "pattern": "^xbr:[0-9]{7}$",
+            "type": "string"
+          },
+          "source": {
+            "pattern": "^xbm:[0-9]{7}$",
+            "type": "string"
+          },
+          "target": {
+            "pattern": "^xbm:[0-9]{7}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "source",
+          "target"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "id": {
+      "pattern": "^xbn:[0-9]{7}$",
+      "type": "string"
+    },
+    "inferred": {
+      "items": {
+        "pattern": "^xbm:[0-9]{7}$",
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "into": {
+      "pattern": "^xbn:[0-9]{7}$",
+      "type": "string"
+    },
+    "iri": {
+      "type": "string"
+    },
+    "molecule": {
+      "pattern": "^xbm:[0-9]{7}$",
+      "type": "string"
+    },
+    "molecules": {
+      "items": {
+        "pattern": "^xbm:[0-9]{7}$",
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "reactions": {
+      "items": {
+        "pattern": "^xbr:[0-9]{7}$",
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "status": {
+      "enum": [
+        "active",
+        "retired",
+        "merged"
+      ]
+    },
+    "title": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "iri",
+    "status"
+  ],
+  "title": "XenoBase public network",
+  "type": "object"
+}
