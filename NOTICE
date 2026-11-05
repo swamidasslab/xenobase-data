@@ -14,6 +14,9 @@ they were published under:
   PubChem Transformations / LCSB ECI / NORMAN-SLE: CC BY 4.0.
 - LCSB ECI PubChem Transformations merge: CC BY 4.0 (attribution
   University of Luxembourg / LCSB ECI, plus each row's citations).
+  XenoBase imports only a mammalian xenobiotic-metabolism subset of that
+  merge (not the full environmental / non-mammalian collection); see the
+  XenoBase Sources page and How it works.
 - PubChem (NCBI/NLM/NIH): US government work; deposited data keeps its
   depositors' terms.
 - Hazardous Substances Data Bank (HSDB): US government work.
