@@ -1,10 +1,33 @@
 #!/bin/sh
-# Reject non-canonical or invalid archive files. Does not rewrite.
+# Canonical / integrity check + versions manifest (must be current and staged).
+# Unstable-diff heuristics run at squash→release time (scripts/release.py), not here.
 root=$(git rev-parse --show-toplevel)
 cd "$root" || exit 1
+
 python3 scripts/check.py --staged
 status=$?
 if [ "$status" -ne 0 ]; then
   echo "xenobase-data: pre-commit check failed (scripts/check.py --staged)" >&2
+  exit "$status"
 fi
-exit "$status"
+
+python3 scripts/write_versions_manifest.py
+status=$?
+if [ "$status" -ne 0 ]; then
+  echo "xenobase-data: write_versions_manifest failed" >&2
+  exit "$status"
+fi
+
+python3 scripts/write_versions_manifest.py --check
+status=$?
+if [ "$status" -ne 0 ]; then
+  echo "xenobase-data: stage .versions/manifest.json (git add .versions/manifest.json)" >&2
+  exit "$status"
+fi
+
+if git status --porcelain -- .versions/manifest.json | grep -q '^.[^ ]'; then
+  echo "xenobase-data: .versions/manifest.json is modified but not staged" >&2
+  exit 1
+fi
+
+exit 0

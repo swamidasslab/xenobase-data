@@ -18,23 +18,29 @@ import sys
 import tempfile
 from pathlib import Path
 
-CHURN = {"version", "built_at", "commit", "mapping_date", "mapping_set_version"}
-CURIE = re.compile(r"^(xb[rmn]):([0-9]{7})$")
+CHURN = {"version", "built_at", "commit", "mapping_date", "mapping_set_version", "generated_at"}
+CURIE = re.compile(r"^(xb[rmn]):([0-9]{7,12})$")
 KIND_FILES = {"xbm": "molecules", "xbr": "reactions", "xbn": "networks"}
 PREFIX_KIND = {"xbm": "molecule", "xbr": "reaction", "xbn": "network"}
-ALLOWED_DATA = {
-    "molecules.jsonl": ("molecule", "xbm"),
-    "reactions.jsonl": ("reaction", "xbr"),
-    "networks.jsonl": ("network", "xbn"),
-    "ids/molecules.jsonl": ("id_event", "xbm"),
-    "ids/reactions.jsonl": ("id_event", "xbr"),
-    "ids/networks.jsonl": ("id_event", "xbn"),
+# Primary table name inside each dataset YAML.
+PRIMARY_TABLE = {
+    "molecules.yaml": ("molecules", "molecule", "xbm"),
+    "reactions.yaml": ("reactions", "reaction", "xbr"),
+    "networks.yaml": ("networks", "network", "xbn"),
+    "ids/molecules.yaml": ("events", "id_event", "xbm"),
+    "ids/reactions.yaml": ("events", "id_event", "xbr"),
+    "ids/networks.yaml": ("events", "id_event", "xbn"),
+}
+ALLOWED_SSSOM = {
+    "mappings/reactions.sssom.tsv",
+    "mappings/molecules.sssom.tsv",
+    "mappings/networks.sssom.tsv",
 }
 DEFERRED_DATA = {
     "datasets.jsonl", "sources.jsonl", "pathways.jsonl", "sites.jsonl",
-    "ids/datasets.jsonl", "ids/sources.jsonl", "ids/pathways.jsonl", "ids/sites.jsonl",
+    "ids/sites.jsonl", "ids/sources.jsonl", "ids/pathways.jsonl",
+    "datasets.yaml", "sources.yaml", "pathways.yaml", "sites.yaml",
 }
-DUMP = dict(sort_keys=True, ensure_ascii=False)
 
 
 def err(path: str, line: int, msg: str) -> str:
@@ -45,61 +51,30 @@ def load_json(path: Path) -> object:
     return json.loads(path.read_text())
 
 
-def dumps_line(obj: dict) -> str:
-    return json.dumps(obj, **DUMP) + "\n"
+def load_yaml(path: Path):
+    try:
+        from ruamel.yaml import YAML
+    except ImportError:
+        # Parent repo may expose ruamel; fall back to PyYAML.
+        import yaml
+        return yaml.safe_load(path.read_text())
+    y = YAML(typ="safe")
+    return y.load(path.read_text())
 
 
-def read_jsonl(path: Path) -> list[tuple[int, str, dict | None, str | None]]:
-    rows = []
+def canonical_json_file(path: Path) -> list[str]:
+    problems = []
     raw = path.read_bytes()
     try:
         text = raw.decode("utf-8")
     except UnicodeDecodeError as e:
-        return [(0, "", None, f"not UTF-8: {e}")]
+        return [err(str(path), 0, f"not UTF-8: {e}")]
     if "\r" in text:
-        return [(0, "", None, "CRLF or bare CR; use Unix LF")]
-    if text and not text.endswith("\n"):
-        rows.append((text.count("\n") + 1, "", None, "missing trailing newline"))
-    if text.endswith("\n\n"):
-        rows.append((text.count("\n"), "", None, "more than one trailing newline"))
-    for n, line in enumerate(text.splitlines(), 1):
-        if "\t" in line:
-            rows.append((n, line, None, "tab in JSONL"))
-            continue
-        if line.endswith(" ") or line.endswith("\t"):
-            rows.append((n, line, None, "trailing whitespace"))
-            continue
-        if not line:
-            rows.append((n, line, None, "empty line"))
-            continue
-        try:
-            obj = json.loads(line)
-        except json.JSONDecodeError as e:
-            rows.append((n, line, None, f"JSON: {e}"))
-            continue
-        if not isinstance(obj, dict):
-            rows.append((n, line, None, "line is not a JSON object"))
-            continue
-        rows.append((n, line, obj, None))
-    return rows
-
-
-def canonical_file(path: Path) -> list[str]:
-    """Byte-identity vs spaced sort_keys dumps, Unix LF, one trailing newline."""
-    problems = []
-    if path.suffix == ".json":
-        raw = path.read_bytes()
-        try:
-            text = raw.decode("utf-8")
-        except UnicodeDecodeError as e:
-            return [err(str(path), 0, f"not UTF-8: {e}")]
-        if "\r" in text:
-            return [err(str(path), 0, "CRLF or bare CR; use Unix LF")]
-        obj = json.loads(text)
-        want = json.dumps(obj, indent=2, **DUMP) + "\n"
-        if text != want:
-            problems.append(err(str(path.as_posix()), 1, "not canonical JSON (indent 2, sort_keys, Unix LF)"))
-        return problems
+        return [err(str(path), 0, "CRLF or bare CR; use Unix LF")]
+    obj = json.loads(text)
+    want = json.dumps(obj, indent=2, sort_keys=True, ensure_ascii=False) + "\n"
+    if text != want:
+        problems.append(err(str(path.as_posix()), 1, "not canonical JSON (indent 2, sort_keys, Unix LF)"))
     return problems
 
 
@@ -143,57 +118,121 @@ def status_of(event: str) -> str:
             "merge": "merged", "retire": "retired"}[event]
 
 
-def check_jsonl_kind(root: Path, rel: str, kind: str, prefix: str, schemas: dict, prefixes: dict) -> tuple[list[str], list[dict]]:
-    path = root / rel
-    problems = []
-    rows = read_jsonl(path)
-    objs: list[tuple[int, dict]] = []
-    for n, line, obj, problem in rows:
-        if problem:
-            problems.append(err(rel, n, problem))
+def _table_rows(doc: dict, table_name: str) -> list[dict]:
+    for table in doc.get("tables") or []:
+        if not isinstance(table, dict) or table.get("name") != table_name:
             continue
-        assert obj is not None
+        by_id = table.get("by_id")
+        if isinstance(by_id, dict) and by_id:
+            rows = []
+            for key in sorted(by_id):
+                rec = dict(by_id[key] or {})
+                rec.setdefault("id", key)
+                if rec.get("id") != key:
+                    raise ValueError(f"by_id key {key!r} != id {rec.get('id')!r}")
+                rows.append(rec)
+            return rows
+        rows = table.get("rows")
+        if isinstance(rows, list):
+            return [dict(r) for r in rows]
+    return []
+
+
+def check_yaml_kind(root: Path, rel: str, table_name: str, kind: str, prefix: str,
+                    schemas: dict, prefixes: dict) -> tuple[list[str], list[dict]]:
+    path = root / rel
+    problems: list[str] = []
+    if not path.exists():
+        return [err(rel, 0, "missing")], []
+    text = path.read_text()
+    if "\r" in text:
+        return [err(rel, 0, "CRLF or bare CR; use Unix LF")], []
+    try:
+        doc = load_yaml(path)
+    except Exception as e:
+        return [err(rel, 1, f"YAML: {e}")], []
+    if not isinstance(doc, dict):
+        return [err(rel, 1, "root must be a mapping")], []
+    if "tables" not in doc:
+        return [err(rel, 1, "missing tables:")], []
+    try:
+        objs = _table_rows(doc, table_name)
+    except ValueError as e:
+        return [err(rel, 1, str(e))], []
+
+    for i, obj in enumerate(objs, 1):
         if CHURN & obj.keys():
-            problems.append(err(rel, n, f"churn fields {sorted(CHURN & obj.keys())}"))
-        if dumps_line(obj) != line + "\n":
-            problems.append(err(rel, n, "not canonical (sort_keys, spaced separators); rewrite with json.dumps(..., sort_keys=True, ensure_ascii=False)"))
-        problems.extend(validate_schema(obj, schemas[kind], rel, n))
+            problems.append(err(rel, i, f"churn fields {sorted(CHURN & obj.keys())}"))
+        problems.extend(validate_schema(obj, schemas[kind], rel, i))
         cid = obj.get("id")
         if isinstance(cid, str):
             m = CURIE.match(cid)
             if m and m.group(1) != prefix:
-                problems.append(err(rel, n, f"id prefix {m.group(1)} != {prefix}"))
+                problems.append(err(rel, i, f"id prefix {m.group(1)} != {prefix}"))
             iri = obj.get("iri")
-            base = prefixes["prefixes"].get(prefix)
+            base = prefixes.get("prefixes", {}).get(prefix)
             if iri and base and m:
                 want = base + m.group(2)
                 if iri != want:
-                    problems.append(err(rel, n, f"iri {iri!r} != {want!r}"))
-        objs.append((n, obj))
+                    problems.append(err(rel, i, f"iri {iri!r} != {want!r}"))
 
     if kind == "id_event":
-        keys = [(o["id"], o.get("at") or "", o.get("event") or "") for _, o in objs]
+        keys = [(o["id"], o.get("at") or "", o.get("event") or "") for o in objs]
         if keys != sorted(keys):
             problems.append(err(rel, 1, "id-event rows must be sorted by (id, at, event)"))
-        return problems, [o for _, o in objs]
+        return problems, objs
 
-    ids = [o["id"] for _, o in objs]
+    ids = [o["id"] for o in objs]
     if ids != sorted(ids):
-        problems.append(err(rel, 1, "rows must be sorted by id (regno)"))
+        problems.append(err(rel, 1, "rows must be sorted by id"))
     if len(ids) != len(set(ids)):
         problems.append(err(rel, 1, "duplicate id"))
-    return problems, [o for _, o in objs]
+    return problems, objs
+
+
+def check_sssom(root: Path, rel: str) -> list[str]:
+    path = root / rel
+    if not path.exists():
+        return []
+    problems = []
+    text = path.read_text()
+    if "\r" in text:
+        return [err(rel, 0, "CRLF or bare CR; use Unix LF")]
+    cols = None
+    rows = []
+    for n, ln in enumerate(text.splitlines(), 1):
+        if not ln or ln.startswith("#"):
+            continue
+        cells = ln.split("\t")
+        if cols is None:
+            cols = cells
+            continue
+        rows.append((n, cells))
+    if cols is None:
+        problems.append(err(rel, 1, "missing SSSOM column header"))
+        return problems
+    data = [c for _, c in rows]
+    if data != sorted(data):
+        problems.append(err(rel, 1, "SSSOM data rows must be sorted"))
+    return problems
 
 
 def check_root(root: Path) -> list[str]:
     problems: list[str] = []
-    prefixes_path = root / "prefixes.json"
-    if not prefixes_path.exists():
-        return [err("prefixes.json", 0, "missing")]
-    problems.extend(canonical_file(prefixes_path))
-    prefixes = load_json(prefixes_path)
+    prefixes_path = root / "prefixes.yaml"
+    legacy = root / "prefixes.json"
+    if prefixes_path.exists():
+        try:
+            prefixes = load_yaml(prefixes_path)
+        except Exception as e:
+            return [err("prefixes.yaml", 1, str(e))]
+    elif legacy.exists():
+        problems.extend(canonical_json_file(legacy))
+        prefixes = load_json(legacy)
+    else:
+        return [err("prefixes.yaml", 0, "missing")]
     if not isinstance(prefixes, dict) or "prefixes" not in prefixes or "settled" not in prefixes:
-        problems.append(err("prefixes.json", 1, "need prefixes and settled"))
+        problems.append(err("prefixes.yaml", 1, "need prefixes and settled"))
         return problems
 
     settled = list(prefixes.get("settled") or [])
@@ -202,7 +241,7 @@ def check_root(root: Path) -> list[str]:
     for prefix in settled:
         stem, kind = KIND_FILES.get(prefix), PREFIX_KIND.get(prefix)
         if stem:
-            required.extend([f"{stem}.jsonl", f"ids/{stem}.jsonl"])
+            required.extend([f"{stem}.yaml", f"ids/{stem}.yaml"])
         if kind:
             schema_names.append(kind)
 
@@ -212,7 +251,7 @@ def check_root(root: Path) -> list[str]:
         if not p.exists():
             problems.append(err(p.as_posix(), 0, "missing schema"))
             continue
-        problems.extend(canonical_file(p))
+        problems.extend(canonical_json_file(p))
         schemas[name] = load_json(p)
 
     present = [rel for rel in required if (root / rel).exists()]
@@ -221,31 +260,31 @@ def check_root(root: Path) -> list[str]:
         problems.append(err(missing[0], 0, f"settled kinds must be published together; missing {missing}"))
 
     settled_set = set(settled)
-    for rel, (_kind, prefix) in ALLOWED_DATA.items():
+    for rel, (_table, _kind, prefix) in PRIMARY_TABLE.items():
         if prefix not in settled_set and (root / rel).exists():
             problems.append(err(rel, 0, "CURIE not settled; do not add this file"))
     for rel in DEFERRED_DATA:
         if (root / rel).exists():
             problems.append(err(rel, 0, "CURIE not settled; do not add this file"))
-    for sssom in root.glob("**/*.sssom.tsv"):
-        problems.append(err(sssom.relative_to(root).as_posix(), 0,
-                            "SSSOM held until subject, object, and predicate CURIEs are settled"))
 
-    extra = []
+    for sssom in root.glob("**/*.sssom.tsv"):
+        rel = sssom.relative_to(root).as_posix()
+        if rel not in ALLOWED_SSSOM:
+            problems.append(err(rel, 0, "unexpected SSSOM path"))
+        else:
+            problems.extend(check_sssom(root, rel))
+
     for p in root.rglob("*.jsonl"):
         rel = p.relative_to(root).as_posix()
-        if rel not in ALLOWED_DATA and rel not in DEFERRED_DATA:
-            extra.append(rel)
-    for rel in extra:
-        problems.append(err(rel, 0, "unexpected JSONL; not in the settled prefix map"))
+        problems.append(err(rel, 0, "JSONL retired; use YAML archive files"))
 
     records: dict[str, list[dict]] = {}
     events: dict[str, list[dict]] = {}
     if required and set(present) == set(required) and schemas:
-        for rel, (kind, prefix) in ALLOWED_DATA.items():
+        for rel, (table, kind, prefix) in PRIMARY_TABLE.items():
             if prefix not in settled_set:
                 continue
-            probs, objs = check_jsonl_kind(root, rel, kind, prefix, schemas, prefixes)
+            probs, objs = check_yaml_kind(root, rel, table, kind, prefix, schemas, prefixes)
             problems.extend(probs)
             if kind == "id_event":
                 events[prefix] = objs
@@ -253,7 +292,7 @@ def check_root(root: Path) -> list[str]:
                 records[prefix] = objs
 
         for prefix, evs in events.items():
-            log = f"{KIND_FILES[prefix]}.jsonl"
+            log = f"{KIND_FILES[prefix]}.yaml"
             state, replay_probs = replay(evs, f"ids/{log}")
             problems.extend(replay_probs)
             by_id = {r["id"]: r for r in records.get(prefix, [])}
@@ -272,15 +311,23 @@ def check_root(root: Path) -> list[str]:
                     problems.append(err(log, 1, f"{acc} has no id-event mint"))
 
         mols = {r["id"] for r in records.get("xbm", [])}
+        # Reactions file also embeds a molecules subset — validate against full molecules.yaml.
+        full_mols = {r["id"] for r in records.get("xbm", [])}
+        mol_doc_path = root / "molecules.yaml"
+        if mol_doc_path.exists():
+            try:
+                full_mols = {r["id"] for r in _table_rows(load_yaml(mol_doc_path), "molecules")}
+            except Exception:
+                pass
         for n, rec in enumerate(records.get("xbr", []), 1):
             if rec.get("status") == "merged":
                 continue
             for side in ("reactant", "product"):
                 curie = rec.get(side)
                 if rec.get("status") == "active" and not curie:
-                    problems.append(err("reactions.jsonl", n, f"{side} missing on {rec.get('id')}"))
-                elif curie and curie not in mols:
-                    problems.append(err("reactions.jsonl", n, f"{side} {curie} not in molecules.jsonl"))
+                    problems.append(err("reactions.yaml", n, f"{side} missing on {rec.get('id')}"))
+                elif curie and curie not in full_mols:
+                    problems.append(err("reactions.yaml", n, f"{side} {curie} not in molecules.yaml"))
 
         rxset = {r["id"] for r in records.get("xbr", [])}
         netset = {r["id"] for r in records.get("xbn", [])}
@@ -289,28 +336,28 @@ def check_root(root: Path) -> list[str]:
                 continue
             mol = rec.get("molecule")
             if rec.get("status") == "active" and not mol:
-                problems.append(err("networks.jsonl", n, f"molecule missing on {rec.get('id')}"))
-            elif mol and mol not in mols:
-                problems.append(err("networks.jsonl", n, f"molecule {mol} not in molecules.jsonl"))
+                problems.append(err("networks.yaml", n, f"molecule missing on {rec.get('id')}"))
+            elif mol and mol not in full_mols:
+                problems.append(err("networks.yaml", n, f"molecule {mol} not in molecules.yaml"))
             for acc in rec.get("reactions") or []:
                 if acc not in rxset:
-                    problems.append(err("networks.jsonl", n, f"reaction {acc} not in reactions.jsonl"))
+                    problems.append(err("networks.yaml", n, f"reaction {acc} not in reactions.yaml"))
             for acc in rec.get("molecules") or []:
-                if acc not in mols:
-                    problems.append(err("networks.jsonl", n, f"member {acc} not in molecules.jsonl"))
+                if acc not in full_mols:
+                    problems.append(err("networks.yaml", n, f"member {acc} not in molecules.yaml"))
             for acc in rec.get("inferred") or []:
-                if acc not in mols:
-                    problems.append(err("networks.jsonl", n, f"inferred {acc} not in molecules.jsonl"))
+                if acc not in full_mols:
+                    problems.append(err("networks.yaml", n, f"inferred {acc} not in molecules.yaml"))
             for acc in rec.get("contained_in") or []:
                 if acc not in netset:
-                    problems.append(err("networks.jsonl", n, f"contained_in {acc} not in networks.jsonl"))
+                    problems.append(err("networks.yaml", n, f"contained_in {acc} not in networks.yaml"))
             for e in rec.get("edges") or []:
                 if e.get("id") not in rxset:
-                    problems.append(err("networks.jsonl", n, f"edge {e.get('id')} not in reactions.jsonl"))
-                if e.get("source") and e["source"] not in mols:
-                    problems.append(err("networks.jsonl", n, f"edge source {e['source']} not in molecules.jsonl"))
-                if e.get("target") and e["target"] not in mols:
-                    problems.append(err("networks.jsonl", n, f"edge target {e['target']} not in molecules.jsonl"))
+                    problems.append(err("networks.yaml", n, f"edge {e.get('id')} not in reactions.yaml"))
+                if e.get("source") and e["source"] not in full_mols:
+                    problems.append(err("networks.yaml", n, f"edge source {e['source']} not in molecules.yaml"))
+                if e.get("target") and e["target"] not in full_mols:
+                    problems.append(err("networks.yaml", n, f"edge target {e['target']} not in molecules.yaml"))
     return problems
 
 
