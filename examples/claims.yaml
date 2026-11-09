@@ -1,0 +1,36 @@
+# =============================================================================
+# COMMERCIAL LICENSE AVAILABLE.
+# For commercial use, contact the Swamidass Lab at https://swami.wustl.edu/
+# =============================================================================
+meta:
+  dataset: xenobase-claims
+  about: Context-dependent observation claims about catalogue subjects.
+  access: login
+  schema: schema/claim.schema.json
+jsonld:
+  "@context":
+    xb: https://w3id.org/xenosite/xenobase/vocab#
+    xbctx: https://w3id.org/xenosite/xenobase/context/
+    xbm: https://w3id.org/xenosite/xenobase/molecule/
+    taxon: http://purl.obolibrary.org/obo/NCBITaxon_
+    organism: {"@id": "xb:organism", "@type": "@id"}
+    tips: {"@id": "xb:tips", "@type": "@id"}
+    context: {"@id": "xb:context", "@type": "@id"}
+    subject: {"@id": "xb:subject", "@type": "@id"}
+    result: {"@id": "xb:result"}
+    dataset: {"@id": "xb:dataset", "@type": "@id"}
+  "@graph":
+  - "@id": _:ctx_a1b2c3d4e5f60708
+    "@type": xb:Context
+    organism: taxon:10116
+    tips: [xbctx:sex/male, xbctx:route/oral]
+  - "@id": _:claim_b2c3d4e5f6070819
+    "@type": xb:Claim
+    context: _:ctx_a1b2c3d4e5f60708
+    subject: [xbm:0000001]
+    result:
+    - class: xb:observed
+      tips: [xbctx:matrix/urine]
+      qty:
+      - {role: value, number: 0.12, unit: xbctx:unit/percent_administered}
+    dataset: dataset:metapath/study/10

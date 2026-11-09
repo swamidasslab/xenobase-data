@@ -3,36 +3,39 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "properties": {
+    "@id": {
+      "pattern": "^xbn:[0-9]{7,12}$",
+      "type": "string"
+    },
+    "@type": {
+      "type": "string"
+    },
     "contained_in": {
       "items": {
-        "pattern": "^xbn:[0-9]{7}$",
+        "pattern": "^xbn:[0-9]{7,12}$",
         "type": "string"
       },
       "type": "array"
-    },
-    "content_id": {
-      "pattern": "^net:",
-      "type": "string"
     },
     "edges": {
       "items": {
         "additionalProperties": false,
         "properties": {
-          "id": {
-            "pattern": "^xbr:[0-9]{7}$",
+          "@id": {
+            "pattern": "^xbr:[0-9]{7,12}$",
             "type": "string"
           },
           "source": {
-            "pattern": "^xbm:[0-9]{7}$",
+            "pattern": "^xbm:[0-9]{7,12}$",
             "type": "string"
           },
           "target": {
-            "pattern": "^xbm:[0-9]{7}$",
+            "pattern": "^xbm:[0-9]{7,12}$",
             "type": "string"
           }
         },
         "required": [
-          "id",
+          "@id",
           "source",
           "target"
         ],
@@ -40,38 +43,86 @@
       },
       "type": "array"
     },
-    "id": {
-      "pattern": "^xbn:[0-9]{7}$",
-      "type": "string"
-    },
     "inferred": {
-      "items": {
-        "pattern": "^xbm:[0-9]{7}$",
-        "type": "string"
+      "additionalProperties": false,
+      "description": "With-intermediates overlay: join (edges not in replaces) with inferred.edges; molecules are accessioned path intermediates.",
+      "properties": {
+        "edges": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "of": {
+                "description": "Recorded reaction this segment expands.",
+                "pattern": "^xbr:[0-9]{7,12}$",
+                "type": "string"
+              },
+              "rules": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "source": {
+                "pattern": "^xbm:[0-9]{7,12}$",
+                "type": "string"
+              },
+              "target": {
+                "pattern": "^xbm:[0-9]{7,12}$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "source",
+              "target"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "molecules": {
+          "items": {
+            "pattern": "^xbm:[0-9]{7,12}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "replaces": {
+          "description": "Raw edge reaction CURIEs drawn via inferred segments instead.",
+          "items": {
+            "pattern": "^xbr:[0-9]{7,12}$",
+            "type": "string"
+          },
+          "type": "array"
+        }
       },
-      "type": "array"
+      "type": "object"
     },
     "into": {
-      "pattern": "^xbn:[0-9]{7}$",
-      "type": "string"
-    },
-    "iri": {
+      "pattern": "^xbn:[0-9]{7,12}$",
       "type": "string"
     },
     "molecule": {
-      "pattern": "^xbm:[0-9]{7}$",
+      "pattern": "^xbm:[0-9]{7,12}$",
       "type": "string"
     },
     "molecules": {
       "items": {
-        "pattern": "^xbm:[0-9]{7}$",
+        "pattern": "^xbm:[0-9]{7,12}$",
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "partOf": {
+      "description": "SSSOM BFO:0000050 (part of) objects mirrored from mappings/networks.sssom.tsv",
+      "items": {
+        "pattern": "^xbn:[0-9]{7,12}$",
         "type": "string"
       },
       "type": "array"
     },
     "reactions": {
       "items": {
-        "pattern": "^xbr:[0-9]{7}$",
+        "pattern": "^xbr:[0-9]{7,12}$",
         "type": "string"
       },
       "type": "array"
@@ -88,8 +139,7 @@
     }
   },
   "required": [
-    "id",
-    "iri",
+    "@id",
     "status"
   ],
   "title": "XenoBase public network",

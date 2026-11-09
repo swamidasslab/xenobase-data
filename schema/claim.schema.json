@@ -1,0 +1,163 @@
+{
+  "$defs": {
+    "blankId": {
+      "pattern": "^_:(ctx|claim)_[0-9a-f]{8,32}$",
+      "type": "string"
+    },
+    "claim": {
+      "additionalProperties": false,
+      "properties": {
+        "@id": {
+          "$ref": "#/$defs/blankId"
+        },
+        "@type": {
+          "const": "xb:Claim"
+        },
+        "context": {
+          "$ref": "#/$defs/blankId"
+        },
+        "dataset": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "result": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "class": {
+                "pattern": "^xb:(observed|notObserved|major|minor)$",
+                "type": "string"
+              },
+              "label": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "qty": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "number": {
+                      "type": "number"
+                    },
+                    "role": {
+                      "enum": [
+                        "value",
+                        "min",
+                        "max",
+                        "time"
+                      ],
+                      "type": "string"
+                    },
+                    "unit": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "role",
+                    "number"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "tips": {
+                "items": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "class",
+              "tips",
+              "qty"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "subject": {
+          "items": {
+            "pattern": "^(xbm|xbr|xbn):",
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "supportedBy": {
+          "items": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "@id",
+        "@type",
+        "context",
+        "subject",
+        "result",
+        "dataset"
+      ],
+      "type": "object"
+    },
+    "context": {
+      "additionalProperties": false,
+      "properties": {
+        "@id": {
+          "$ref": "#/$defs/blankId"
+        },
+        "@type": {
+          "const": "xb:Context"
+        },
+        "aboutParent": {
+          "pattern": "^(xbm|xbn):",
+          "type": "string"
+        },
+        "doseNumber": {
+          "type": "number"
+        },
+        "doseUnit": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "organism": {
+          "pattern": "^taxon:[0-9]+$",
+          "type": "string"
+        },
+        "tips": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "@id",
+        "@type"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://w3id.org/xenosite/xenobase/schema/claim",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Blank-node Context or Claim in claims.yaml (@graph). No public claim CURIEs.",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/context"
+    },
+    {
+      "$ref": "#/$defs/claim"
+    }
+  ],
+  "title": "XenoBase public claim or context node"
+}

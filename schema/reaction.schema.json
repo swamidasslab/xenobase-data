@@ -3,27 +3,30 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "properties": {
-    "content_id": {
-      "pattern": "^rxn:",
+    "@id": {
+      "pattern": "^xbr:[0-9]{7,12}$",
       "type": "string"
     },
-    "id": {
-      "pattern": "^xbr:[0-9]{7}$",
+    "@type": {
       "type": "string"
+    },
+    "exactMatch": {
+      "description": "SSSOM skos:exactMatch objects mirrored from mappings/reactions.sssom.tsv",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
     },
     "into": {
-      "pattern": "^xbr:[0-9]{7}$",
-      "type": "string"
-    },
-    "iri": {
+      "pattern": "^xbr:[0-9]{7,12}$",
       "type": "string"
     },
     "product": {
-      "pattern": "^xbm:[0-9]{7}$",
+      "pattern": "^xbm:[0-9]{7,12}$",
       "type": "string"
     },
     "reactant": {
-      "pattern": "^xbm:[0-9]{7}$",
+      "pattern": "^xbm:[0-9]{7,12}$",
       "type": "string"
     },
     "status": {
@@ -35,8 +38,7 @@
     }
   },
   "required": [
-    "id",
-    "iri",
+    "@id",
     "status"
   ],
   "title": "XenoBase public reaction",

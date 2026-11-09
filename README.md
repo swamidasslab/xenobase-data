@@ -4,41 +4,45 @@ Public, versioned archive of processed [XenoBase](https://w3id.org/xenosite/xeno
 records. Private [xenobase](https://github.com/swamidasslab/xenobase) writes these
 files; this repository is the citable snapshot.
 
-The version **is** the git commit. After a UTC calendar day has ended, a manual
-GitHub Release tagged `YYYY-MM-DD` may pin that day’s last commit. Zenodo mints a
-DOI for each **published GitHub Release**, not for ordinary commits. Cite XenoBase
-(and the paper when it exists) **and** the snapshot you used (this commit, or the
-Zenodo version DOI once minted).
+The version **is** the git commit on the **`release`** branch. Cite XenoBase
+(and the paper when it exists) **and** the snapshot you used (this commit).
+
+**JSONL is not an archive format.** `scripts/check.py` rejects `*.jsonl` here.
+Public bodies are YAML (`meta` + `jsonld` with `@context` / `@graph`) plus SSSOM
+TSV and JSON Schema. Prefix expansions live in each file’s `jsonld.@context`
+(every CURIE used in that file, including source roots such as `metxbiodb:`).
 
 ## Files (settled CURIEs only)
 
-| File | Kind | CURIE |
-|---|---|---|
-| `molecules.jsonl` | standardized structure | `xbm:NNNNNNN` |
-| `reactions.jsonl` | observed reactant → product | `xbr:NNNNNNN` |
-| `networks.jsonl` | forward graph from a headline molecule | `xbn:NNNNNNN` |
-| `ids/molecules.jsonl` | mint / retire / revive / relink / merge | same `xbm:` |
-| `ids/reactions.jsonl` | mint / retire / revive / relink / merge | same `xbr:` |
-| `ids/networks.jsonl` | mint / retire / revive / relink / merge | same `xbn:` |
-| `schema/` | public JSON Schema for those files | |
-| `prefixes.json` | compact URI map | |
+| File | Access | Kind | CURIE |
+|---|---|---|---|
+| `molecules.yaml` | login | standardized structure | `xbm:` |
+| `reactions.yaml` | login | observed reactant → product | `xbr:` |
+| `networks.yaml` | login | forward graph from a headline molecule | `xbn:` |
+| `sites/<slug>.yaml` | login | SOM table rows (`rainbow`, …) | `xbm:` + `xbs:` dataset |
+| `ids/molecules.yaml` | login | mint / retire / revive / relink / merge | `xbm:` |
+| `ids/reactions.yaml` | login | mint / retire / revive / relink / merge | `xbr:` |
+| `ids/networks.yaml` | login | mint / retire / revive / relink / merge | `xbn:` |
+| `ids/sites.yaml` | login | SOM dataset accession events | `xbs:` |
+| `mappings/*.sssom.tsv` | public | SSSOM mappings | |
+| `schema/*.schema.json` | public | JSON Schema for graph node shapes | |
 
-`id` is the CURIE. `reactant` / `product` are `xbm:` CURIEs. A network's
-`molecule` is the headline `xbm:`; `reactions` / `molecules` / `edges` use
-settled CURIEs. Graph membership does not remint `xbn:`. Internal content
-hashes, if present, are `content_id`. Rows are sorted by accession. JSON keys are
-sorted. There is no version string in the files.
+Each dataset YAML has outer `meta` (license, software, norms, statistics,
+schemas) and `jsonld` (`@context`, `@graph` list of nodes with `@id` CURIEs).
+Public SSSOM TSV is free; those predicates are also mirrored onto private
+graph nodes. Chemistry lives only in `molecules.yaml`; reactions/networks
+reference `xbm:` / `xbr:` CURIEs. SOM downloads are one file per table under
+`sites/<slug>.yaml` (`@id` is the molecule; `dataset` is the `xbs:` accession).
 
-Not yet published (CURIE or public schema not settled): datasets, sources,
-pathways, sites, SSSOM mappings. See [TODO.md](TODO.md).
+Not yet published (CURIE or public schema not settled): sources, pathways,
+per-atom site CURIEs. See [TODO.md](TODO.md).
 
 ## Cite
 
-Use the GitHub tag or commit, and once Zenodo is connected, the **version DOI**
-for that Release. The **concept DOI** (after the first Release) names the dataset
-as a whole and resolves to the latest version.
+Use the `release` commit (and a dated tag when one exists). Cite upstream
+databases on the XenoBase Sources page and in [NOTICE](NOTICE).
 
-Enable git hooks (canonical form + integrity; rejects the commit, does not rewrite):
+Enable git hooks:
 
 ```
 git config core.hooksPath .githooks
@@ -50,28 +54,19 @@ python3 scripts/check.py
 
 Needs `jsonschema` (`pip install jsonschema`).
 
-## Release (manual)
-
-Do not tag during the UTC day. After that day has ended, verify there will be no
-more commits, then:
+## Release
 
 ```
-python3 scripts/release.py           # checks + prints gh release create
-python3 scripts/release.py --publish # tag + GitHub Release (you confirm)
+python3 scripts/release.py --publish   # squash HEAD → release after stable-diff gate
 ```
 
-A bare `git tag` does not notify Zenodo. The GitHub Release does. Never move a
-tag after Zenodo has minted. Tag format is ISO `YYYY-MM-DD`.
-
-Zenodo: log into [sandbox.zenodo.org](https://sandbox.zenodo.org) with GitHub,
-toggle this repo On, test one Release. Then the same on [zenodo.org](https://zenodo.org).
-Published Zenodo records cannot be deleted. Org owners may need to approve the
-Zenodo GitHub app.
+Bypass unstable-diff: `XENOBASE_ALLOW_UNSTABLE_DIFF=1`. No GitHub Release assets
+are required for the download contract (site serves local git).
 
 ## License
 
 Unless otherwise noted, this compilation is [CC BY-NC 4.0](LICENSE): free
-for academic and other non-commercial use. Commercial use requires a license
+for academic and other non-commercial use. Commercial licenses are available
 from the [Swamidass Lab](https://swami.wustl.edu/). See [NOTICE](NOTICE) for
 upstream databases (ChEMBL CC BY-SA 3.0; MetXBioDB, SwissPharma24, HSDBTPS,
 REFTPS, UACCSCEC and the LCB merge CC BY 4.0; PubChem and HSDB are US

@@ -1,0 +1,65 @@
+{
+  "$id": "https://w3id.org/xenosite/xenobase/schema/claim_results.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Array of result nodes on private.claim. Multi-timepoint / multi-matrix = multiple elements. class xb:notObserved vs observed+0 is decided at ingest per datasource.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "class": {
+        "pattern": "^xb:(observed|notObserved|major|minor)$",
+        "type": "string"
+      },
+      "label": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "qty": {
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "number": {
+              "type": "number"
+            },
+            "role": {
+              "enum": [
+                "value",
+                "min",
+                "max",
+                "time"
+              ],
+              "type": "string"
+            },
+            "unit": {
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "role",
+            "number"
+          ],
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "tips": {
+        "description": "Result descriptor CURIEs (matrix, endpoint, …) — not context tips",
+        "items": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "type": "array"
+      }
+    },
+    "required": [
+      "class",
+      "tips",
+      "qty"
+    ],
+    "type": "object"
+  },
+  "title": "claim.results",
+  "type": "array"
+}

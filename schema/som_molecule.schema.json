@@ -1,0 +1,127 @@
+{
+  "$id": "https://w3id.org/xenosite/xenobase/schema/som_molecule",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "@id": {
+      "description": "Molecule accession; atom indexes in soms refer to cxsmiles.",
+      "pattern": "^xbm:[0-9]{7,12}$",
+      "type": "string"
+    },
+    "@type": {
+      "type": "string"
+    },
+    "cxsmiles": {
+      "type": "string"
+    },
+    "dataset": {
+      "description": "SOM table accession (xbs:).",
+      "pattern": "^xbs:[0-9]{7,12}$",
+      "type": "string"
+    },
+    "negative": {
+      "type": "boolean"
+    },
+    "orbits": {
+      "items": {
+        "items": {
+          "type": "integer"
+        },
+        "type": "array"
+      },
+      "type": "array"
+    },
+    "soms": {
+      "items": {
+        "additionalProperties": true,
+        "properties": {
+          "atoms": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array"
+          },
+          "color": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "equiv": {
+            "type": "array"
+          },
+          "kind": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "partition": {
+            "description": "Site atoms on each accessioned molecule from this row through the labeling hop.",
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "atoms": {
+                  "items": {
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "type": "array"
+                },
+                "molecule": {
+                  "description": "Canonical form is 12 digits; older 7-digit locals still validate.",
+                  "pattern": "^xbm:[0-9]{7,12}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "molecule",
+                "atoms"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "pattern": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "reactions": {
+            "description": "Ordered xbr: walk from this molecule to the labeling hop.",
+            "items": {
+              "pattern": "^xbr:[0-9]{7,12}$",
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "rule": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "walk": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "atoms",
+          "walk",
+          "reactions"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "@id",
+    "dataset",
+    "cxsmiles",
+    "soms"
+  ],
+  "title": "XenoBase SOM molecule row",
+  "type": "object"
+}

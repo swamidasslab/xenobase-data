@@ -1,0 +1,32 @@
+# =============================================================================
+# COMMERCIAL LICENSE AVAILABLE.
+# For commercial use, contact the Swamidass Lab at https://swami.wustl.edu/
+# (site contact — do not rely on an email address).
+# Academic / non-commercial use: CC BY-NC 4.0 — see license fields and NOTICE.
+# =============================================================================
+# SSSOM mapping set — XenoBase mixture accessions → fragment molecules
+#
+# Provenance narrative: leftover multi-fragment mixtures keep an xbm: accession;
+# each mapping is BFO:0000051 (has part) onto a connected fragment xbm:.
+#
+#curie_map:
+#  BFO: http://purl.obolibrary.org/obo/BFO_
+#  semapv: https://w3id.org/semapv/vocab/
+#  skos: http://www.w3.org/2004/02/skos/core#
+#  xbm: https://w3id.org/xenosite/xenobase/molecule/
+#mapping_set_id: https://w3id.org/xenosite/xenobase/mappings/molecules.sssom.tsv
+#mapping_set_title: XenoBase mixture has-part fragments
+#mapping_set_description: Mixture accessions mapped has-part onto single-fragment molecules.
+#license: https://creativecommons.org/licenses/by-nc/4.0/
+#license_code: CC-BY-NC-4.0
+#license_note: Commercial licenses available via https://swami.wustl.edu/. CC BY-NC 4.0 for non-commercial use; see NOTICE.
+#creator_id: https://orcid.org/0000-0003-2191-0778
+#subject_source: https://w3id.org/xenosite/xenobase
+#object_source: https://w3id.org/xenosite/xenobase
+#mapping_tool: xenobase pipeline/assign_ids.py + publish_data
+#see_also: https://w3id.org/xenosite/xenobase/about/download
+subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	comment
+xbm:000000011962	X27* (RPA 401527)	BFO:0000051	xbm:000000011961	C(F)(F)(F)c1c(cncc1)C(N)=O |$GlcA;;;;;;;;;;;;$|	semapv:LexicalMatching	connected fragment after salt/counterion strip (MOL_NORM 8)
+xbm:000000011962	X27* (RPA 401527)	BFO:0000051	xbm:000000012068	[*]O	semapv:LexicalMatching	connected fragment after salt/counterion strip (MOL_NORM 8)
+xbm:0000556	intermediate 4	BFO:0000051	xbm:0000555	C(C=O)S(=O)(=O)C	semapv:LexicalMatching	connected fragment after salt/counterion strip (MOL_NORM 8)
+xbm:0000556	intermediate 4	BFO:0000051	xbm:0006954	c1c(cccc1COc5c(cc(cc5)Nc4ncnc3c4cc(cc3)-c2oc(cc2)CNO)Cl)F	semapv:LexicalMatching	connected fragment after salt/counterion strip (MOL_NORM 8)

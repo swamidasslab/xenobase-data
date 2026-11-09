@@ -1,0 +1,54 @@
+meta:
+  dataset: xenobase-molecules
+  about: Standardized single-fragment structures keyed by accession xbm.
+  access: login
+  license: {id: CC-BY-NC-4.0, name: Creative Commons Attribution-NonCommercial 4.0 International, 
+      url: https://creativecommons.org/licenses/by-nc/4.0/, notice: NOTICE, summary: Academic and 
+      other non-commercial use under CC BY-NC 4.0. Commercial licenses are available — contact the 
+      Swamidass Lab at https://swami.wustl.edu/, commercial: Commercial license available. Contact 
+      the Swamidass Lab at https://swami.wustl.edu/}
+  schema: schema/molecule.schema.json
+  status_values:
+    active: Current catalogue tip for this accession.
+    retired: Left the data; accession kept and still resolvable.
+    merged: Superseded; follow the into field.
+
+  conformsTo: [https://datapackage.org/standard/data-package/, https://schema.org/Dataset]
+  created: '1970-01-01T00:00:00Z'
+  homepage: https://w3id.org/xenosite/xenobase
+  version: example
+  licenses:
+  - {name: CC-BY-NC-4.0, path: https://creativecommons.org/licenses/by-nc/4.0/, title: Creative 
+      Commons Attribution-NonCommercial 4.0 International}
+  sources:
+  - {title: XenoBase Sources (upstream databases), path: https://w3id.org/xenosite/xenobase/sources}
+  citation: {title: XenoBase, url: https://w3id.org/xenosite/xenobase}
+  software:
+  - {name: xenobase, commit: '0000000000000000000000000000000000000000', path: 
+      https://github.com/swamidasslab/xenobase}
+  - {name: xenosmarts, commit: '1111111111111111111111111111111111111111', path: 
+      https://github.com/swamidasslab/xenosmarts}
+  - {name: rdkit, version: example}
+  norms: {MOL_NORM: 8, NORM: 2, NET_NORM: 1}
+  statistics: {n: 1, n_active: 1, n_merged: 0, n_retired: 0}
+  schemas:
+  - {path: schema/molecule.schema.json, id: https://w3id.org/xenosite/xenobase/schema/molecule, 
+      draft: https://json-schema.org/draft/2020-12/schema, browse: 'https://github.com/swamidasslab/xenobase-data/blob/{commit}/schema/molecule.schema.json'}
+  resources:
+  - {name: molecules, path: molecules.yaml, format: yaml, schema: schema/molecule.schema.json}
+jsonld:
+  "@graph":
+  - "@id": xbm:0000001
+    "@type": xb:Molecule
+    status: active
+    smiles: COc1ccccc1
+    names: [anisole]
+    xrefs:
+      pubchem_cid: "7731"
+  '@context':
+    BFO: http://purl.obolibrary.org/obo/BFO_
+    hasPart: {"@id": "BFO:0000051", "@type": "@id"}
+    into: {"@id": "xb:into", "@type": "@id"}
+    skos: http://www.w3.org/2004/02/skos/core#
+    xb: https://w3id.org/xenosite/xenobase/vocab#
+    xbm: https://w3id.org/xenosite/xenobase/molecule/

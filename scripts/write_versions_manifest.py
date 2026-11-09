@@ -21,6 +21,7 @@ BRANCH = "release"
 OUT = ROOT / ".versions" / "manifest.json"
 
 # Keep in sync with pipeline/publish_data.py ABOUT / site archive.server.ts
+SOM_SLUGS = ("rainbow", "glutathionation", "glucuronidation", "quinonoid", "epoxide")
 PATHS = [
     "molecules.yaml",
     "reactions.yaml",
@@ -28,6 +29,8 @@ PATHS = [
     "ids/molecules.yaml",
     "ids/reactions.yaml",
     "ids/networks.yaml",
+    "ids/sites.yaml",
+    *[f"sites/{s}.yaml" for s in SOM_SLUGS],
     "mappings/reactions.sssom.tsv",
     "mappings/molecules.sssom.tsv",
     "mappings/networks.sssom.tsv",
@@ -35,7 +38,7 @@ PATHS = [
     "schema/reaction.schema.json",
     "schema/network.schema.json",
     "schema/id_event.schema.json",
-    "prefixes.yaml",
+    "schema/som_molecule.schema.json",
 ]
 
 

@@ -1,0 +1,19 @@
+# Compact ontology excerpt (not the live dump).
+@prefix xb: <https://w3id.org/xenosite/xenobase/vocab#> .
+@prefix xbctx: <https://w3id.org/xenosite/xenobase/context/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix taxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
+
+<> a owl:Ontology ;
+  rdfs:label "XenoBase context ontology subset" .
+
+xb:Claim a owl:Class ; rdfs:label "Claim" .
+xb:Context a owl:Class ; rdfs:label "Context" .
+xb:includesOrganism a owl:ObjectProperty ; rdfs:label "includes organism" .
+xb:supportedBy a owl:ObjectProperty ; rdfs:label "supported by" .
+
+xbctx:sex/male a skos:Concept ; rdfs:label "male" .
+taxon:9606 a owl:Class ; rdfs:label "Homo sapiens" .
+taxon:9606 rdfs:subClassOf taxon:9605 .

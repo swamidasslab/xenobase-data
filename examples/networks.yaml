@@ -1,0 +1,74 @@
+meta:
+  dataset: xenobase-networks
+  about: Forward graphs keyed by headline molecule accession xbn (root is an xbm).
+  access: login
+  license: {id: CC-BY-NC-4.0, name: Creative Commons Attribution-NonCommercial 4.0 International, 
+      url: https://creativecommons.org/licenses/by-nc/4.0/, notice: NOTICE, summary: Academic and 
+      other non-commercial use under CC BY-NC 4.0. Commercial licenses are available — contact the 
+      Swamidass Lab at https://swami.wustl.edu/, commercial: Commercial license available. Contact 
+      the Swamidass Lab at https://swami.wustl.edu/}
+  schema: schema/network.schema.json
+  status_values:
+    active: Current catalogue tip for this accession.
+    retired: Left the data; accession kept and still resolvable.
+    merged: Superseded; follow the into field.
+
+  conformsTo: [https://datapackage.org/standard/data-package/, https://schema.org/Dataset]
+  created: '1970-01-01T00:00:00Z'
+  homepage: https://w3id.org/xenosite/xenobase
+  version: example
+  licenses:
+  - {name: CC-BY-NC-4.0, path: https://creativecommons.org/licenses/by-nc/4.0/, title: Creative 
+      Commons Attribution-NonCommercial 4.0 International}
+  sources:
+  - {title: XenoBase Sources (upstream databases), path: https://w3id.org/xenosite/xenobase/sources}
+  citation: {title: XenoBase, url: https://w3id.org/xenosite/xenobase}
+  software:
+  - {name: xenobase, commit: '0000000000000000000000000000000000000000', path: 
+      https://github.com/swamidasslab/xenobase}
+  - {name: xenosmarts, commit: '1111111111111111111111111111111111111111', path: 
+      https://github.com/swamidasslab/xenosmarts}
+  - {name: rdkit, version: example}
+  norms: {MOL_NORM: 8, NORM: 2, NET_NORM: 1}
+  statistics: {n_molecules: 2, networks_n: 1, networks_n_active: 1, networks_n_merged: 0, 
+      networks_n_retired: 0}
+  schemas:
+  - {path: schema/network.schema.json, id: https://w3id.org/xenosite/xenobase/schema/network, draft: 
+      https://json-schema.org/draft/2020-12/schema, browse: 'https://github.com/swamidasslab/xenobase-data/blob/{commit}/schema/network.schema.json'}
+  resources:
+  - {name: networks, path: networks.yaml, format: yaml, schema: schema/network.schema.json}
+jsonld:
+  "@graph":
+  - "@id": xbn:0000001
+    "@type": xb:Network
+    status: active
+    molecule: xbm:0000001
+    title: anisole
+    reactions: [xbr:0000001]
+    molecules: [xbm:0000001, xbm:0000002]
+    edges:
+    - {"@id": xbr:0000001, source: xbm:0000001, target: xbm:0000002}
+    inferred:
+      molecules: [xbm:0000003]
+      replaces: [xbr:0000001]
+      edges:
+      - {source: xbm:0000001, target: xbm:0000003, of: xbr:0000001, rules: [Hydroxylation]}
+      - {source: xbm:0000003, target: xbm:0000002, of: xbr:0000001, rules: [Glucuronidation]}
+  '@context':
+    BFO: http://purl.obolibrary.org/obo/BFO_
+    contained_in: {"@id": "xb:contained_in", "@type": "@id"}
+    inferred: xb:inferred
+    into: {"@id": "xb:into", "@type": "@id"}
+    molecule: {"@id": "xb:molecule", "@type": "@id"}
+    molecules: {"@id": "xb:molecules", "@type": "@id"}
+    of: {"@id": "xb:of", "@type": "@id"}
+    partOf: {"@id": "BFO:0000050", "@type": "@id"}
+    reactions: {"@id": "xb:reactions", "@type": "@id"}
+    replaces: {"@id": "xb:replaces", "@type": "@id"}
+    skos: http://www.w3.org/2004/02/skos/core#
+    source: {"@id": "xb:source", "@type": "@id"}
+    target: {"@id": "xb:target", "@type": "@id"}
+    xb: https://w3id.org/xenosite/xenobase/vocab#
+    xbm: https://w3id.org/xenosite/xenobase/molecule/
+    xbn: https://w3id.org/xenosite/xenobase/network/
+    xbr: https://w3id.org/xenosite/xenobase/reaction/
