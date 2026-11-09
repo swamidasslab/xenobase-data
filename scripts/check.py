@@ -30,7 +30,6 @@ PRIMARY_DATASET = {
     "ids/molecules.yaml": ("id_event", "xbm"),
     "ids/reactions.yaml": ("id_event", "xbr"),
     "ids/networks.yaml": ("id_event", "xbn"),
-    "ids/sites.yaml": ("id_event", "xbs"),
 }
 SETTLED = ("xbm", "xbr", "xbn")
 SOM_SLUGS = ("rainbow", "glutathionation", "glucuronidation", "quinonoid", "epoxide")
@@ -42,6 +41,8 @@ ALLOWED_SSSOM = {
 DEFERRED_DATA = {
     "datasets.yaml", "sources.yaml", "pathways.yaml",
     "ids/sources.yaml", "ids/pathways.yaml",
+    # Never a public export — xbs: lives on sites/<slug>.yaml rows only.
+    "ids/sites.yaml",
     # Legacy JSONL names (retired; reject if reintroduced).
     "datasets.jsonl", "sources.jsonl", "pathways.jsonl", "sites.jsonl",
     "ids/sites.jsonl", "ids/sources.jsonl", "ids/pathways.jsonl",
@@ -289,7 +290,7 @@ def check_root(root: Path) -> list[str]:
     sites_dir = root / "sites"
     site_files = sorted(sites_dir.glob("*.yaml")) if sites_dir.is_dir() else []
     settled = list(SETTLED)
-    if (root / "ids/sites.yaml").exists() or site_files:
+    if site_files:
         settled.append("xbs")
 
     required = []
@@ -297,7 +298,6 @@ def check_root(root: Path) -> list[str]:
     for prefix in settled:
         stem, kind = KIND_FILES.get(prefix), PREFIX_KIND.get(prefix)
         if prefix == "xbs":
-            required.append("ids/sites.yaml")
             required.extend([f"sites/{s}.yaml" for s in SOM_SLUGS])
             schema_names.append("som_molecule")
             continue
@@ -364,34 +364,31 @@ def check_root(root: Path) -> list[str]:
             problems.extend(probs)
             som_rows[slug] = objs
 
+        # xbs: is carried on sites/<slug>.yaml rows (no ids/sites.yaml export).
+        seen_ds: dict[str, str] = {}
+        for slug, rows in som_rows.items():
+            for n, rec in enumerate(rows, 1):
+                ds = rec.get("dataset")
+                if not ds:
+                    problems.append(err(f"sites/{slug}.yaml", n, "missing dataset (xbs:)"))
+                    continue
+                if not CURIE.match(str(ds)) or not str(ds).startswith("xbs:"):
+                    problems.append(err(f"sites/{slug}.yaml", n, f"bad dataset CURIE {ds!r}"))
+                    continue
+                prev = seen_ds.get(slug)
+                if prev and prev != ds:
+                    problems.append(
+                        err(f"sites/{slug}.yaml", n, f"dataset {ds} disagrees with {prev} in same file")
+                    )
+                seen_ds[slug] = str(ds)
+        if len(set(seen_ds.values())) != len(seen_ds):
+            problems.append(err("sites/", 1, "two SOM tables share the same xbs: accession"))
+
         for prefix, evs in events.items():
             # replay expects id key
             for e in evs:
                 if "@id" in e and "id" not in e:
                     e["id"] = e["@id"]
-            if prefix == "xbs":
-                # Dataset accessions (xbs:), not per-molecule site rows.
-                state, replay_probs = replay(evs, "ids/sites.yaml")
-                problems.extend(replay_probs)
-                referenced = {
-                    r.get("dataset")
-                    for rows in som_rows.values()
-                    for r in rows
-                    if r.get("dataset")
-                }
-                for acc, last in state.items():
-                    if status_of(last["event"]) == "active" and acc not in referenced:
-                        problems.append(
-                            err("ids/sites.yaml", 1, f"{acc} minted but unused in sites/*.yaml")
-                        )
-                for slug, rows in som_rows.items():
-                    for n, rec in enumerate(rows, 1):
-                        ds = rec.get("dataset")
-                        if ds and ds not in state:
-                            problems.append(
-                                err(f"sites/{slug}.yaml", n, f"dataset {ds} not in ids/sites.yaml")
-                            )
-                continue
             log = f"{KIND_FILES[prefix]}.yaml"
             state, replay_probs = replay(evs, f"ids/{log}")
             problems.extend(replay_probs)

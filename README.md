@@ -23,7 +23,6 @@ TSV and JSON Schema. Prefix expansions live in each file’s `jsonld.@context`
 | `ids/molecules.yaml` | login | mint / retire / revive / relink / merge | `xbm:` |
 | `ids/reactions.yaml` | login | mint / retire / revive / relink / merge | `xbr:` |
 | `ids/networks.yaml` | login | mint / retire / revive / relink / merge | `xbn:` |
-| `ids/sites.yaml` | login | SOM dataset accession events | `xbs:` |
 | `mappings/*.sssom.tsv` | public | SSSOM mappings | |
 | `schema/*.schema.json` | public | JSON Schema for graph node shapes | |
 

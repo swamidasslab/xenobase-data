@@ -29,7 +29,6 @@ PATHS = [
     "ids/molecules.yaml",
     "ids/reactions.yaml",
     "ids/networks.yaml",
-    "ids/sites.yaml",
     *[f"sites/{s}.yaml" for s in SOM_SLUGS],
     "mappings/reactions.sssom.tsv",
     "mappings/molecules.sssom.tsv",
