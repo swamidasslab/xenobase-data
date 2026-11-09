@@ -27,9 +27,6 @@ PRIMARY_DATASET = {
     "molecules.yaml": ("molecule", "xbm"),
     "reactions.yaml": ("reaction", "xbr"),
     "networks.yaml": ("network", "xbn"),
-    "ids/molecules.yaml": ("id_event", "xbm"),
-    "ids/reactions.yaml": ("id_event", "xbr"),
-    "ids/networks.yaml": ("id_event", "xbn"),
 }
 SETTLED = ("xbm", "xbr", "xbn")
 SOM_SLUGS = ("rainbow", "glutathionation", "glucuronidation", "quinonoid", "epoxide")
@@ -41,10 +38,13 @@ ALLOWED_SSSOM = {
 DEFERRED_DATA = {
     "datasets.yaml", "sources.yaml", "pathways.yaml",
     "ids/sources.yaml", "ids/pathways.yaml",
-    # Never a public export — xbs: lives on sites/<slug>.yaml rows only.
+    # Never a public export — accession ledgers stay in private data/ids/*.jsonl.
+    "ids/molecules.yaml", "ids/reactions.yaml", "ids/networks.yaml",
     "ids/sites.yaml",
+    "schema/id_event.schema.json",
     # Legacy JSONL names (retired; reject if reintroduced).
     "datasets.jsonl", "sources.jsonl", "pathways.jsonl", "sites.jsonl",
+    "ids/molecules.jsonl", "ids/reactions.jsonl", "ids/networks.jsonl",
     "ids/sites.jsonl", "ids/sources.jsonl", "ids/pathways.jsonl",
 }
 
@@ -95,33 +95,6 @@ def validate_schema(obj: dict, schema: dict, path: str, line: int) -> list[str]:
         loc = "/".join(str(x) for x in e.path) or "."
         out.append(err(path, line, f"schema {loc}: {e.message}"))
     return out
-
-
-def replay(events: list[dict], path: str) -> tuple[dict[str, dict], list[str]]:
-    state: dict[str, dict] = {}
-    minted: set[str] = set()
-    problems = []
-    for i, e in enumerate(events, 1):
-        acc, ev = e["id"], e["event"]
-        if ev == "mint":
-            if acc in minted:
-                problems.append(err(path, i, f"second mint of {acc}"))
-            minted.add(acc)
-        elif acc not in minted:
-            problems.append(err(path, i, f"{ev} of {acc} before mint"))
-        if ev == "merge":
-            into = e.get("into")
-            if not into:
-                problems.append(err(path, i, f"merge {acc} missing into"))
-            elif into not in minted:
-                problems.append(err(path, i, f"merge {acc} into {into} which has no mint"))
-        state[acc] = e
-    return state, problems
-
-
-def status_of(event: str) -> str:
-    return {"mint": "active", "revive": "active", "relink": "active",
-            "merge": "merged", "retire": "retired"}[event]
 
 
 def _graph_nodes(doc: dict) -> list[dict]:
@@ -239,12 +212,6 @@ def check_yaml_kind(root: Path, rel: str, kind: str, prefix: str,
             if m and m.group(1) != prefix:
                 problems.append(err(rel, i, f"@id prefix {m.group(1)} != {prefix}"))
 
-    if kind == "id_event":
-        keys = [(_node_id(o) or "", o.get("at") or "", o.get("event") or "") for o in objs]
-        if keys != sorted(keys):
-            problems.append(err(rel, 1, "id-event rows must be sorted by (@id, at, event)"))
-        return problems, objs
-
     ids = [_node_id(o) for o in objs]
     if ids != sorted(ids or []):
         problems.append(err(rel, 1, "nodes must be sorted by @id"))
@@ -294,7 +261,7 @@ def check_root(root: Path) -> list[str]:
         settled.append("xbs")
 
     required = []
-    schema_names = ["id_event"]
+    schema_names: list[str] = []
     for prefix in settled:
         stem, kind = KIND_FILES.get(prefix), PREFIX_KIND.get(prefix)
         if prefix == "xbs":
@@ -302,7 +269,7 @@ def check_root(root: Path) -> list[str]:
             schema_names.append("som_molecule")
             continue
         if stem:
-            required.extend([f"{stem}.yaml", f"ids/{stem}.yaml"])
+            required.append(f"{stem}.yaml")
         if kind:
             schema_names.append(kind)
 
@@ -344,7 +311,6 @@ def check_root(root: Path) -> list[str]:
         problems.append(err(rel, 0, "JSONL retired; use YAML archive files"))
 
     records: dict[str, list[dict]] = {}
-    events: dict[str, list[dict]] = {}
     som_rows: dict[str, list[dict]] = {}
     if required and set(present) == set(required) and schemas:
         for rel, (kind, prefix) in PRIMARY_DATASET.items():
@@ -352,10 +318,7 @@ def check_root(root: Path) -> list[str]:
                 continue
             probs, objs = check_yaml_kind(root, rel, kind, prefix, schemas)
             problems.extend(probs)
-            if kind == "id_event":
-                events[prefix] = objs
-            else:
-                records[prefix] = objs
+            records[prefix] = objs
         for slug in SOM_SLUGS:
             rel = f"sites/{slug}.yaml"
             if not (root / rel).exists():
@@ -364,7 +327,7 @@ def check_root(root: Path) -> list[str]:
             problems.extend(probs)
             som_rows[slug] = objs
 
-        # xbs: is carried on sites/<slug>.yaml rows (no ids/sites.yaml export).
+        # xbs: is carried on sites/<slug>.yaml rows (no ids/*.yaml export).
         seen_ds: dict[str, str] = {}
         for slug, rows in som_rows.items():
             for n, rec in enumerate(rows, 1):
@@ -383,29 +346,6 @@ def check_root(root: Path) -> list[str]:
                 seen_ds[slug] = str(ds)
         if len(set(seen_ds.values())) != len(seen_ds):
             problems.append(err("sites/", 1, "two SOM tables share the same xbs: accession"))
-
-        for prefix, evs in events.items():
-            # replay expects id key
-            for e in evs:
-                if "@id" in e and "id" not in e:
-                    e["id"] = e["@id"]
-            log = f"{KIND_FILES[prefix]}.yaml"
-            state, replay_probs = replay(evs, f"ids/{log}")
-            problems.extend(replay_probs)
-            by_id = {_node_id(r): r for r in records.get(prefix, [])}
-            for acc, last in state.items():
-                rec = by_id.get(acc)
-                if rec is None:
-                    problems.append(err(log, 1, f"{acc} is in the id log but not in {log}"))
-                    continue
-                want = status_of(last["event"])
-                if rec.get("status") != want:
-                    problems.append(err(log, 1, f"{acc} status {rec.get('status')!r} != replay {want!r}"))
-                if want == "merged" and rec.get("into") != last.get("into"):
-                    problems.append(err(log, 1, f"{acc} into {rec.get('into')!r} != replay {last.get('into')!r}"))
-            for acc in by_id:
-                if acc not in state:
-                    problems.append(err(log, 1, f"{acc} has no id-event mint"))
 
         full_mols = {_node_id(r) for r in records.get("xbm", [])}
         for slug, rows in som_rows.items():

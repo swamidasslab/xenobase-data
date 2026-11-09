@@ -26,9 +26,6 @@ PATHS = [
     "molecules.yaml",
     "reactions.yaml",
     "networks.yaml",
-    "ids/molecules.yaml",
-    "ids/reactions.yaml",
-    "ids/networks.yaml",
     *[f"sites/{s}.yaml" for s in SOM_SLUGS],
     "mappings/reactions.sssom.tsv",
     "mappings/molecules.sssom.tsv",
@@ -36,7 +33,6 @@ PATHS = [
     "schema/molecule.schema.json",
     "schema/reaction.schema.json",
     "schema/network.schema.json",
-    "schema/id_event.schema.json",
     "schema/som_molecule.schema.json",
 ]
 

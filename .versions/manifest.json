@@ -1,0 +1,168 @@
+{
+  "branch": "release",
+  "files": {
+    "mappings/molecules.sssom.tsv": {
+      "latest": "99cdb4aac09dbd8a9ecc7c480a6f3ffdbafffc39",
+      "n": 1,
+      "versions": [
+        {
+          "at": "2026-11-09T02:32:56-06:00",
+          "commit": "99cdb4aac09dbd8a9ecc7c480a6f3ffdbafffc39"
+        }
+      ]
+    },
+    "mappings/networks.sssom.tsv": {
+      "latest": "99cdb4aac09dbd8a9ecc7c480a6f3ffdbafffc39",
+      "n": 1,
+      "versions": [
+        {
+          "at": "2026-11-09T02:32:56-06:00",
+          "commit": "99cdb4aac09dbd8a9ecc7c480a6f3ffdbafffc39"
+        }
+      ]
+    },
+    "mappings/reactions.sssom.tsv": {
+      "latest": "99cdb4aac09dbd8a9ecc7c480a6f3ffdbafffc39",
+      "n": 1,
+      "versions": [
+        {
+          "at": "2026-11-09T02:32:56-06:00",
+          "commit": "99cdb4aac09dbd8a9ecc7c480a6f3ffdbafffc39"
+        }
+      ]
+    },
+    "molecules.yaml": {
+      "latest": "99cdb4aac09dbd8a9ecc7c480a6f3ffdbafffc39",
+      "n": 1,
+      "versions": [
+        {
+          "at": "2026-11-09T02:32:56-06:00",
+          "commit": "99cdb4aac09dbd8a9ecc7c480a6f3ffdbafffc39"
+        }
+      ]
+    },
+    "networks.yaml": {
+      "latest": "99cdb4aac09dbd8a9ecc7c480a6f3ffdbafffc39",
+      "n": 1,
+      "versions": [
+        {
+          "at": "2026-11-09T02:32:56-06:00",
+          "commit": "99cdb4aac09dbd8a9ecc7c480a6f3ffdbafffc39"
+        }
+      ]
+    },
+    "reactions.yaml": {
+      "latest": "99cdb4aac09dbd8a9ecc7c480a6f3ffdbafffc39",
+      "n": 1,
+      "versions": [
+        {
+          "at": "2026-11-09T02:32:56-06:00",
+          "commit": "99cdb4aac09dbd8a9ecc7c480a6f3ffdbafffc39"
+        }
+      ]
+    },
+    "schema/molecule.schema.json": {
+      "latest": "99cdb4aac09dbd8a9ecc7c480a6f3ffdbafffc39",
+      "n": 2,
+      "versions": [
+        {
+          "at": "2026-11-09T02:32:56-06:00",
+          "commit": "99cdb4aac09dbd8a9ecc7c480a6f3ffdbafffc39"
+        },
+        {
+          "at": "2026-10-31T15:54:50-05:00",
+          "commit": "e81fbd70ae19d855c30ca69c5dcaa14c73d0dc94"
+        }
+      ]
+    },
+    "schema/network.schema.json": {
+      "latest": "99cdb4aac09dbd8a9ecc7c480a6f3ffdbafffc39",
+      "n": 2,
+      "versions": [
+        {
+          "at": "2026-11-09T02:32:56-06:00",
+          "commit": "99cdb4aac09dbd8a9ecc7c480a6f3ffdbafffc39"
+        },
+        {
+          "at": "2026-11-04T18:35:15-06:00",
+          "commit": "46394d7841bd57ebcabfdc5d40750a2e254e8c06"
+        }
+      ]
+    },
+    "schema/reaction.schema.json": {
+      "latest": "99cdb4aac09dbd8a9ecc7c480a6f3ffdbafffc39",
+      "n": 2,
+      "versions": [
+        {
+          "at": "2026-11-09T02:32:56-06:00",
+          "commit": "99cdb4aac09dbd8a9ecc7c480a6f3ffdbafffc39"
+        },
+        {
+          "at": "2026-10-31T15:54:50-05:00",
+          "commit": "e81fbd70ae19d855c30ca69c5dcaa14c73d0dc94"
+        }
+      ]
+    },
+    "schema/som_molecule.schema.json": {
+      "latest": "99cdb4aac09dbd8a9ecc7c480a6f3ffdbafffc39",
+      "n": 1,
+      "versions": [
+        {
+          "at": "2026-11-09T02:32:56-06:00",
+          "commit": "99cdb4aac09dbd8a9ecc7c480a6f3ffdbafffc39"
+        }
+      ]
+    },
+    "sites/epoxide.yaml": {
+      "latest": "99cdb4aac09dbd8a9ecc7c480a6f3ffdbafffc39",
+      "n": 1,
+      "versions": [
+        {
+          "at": "2026-11-09T02:32:56-06:00",
+          "commit": "99cdb4aac09dbd8a9ecc7c480a6f3ffdbafffc39"
+        }
+      ]
+    },
+    "sites/glucuronidation.yaml": {
+      "latest": "99cdb4aac09dbd8a9ecc7c480a6f3ffdbafffc39",
+      "n": 1,
+      "versions": [
+        {
+          "at": "2026-11-09T02:32:56-06:00",
+          "commit": "99cdb4aac09dbd8a9ecc7c480a6f3ffdbafffc39"
+        }
+      ]
+    },
+    "sites/glutathionation.yaml": {
+      "latest": "99cdb4aac09dbd8a9ecc7c480a6f3ffdbafffc39",
+      "n": 1,
+      "versions": [
+        {
+          "at": "2026-11-09T02:32:56-06:00",
+          "commit": "99cdb4aac09dbd8a9ecc7c480a6f3ffdbafffc39"
+        }
+      ]
+    },
+    "sites/quinonoid.yaml": {
+      "latest": "99cdb4aac09dbd8a9ecc7c480a6f3ffdbafffc39",
+      "n": 1,
+      "versions": [
+        {
+          "at": "2026-11-09T02:32:56-06:00",
+          "commit": "99cdb4aac09dbd8a9ecc7c480a6f3ffdbafffc39"
+        }
+      ]
+    },
+    "sites/rainbow.yaml": {
+      "latest": "99cdb4aac09dbd8a9ecc7c480a6f3ffdbafffc39",
+      "n": 1,
+      "versions": [
+        {
+          "at": "2026-11-09T02:32:56-06:00",
+          "commit": "99cdb4aac09dbd8a9ecc7c480a6f3ffdbafffc39"
+        }
+      ]
+    }
+  },
+  "tip": "9b3e8fa69195a3e4812c315bac385b7711a05a7f"
+}

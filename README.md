@@ -20,11 +20,11 @@ TSV and JSON Schema. Prefix expansions live in each file’s `jsonld.@context`
 | `reactions.yaml` | login | observed reactant → product | `xbr:` |
 | `networks.yaml` | login | forward graph from a headline molecule | `xbn:` |
 | `sites/<slug>.yaml` | login | SOM table rows (`rainbow`, …) | `xbm:` + `xbs:` dataset |
-| `ids/molecules.yaml` | login | mint / retire / revive / relink / merge | `xbm:` |
-| `ids/reactions.yaml` | login | mint / retire / revive / relink / merge | `xbr:` |
-| `ids/networks.yaml` | login | mint / retire / revive / relink / merge | `xbn:` |
 | `mappings/*.sssom.tsv` | public | SSSOM mappings | |
 | `schema/*.schema.json` | public | JSON Schema for graph node shapes | |
+
+Accession mint / retire / revive / merge ledgers are **not** archive
+products (private `data/ids/*.jsonl` in xenobase only).
 
 Each dataset YAML has outer `meta` (license, software, norms, statistics,
 schemas) and `jsonld` (`@context`, `@graph` list of nodes with `@id` CURIEs).
