@@ -2,9 +2,13 @@
   "branch": "release",
   "files": {
     "mappings/molecules.sssom.tsv": {
-      "latest": "c24c2dda3dd88aa4ad2efda46e4fa699856793ad",
-      "n": 1,
+      "latest": "5a01bfa4ff64093a27f13532ec32517c689a1046",
+      "n": 2,
       "versions": [
+        {
+          "at": "2026-11-11T15:57:59-06:00",
+          "commit": "5a01bfa4ff64093a27f13532ec32517c689a1046"
+        },
         {
           "at": "2026-11-09T02:32:56-06:00",
           "commit": "c24c2dda3dd88aa4ad2efda46e4fa699856793ad"
@@ -12,9 +16,13 @@
       ]
     },
     "mappings/networks.sssom.tsv": {
-      "latest": "c24c2dda3dd88aa4ad2efda46e4fa699856793ad",
-      "n": 1,
+      "latest": "5a01bfa4ff64093a27f13532ec32517c689a1046",
+      "n": 2,
       "versions": [
+        {
+          "at": "2026-11-11T15:57:59-06:00",
+          "commit": "5a01bfa4ff64093a27f13532ec32517c689a1046"
+        },
         {
           "at": "2026-11-09T02:32:56-06:00",
           "commit": "c24c2dda3dd88aa4ad2efda46e4fa699856793ad"
@@ -22,9 +30,13 @@
       ]
     },
     "mappings/reactions.sssom.tsv": {
-      "latest": "c24c2dda3dd88aa4ad2efda46e4fa699856793ad",
-      "n": 1,
+      "latest": "5a01bfa4ff64093a27f13532ec32517c689a1046",
+      "n": 2,
       "versions": [
+        {
+          "at": "2026-11-11T15:57:59-06:00",
+          "commit": "5a01bfa4ff64093a27f13532ec32517c689a1046"
+        },
         {
           "at": "2026-11-09T02:32:56-06:00",
           "commit": "c24c2dda3dd88aa4ad2efda46e4fa699856793ad"
@@ -32,9 +44,13 @@
       ]
     },
     "molecules.yaml": {
-      "latest": "c24c2dda3dd88aa4ad2efda46e4fa699856793ad",
-      "n": 1,
+      "latest": "5a01bfa4ff64093a27f13532ec32517c689a1046",
+      "n": 2,
       "versions": [
+        {
+          "at": "2026-11-11T15:57:59-06:00",
+          "commit": "5a01bfa4ff64093a27f13532ec32517c689a1046"
+        },
         {
           "at": "2026-11-09T02:32:56-06:00",
           "commit": "c24c2dda3dd88aa4ad2efda46e4fa699856793ad"
@@ -42,9 +58,13 @@
       ]
     },
     "networks.yaml": {
-      "latest": "c24c2dda3dd88aa4ad2efda46e4fa699856793ad",
-      "n": 1,
+      "latest": "5a01bfa4ff64093a27f13532ec32517c689a1046",
+      "n": 2,
       "versions": [
+        {
+          "at": "2026-11-11T15:57:59-06:00",
+          "commit": "5a01bfa4ff64093a27f13532ec32517c689a1046"
+        },
         {
           "at": "2026-11-09T02:32:56-06:00",
           "commit": "c24c2dda3dd88aa4ad2efda46e4fa699856793ad"
@@ -52,9 +72,13 @@
       ]
     },
     "reactions.yaml": {
-      "latest": "c24c2dda3dd88aa4ad2efda46e4fa699856793ad",
-      "n": 1,
+      "latest": "5a01bfa4ff64093a27f13532ec32517c689a1046",
+      "n": 2,
       "versions": [
+        {
+          "at": "2026-11-11T15:57:59-06:00",
+          "commit": "5a01bfa4ff64093a27f13532ec32517c689a1046"
+        },
         {
           "at": "2026-11-09T02:32:56-06:00",
           "commit": "c24c2dda3dd88aa4ad2efda46e4fa699856793ad"
@@ -62,9 +86,13 @@
       ]
     },
     "schema/molecule.schema.json": {
-      "latest": "c24c2dda3dd88aa4ad2efda46e4fa699856793ad",
-      "n": 2,
+      "latest": "5a01bfa4ff64093a27f13532ec32517c689a1046",
+      "n": 3,
       "versions": [
+        {
+          "at": "2026-11-11T15:57:59-06:00",
+          "commit": "5a01bfa4ff64093a27f13532ec32517c689a1046"
+        },
         {
           "at": "2026-11-09T02:32:56-06:00",
           "commit": "c24c2dda3dd88aa4ad2efda46e4fa699856793ad"
@@ -114,9 +142,13 @@
       ]
     },
     "sites/epoxide.yaml": {
-      "latest": "c24c2dda3dd88aa4ad2efda46e4fa699856793ad",
-      "n": 1,
+      "latest": "5a01bfa4ff64093a27f13532ec32517c689a1046",
+      "n": 2,
       "versions": [
+        {
+          "at": "2026-11-11T15:57:59-06:00",
+          "commit": "5a01bfa4ff64093a27f13532ec32517c689a1046"
+        },
         {
           "at": "2026-11-09T02:32:56-06:00",
           "commit": "c24c2dda3dd88aa4ad2efda46e4fa699856793ad"
@@ -124,9 +156,13 @@
       ]
     },
     "sites/glucuronidation.yaml": {
-      "latest": "c24c2dda3dd88aa4ad2efda46e4fa699856793ad",
-      "n": 1,
+      "latest": "5a01bfa4ff64093a27f13532ec32517c689a1046",
+      "n": 2,
       "versions": [
+        {
+          "at": "2026-11-11T15:57:59-06:00",
+          "commit": "5a01bfa4ff64093a27f13532ec32517c689a1046"
+        },
         {
           "at": "2026-11-09T02:32:56-06:00",
           "commit": "c24c2dda3dd88aa4ad2efda46e4fa699856793ad"
@@ -134,9 +170,13 @@
       ]
     },
     "sites/glutathionation.yaml": {
-      "latest": "c24c2dda3dd88aa4ad2efda46e4fa699856793ad",
-      "n": 1,
+      "latest": "5a01bfa4ff64093a27f13532ec32517c689a1046",
+      "n": 2,
       "versions": [
+        {
+          "at": "2026-11-11T15:57:59-06:00",
+          "commit": "5a01bfa4ff64093a27f13532ec32517c689a1046"
+        },
         {
           "at": "2026-11-09T02:32:56-06:00",
           "commit": "c24c2dda3dd88aa4ad2efda46e4fa699856793ad"
@@ -144,9 +184,13 @@
       ]
     },
     "sites/quinonoid.yaml": {
-      "latest": "c24c2dda3dd88aa4ad2efda46e4fa699856793ad",
-      "n": 1,
+      "latest": "5a01bfa4ff64093a27f13532ec32517c689a1046",
+      "n": 2,
       "versions": [
+        {
+          "at": "2026-11-11T15:57:59-06:00",
+          "commit": "5a01bfa4ff64093a27f13532ec32517c689a1046"
+        },
         {
           "at": "2026-11-09T02:32:56-06:00",
           "commit": "c24c2dda3dd88aa4ad2efda46e4fa699856793ad"
@@ -154,9 +198,13 @@
       ]
     },
     "sites/rainbow.yaml": {
-      "latest": "c24c2dda3dd88aa4ad2efda46e4fa699856793ad",
-      "n": 1,
+      "latest": "5a01bfa4ff64093a27f13532ec32517c689a1046",
+      "n": 2,
       "versions": [
+        {
+          "at": "2026-11-11T15:57:59-06:00",
+          "commit": "5a01bfa4ff64093a27f13532ec32517c689a1046"
+        },
         {
           "at": "2026-11-09T02:32:56-06:00",
           "commit": "c24c2dda3dd88aa4ad2efda46e4fa699856793ad"
@@ -164,5 +212,5 @@
       ]
     }
   },
-  "tip": "5205cbbc52ece0b9af07821e24267c9bd8e22a61"
+  "tip": "5a01bfa4ff64093a27f13532ec32517c689a1046"
 }
