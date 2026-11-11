@@ -37,7 +37,7 @@ meta:
       inferred steps are omitted. Observed GSH-star adducts still count from the recorded pair when 
       Forest did not label the hop.]
   conformsTo: [https://datapackage.org/standard/data-package/, https://schema.org/Dataset]
-  created: '2026-11-09T04:32:12Z'
+  created: '2026-11-11T21:34:14Z'
   homepage: https://w3id.org/xenosite/xenobase
   licenses:
   - {name: CC-BY-NC-4.0, path: https://creativecommons.org/licenses/by-nc/4.0/, title: Creative 
@@ -49,17 +49,17 @@ meta:
       2015, doi: 10.1021/acs.chemrestox.5b00017, pmid: '25742281', url: 
       https://doi.org/10.1021/acs.chemrestox.5b00017}
   software:
-  - {name: xenobase, commit: f0c3243db1eab6600e245f5895b70e8781cb2a81, path: 
+  - {name: xenobase, commit: 794fe5b2ec1aac1a83a8e88e1add8be673ab5c85, path: 
       https://github.com/swamidasslab/xenobase}
   - {name: xenosmarts, path: https://github.com/swamidasslab/xenosmarts, commit: 
-      3eacecf783db43cc16889d184f9afc24197b44d3, version: 0.1.1}
+      60c9d9a1da269c82809a81bd8176eba473f82eec}
   - {name: rdkit, version: 2026.09.1, pin: 2026.09.1}
   - {name: chematic, version: 1.0.36, pin: 1.0.36, note: CXSMILES canon via xenosmarts XMol; 
       lockstep with xenosmarts chematic-* crates}
   - {name: ruamel.yaml, version: 0.19.1}
   - {name: jsonschema, version: 4.26.0}
   norms: {MOL_NORM: 8, NORM: 2, NET_NORM: 1}
-  statistics: {n_molecules: 189, n_negatives: 0, n_positive: 189, n_sites: 232}
+  statistics: {n_molecules: 230, n_negatives: 0, n_positive: 230, n_sites: 291}
   schemas:
   - {path: schema/som_molecule.schema.json, id: 
       https://w3id.org/xenosite/xenobase/schema/som_molecule, draft: 
@@ -75,1364 +75,83 @@ jsonld:
     xbr: https://w3id.org/xenosite/xenobase/reaction/
     xbs: https://w3id.org/xenosite/xenobase/site/
   "@graph":
-  - '@id': xbm:000000009134
+  - '@id': xbm:000000000010
     '@type': xb:SomMolecule
-    cxsmiles: C(c5cnc(cc5)N4CCN(CC4)c2c1ccccc1c(CC3=CCC(O)(F)C=C3F)nn2)(O)(C)C
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8, 12], [9, 11], [10], [13], [14], [15], [16], [
-        17], [18], [19], [20], [21], [22], [23], [24], [25], [26], [27], [28], [29], [30], [31], [32],
-      [33], [34, 35]]
-    soms:
-    - atoms: [24]
-      equiv: [[24]]
-      kind: atom
-      partition:
-      - atoms: [24]
-        molecule: xbm:000000009134
-      - atoms: [19]
-        molecule: xbm:000000002459
-      pattern: alkene
-      reactions: [xbr:000000008395, xbr:000000002151]
-      rule: Glutathionation
-      walk: 1
-  - '@id': xbm:000000009142
-    '@type': xb:SomMolecule
-    cxsmiles: C1C=CNP(O1)(N(CCCl)CCCl)=O
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6], [7, 10], [8, 11], [9, 12], [13]]
-    soms:
-    - atoms: [2]
-      equiv: [[2]]
-      kind: atom
-      partition:
-      - atoms: [2]
-        molecule: xbm:000000009142
-      pattern: alkene
-      reactions: [xbr:000000004200]
-      rule: Glutathionation
-      walk: 0
-  - '@id': xbm:000000009214
-    '@type': xb:SomMolecule
-    cxsmiles: Cc1cnc(Cn2cnc3c(Cl)nc(N)nc32)c(C)c1O
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
-          16], [17], [18], [19], [20]]
-    soms:
-    - atoms: [10]
-      equiv: [[10]]
-      kind: atom
-      partition:
-      - atoms: [10]
-        molecule: xbm:000000009214
-      pattern: halide
-      reactions: [xbr:000000008710]
-      rule: Glutathionation
-      walk: 0
-  - '@id': xbm:000000009237
-    '@type': xb:SomMolecule
-    cxsmiles: Cn1cnc([N+](=O)[O-])c1Sc1ncnc2[nH]cnc12
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
-          16], [17], [18]]
-    soms:
-    - atoms: [8]
-      equiv: [[8]]
-      kind: atom
-      partition:
-      - atoms: [8]
-        molecule: xbm:000000009237
-      pattern: adduct
-      reactions: [xbr:000000008753]
-      rule: Glutathionation
-      walk: 0
-  - '@id': xbm:000000009239
-    '@type': xb:SomMolecule
-    cxsmiles: c1(cccc(c1N=C2C(=CC(C=C2)=O)CC(O)=O)Cl)Cl
-    dataset: xbs:0000002
-    orbits: [[0, 4], [1, 3], [2], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [16], [
-        17], [18, 19]]
-    soms:
-    - atoms: [9]
-      equiv: [[9]]
-      kind: atom
-      partition:
-      - atoms: [9]
-        molecule: xbm:000000009239
-      pattern: michael
-      reactions: [xbr:000000005322]
-      rule: Glutathionation
-      walk: 0
-    - atoms: [11]
-      equiv: [[11]]
-      kind: atom
-      partition:
-      - atoms: [11]
-        molecule: xbm:000000009239
-      pattern: michael
-      reactions: [xbr:000000005324]
-      rule: Glutathionation
-      walk: 0
-  - '@id': xbm:000000009244
-    '@type': xb:SomMolecule
-    cxsmiles: c13c(CCN(C3)C(c2c(Cl)cccc2)C(OC)=O)sc(c1)O
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
-          16], [17], [18], [19], [20], [21]]
-    soms:
-    - atoms: [18]
-      equiv: [[18]]
-      kind: atom
-      partition:
-      - atoms: [18]
-        molecule: xbm:000000009244
-      - atoms: [16]
-        molecule: xbm:000000004097
-      - atoms: [16]
-        molecule: xbm:000000004091
-      pattern: thiol
-      reactions: [xbr:000000003864, xbr:000000008664, xbr:000000003856]
-      rule: Glutathionation
-      walk: 2
-  - '@id': xbm:000000009249
-    '@type': xb:SomMolecule
-    cxsmiles: c1c(C(C)(C)O)cnc(N5CCN(CC5)c3c2ccccc2c(CC=4C(F)(O)CC(=CC=4)F)nn3)c1
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3, 4], [5], [6], [7], [8], [9], [10, 14], [11, 13], [12], [15], [16], [
-          17], [18], [19], [20], [21], [22], [23], [24], [25], [26], [27], [28], [29], [30], [31], [
-          32], [33], [34], [35]]
-    soms:
-    - atoms: [28]
-      equiv: [[28]]
-      kind: atom
-      partition:
-      - atoms: [28]
-        molecule: xbm:000000009249
-      - atoms: [22]
-        molecule: xbm:000000003615
-      pattern: alkene
-      reactions: [xbr:000000003386, xbr:000000003427]
-      rule: Glutathionation
-      walk: 1
-  - '@id': xbm:000000009330
-    '@type': xb:SomMolecule
-    cxsmiles: C(=O)(NC(C)(C(CCl)=O)CC)C1CC(C(C(C1)Cl)C)Cl
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12, 16], [13, 15], [14], [
-        17, 19], [18]]
-    soms:
-    - atoms: [6]
-      equiv: [[6]]
-      kind: atom
-      partition:
-      - atoms: [6]
-        molecule: xbm:000000009330
-      pattern: adduct
-      reactions: [xbr:000000008941]
-      rule: Glutathionation
-      walk: 0
-  - '@id': xbm:000000009451
-    '@type': xb:SomMolecule
-    cxsmiles: C(C2C(CCCC2)C(F)(F)F)(=O)C(C#N)(C(=O)OCCOC)C1CCC(C(C)(C)C)CC1
+    cxsmiles: "C(#N)C(C(=O)c2c(C(F)(F)F)cccc2)(C(=O)OCCOC)c1ccc(cc1)C(C)(C)C"
     dataset: xbs:0000002
     orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8, 9, 10], [11], [12], [13], [14], [15], [16], [
-        17], [18], [19], [20], [21], [22], [23, 31], [24, 30], [25], [26], [27, 28, 29]]
+        17], [18], [19], [20], [21], [22], [23, 27], [24, 26], [25], [28], [29, 30, 31]]
+    soms:
+    - atoms: [3]
+      equiv: [[3]]
+      kind: atom
+      partition:
+      - atoms: [3]
+        molecule: xbm:000000000010
+      - atoms: [10]
+        molecule: xbm:000000007054
+      pattern: adduct
+      reactions: [xbr:000000000011, xbr:000000006425]
+      rule: Glutathionation
+      walk: 1
+  - '@id': xbm:000000000094
+    '@type': xb:SomMolecule
+    cxsmiles: C(=O)(N)c1c(C(F)(F)F)cccc1
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6, 7, 8], [9], [10], [11], [12]]
     soms:
     - atoms: [0]
       equiv: [[0]]
       kind: atom
       partition:
       - atoms: [0]
-        molecule: xbm:000000009451
-      - atoms: [8]
-        molecule: xbm:000000011045
-      pattern: adduct
-      reactions: [xbr:000000009078, xbr:000000010886]
-      rule: Glutathionation
-      walk: 1
-  - '@id': xbm:000000009499
-    '@type': xb:SomMolecule
-    cxsmiles: C(Cl)C(=O)NC1C(CCCC1CC)C(C)O
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15]]
-    soms:
-    - atoms: [0]
-      equiv: [[0]]
-      kind: atom
-      partition:
-      - atoms: [0]
-        molecule: xbm:000000009499
-      pattern: adduct
-      reactions: [xbr:000000009126]
-      rule: Glutathionation
-      walk: 0
-  - '@id': xbm:000000009520
-    '@type': xb:SomMolecule
-    cxsmiles: C(F)(F)(F)C1CCCCC1C(=O)N
-    dataset: xbs:0000002
-    orbits: [[0], [1, 2, 3], [4], [5], [6], [7], [8], [9], [10], [11], [12]]
-    soms:
-    - atoms: [10]
-      equiv: [[10]]
-      kind: atom
-      partition:
+        molecule: xbm:000000000094
       - atoms: [10]
-        molecule: xbm:000000009520
-      - atoms: [8]
-        molecule: xbm:000000011045
+        molecule: xbm:000000007054
       pattern: adduct
-      reactions: [xbr:000000009154, xbr:000000010886]
+      reactions: [xbr:000000000085, xbr:000000006425]
       rule: Glutathionation
       walk: 1
-  - '@id': xbm:000000009544
+  - '@id': xbm:000000000118
     '@type': xb:SomMolecule
-    cxsmiles: C(NC(=O)OC(C)C)(C(C)(C)O)C(=O)NC(C)C=2SC1CC(F)CCC1N=2
+    cxsmiles: "C(=O)(Nc3cc(O)c(cc3)OC(F)(F)F)NN=C(Cc2ccc(cc2)C#N)c1cccc(C(F)(F)F)c1"
     dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6, 7], [8], [9, 10], [11], [12], [13], [14], [15], [16], [
-        17], [18], [19], [20], [21], [22], [23], [24], [25], [26]]
-    soms:
-    - atoms: [23]
-      equiv: [[23]]
-      kind: atom
-      partition:
-      - atoms: [23]
-        molecule: xbm:000000009544
-      - atoms: [19]
-        molecule: xbm:000000011522
-      pattern: adduct
-      reactions: [xbr:000000009178, xbr:000000011398]
-      rule: Glutathionation
-      walk: 1
-  - '@id': xbm:000000009609
-    '@type': xb:SomMolecule
-    cxsmiles: C(n3ncnc3)C2(CC=CO2)C1CCC(Cl)CC1Cl
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
-          16], [17], [18]]
-    soms:
-    - atoms: [13]
-      equiv: [[13]]
-      kind: atom
-      partition:
-      - atoms: [13]
-        molecule: xbm:000000009609
-      - atoms: [6]
-        molecule: xbm:000000011686
-      - atoms: [14]
-        molecule: xbm:000000011949
-      pattern: adduct
-      reactions: [xbr:000000009245, xbr:000000011588, xbr:000000011868]
-      rule: Glutathionation
-      walk: 2
-  - '@id': xbm:000000009652
-    '@type': xb:SomMolecule
-    cxsmiles: C1(C(Cl)CC(C2CC(CCC2NC(=O)c3c(C(F)F)n[nH]c3)F)CC1)Cl
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
-          16], [17, 18], [19], [20], [21], [22], [23], [24], [25]]
-    soms:
-    - atoms: [6]
-      equiv: [[6]]
-      kind: atom
-      partition:
-      - atoms: [6]
-        molecule: xbm:000000009652
-      pattern: adduct
-      reactions: [xbr:000000009289]
-      rule: Glutathionation
-      walk: 0
-  - '@id': xbm:000000009696
-    '@type': xb:SomMolecule
-    cxsmiles: C1(C)C(NC(C2C(C(NC(CS(=O)(=O)C)(C)C)=O)C(I)CCC2)=O)CCC(C1)C(F)(C(F)(F)F)C(F)(F)F
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12, 13], [14], [15, 16], [
-        17], [18], [19], [20], [21], [22], [23], [24], [25], [26], [27], [28], [29], [30, 34], [31, 
-          32, 33, 35, 36, 37]]
-    soms:
-    - atoms: [21]
-      equiv: [[21]]
-      kind: atom
-      partition:
-      - atoms: [21]
-        molecule: xbm:000000009696
-      pattern: adduct
-      reactions: [xbr:000000009345]
-      rule: Glutathionation
-      walk: 0
-  - '@id': xbm:000000009732
-    '@type': xb:SomMolecule
-    cxsmiles: C1(C3(Cn4ncnc4)OC3C2CCC(O)CC2Cl)CCC(F)CC1
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
-          16], [17], [18, 23], [19, 22], [20], [21]]
-    soms:
-    - atoms: [9]
-      equiv: [[9]]
-      kind: atom
-      partition:
-      - atoms: [9]
-        molecule: xbm:000000009732
-      pattern: adduct
-      reactions: [xbr:000000009398]
-      rule: Glutathionation
-      walk: 0
-  - '@id': xbm:000000009740
-    '@type': xb:SomMolecule
-    cxsmiles: C1(C3CCC(Cl)CC3Cl)(Cn2ncnc2)OCC(C1)Br
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
-          16], [17], [18], [19]]
-    soms:
-    - atoms: [17]
-      equiv: [[17]]
-      kind: atom
-      partition:
-      - atoms: [17]
-        molecule: xbm:000000009740
-      pattern: adduct
-      reactions: [xbr:000000009404]
-      rule: Glutathionation
-      walk: 0
-    - atoms: [3]
-      equiv: [[3]]
-      kind: atom
-      partition:
-      - atoms: [3]
-        molecule: xbm:000000009740
-      - atoms: [4]
-        molecule: xbm:000000010092
-      pattern: adduct
-      reactions: [xbr:000000009405, xbr:000000009793]
-      rule: Glutathionation
-      walk: 1
-  - '@id': xbm:000000009774
-    '@type': xb:SomMolecule
-    cxsmiles: C1(CC)C(N(COC)C(=O)CCl)C(CCC1)CC
-    dataset: xbs:0000002
-    orbits: [[0, 12], [1, 16], [2, 17], [3], [4], [5], [6], [7], [8], [9], [10], [11], [13, 15], [14]]
-    soms:
-    - atoms: [10]
-      equiv: [[10]]
-      kind: atom
-      partition:
-      - atoms: [10]
-        molecule: xbm:000000009774
-      pattern: adduct
-      reactions: [xbr:000000009445]
-      rule: Glutathionation
-      walk: 0
-  - '@id': xbm:000000009908
-    '@type': xb:SomMolecule
-    cxsmiles: C1(NC(CCl)=O)C(CCCC1CC)CC
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6, 10], [7, 9], [8], [11, 13], [12, 14]]
-    soms:
-    - atoms: [3]
-      equiv: [[3]]
-      kind: atom
-      partition:
-      - atoms: [3]
-        molecule: xbm:000000009908
-      pattern: adduct
-      reactions: [xbr:000000009606]
-      rule: Glutathionation
-      walk: 0
-  - '@id': xbm:000000009953
-    '@type': xb:SomMolecule
-    cxsmiles: C1(OC3NCNC(C3)OC2C(C#N)CCCC2)CCCCC1C(C(OC)=O)=COC
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
-          16], [17], [18], [19], [20], [21], [22], [23], [24], [25], [26], [27], [28], [29]]
-    soms:
-    - atoms: [13]
-      equiv: [[13]]
-      kind: atom
-      partition:
-      - atoms: [13]
-        molecule: xbm:000000009953
-      pattern: adduct
-      reactions: [xbr:000000009660]
-      rule: Glutathionation
-      walk: 0
-  - '@id': xbm:000000010001
-    '@type': xb:SomMolecule
-    cxsmiles: C12C(C(=O)OC)C(Cl)C3C(O3)C1CC(CN2)Cl
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
-          16]]
-    soms:
-    - atoms: [8]
-      equiv: [[8]]
-      kind: atom
-      partition:
-      - atoms: [8]
-        molecule: xbm:000000010001
-      pattern: adduct
-      reactions: [xbr:000000009714]
-      rule: Glutathionation
-      walk: 0
-    - atoms: [6]
-      equiv: [[6]]
-      kind: atom
-      partition:
-      - atoms: [6]
-        molecule: xbm:000000010001
-      - atoms: [1]
-        molecule: xbm:000000010934
-      pattern: adduct
-      reactions: [xbr:000000009715, xbr:000000010752]
-      rule: Glutathionation
-      walk: 1
-  - '@id': xbm:000000010081
-    '@type': xb:SomMolecule
-    cxsmiles: C1C(C(S(NC(=O)NC2NC(CC(OC)N2)OC)(=O)=O)NCC1)C(F)(F)F
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9, 15], [10, 12], [11], [13, 16], [14, 17],
-      [18, 19], [20], [21], [22], [23], [24, 25, 26]]
-    soms:
-    - atoms: [2]
-      equiv: [[2]]
-      kind: atom
-      partition:
-      - atoms: [2]
-        molecule: xbm:000000010081
-      pattern: adduct
-      reactions: [xbr:000000009780]
-      rule: Glutathionation
-      walk: 0
-  - '@id': xbm:000000010092
-    '@type': xb:SomMolecule
-    cxsmiles: C1C(C3CCC(Cl)CC3Cl)(Cn2ncnc2)OCC1SC
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
-          16], [17], [18], [19], [20]]
-    soms:
-    - atoms: [4]
-      equiv: [[4]]
-      kind: atom
-      partition:
-      - atoms: [4]
-        molecule: xbm:000000010092
-      pattern: adduct
-      reactions: [xbr:000000009793]
-      rule: Glutathionation
-      walk: 0
-  - '@id': xbm:000000010101
-    '@type': xb:SomMolecule
-    cxsmiles: C1C(CC(O)C(N)C1Cl)[N+]([O-])=O
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11]]
-    soms:
-    - atoms: [7]
-      equiv: [[7]]
-      kind: atom
-      partition:
-      - atoms: [7]
-        molecule: xbm:000000010101
-      pattern: adduct
-      reactions: [xbr:000000009804]
-      rule: Glutathionation
-      walk: 0
-  - '@id': xbm:000000010148
-    '@type': xb:SomMolecule
-    cxsmiles: C1C(F)CCC(C(C(S)C3CCCCC3Cl)(Cn2cncn2)O)C1
-    dataset: xbs:0000002
-    orbits: [[0, 3], [1], [2], [4, 23], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
-        16], [17], [18], [19], [20], [21], [22]]
-    soms:
-    - atoms: [12]
-      equiv: [[12]]
-      kind: atom
-      partition:
-      - atoms: [12]
-        molecule: xbm:000000010148
-      pattern: adduct
-      reactions: [xbr:000000009853]
-      rule: Glutathionation
-      walk: 0
-  - '@id': xbm:000000010165
-    '@type': xb:SomMolecule
-    cxsmiles: C1C(O)COC1(C3CCC(Cl)CC3Cl)Cn2ncnc2
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
-          16], [17], [18], [19]]
-    soms:
-    - atoms: [8]
-      equiv: [[8]]
-      kind: atom
-      partition:
-      - atoms: [8]
-        molecule: xbm:000000010165
-      - atoms: [4]
-        molecule: xbm:000000010092
-      pattern: adduct
-      reactions: [xbr:000000009871, xbr:000000009793]
-      rule: Glutathionation
-      walk: 1
-  - '@id': xbm:000000010183
-    '@type': xb:SomMolecule
-    cxsmiles: C1C(c3nc(C4CCN(C(Cn5nc(C(F)(F)F)cc5CO)=O)CC4)sc3)NOC1C2C(F)CCCC2F
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6, 24], [7, 23], [8], [9], [10], [11], [12], [13], [14], [
-        15, 16, 17], [18], [19], [20], [21], [22], [25], [26], [27], [28], [29], [30], [31, 36], [32,
-        37], [33, 35], [34]]
-    soms:
-    - atoms: [36]
-      equiv: [[31, 36]]
-      kind: atom
-      partition:
-      - atoms: [36]
-        molecule: xbm:000000010183
-      - atoms: [34]
-        molecule: xbm:000000011837
-      pattern: adduct
-      reactions: [xbr:000000009882, xbr:000000011747]
-      rule: Glutathionation
-      walk: 1
-  - '@id': xbm:000000010277
-    '@type': xb:SomMolecule
-    cxsmiles: C1CC(OC(F)(F)F)C(O)CC1NC(=O)NN=C(CC3CCC(C#N)CC3)C2CC(CCC2)C(F)(F)F
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5, 6, 7], [8], [9], [10], [11], [12], [13], [14], [15], [16], [
-        17], [18], [19], [20, 26], [21, 25], [22], [23], [24], [27], [28], [29], [30], [31], [32], [
-          33], [34, 35, 36]]
-    soms:
-    - atoms: [4]
-      equiv: [[4]]
-      kind: atom
-      partition:
-      - atoms: [4]
-        molecule: xbm:000000010277
-      - atoms: [1]
-        molecule: xbm:000000011065
-      pattern: adduct
-      reactions: [xbr:000000009988, xbr:000000010908]
-      rule: Glutathionation
-      walk: 1
-  - '@id': xbm:000000010437
-    '@type': xb:SomMolecule
-    cxsmiles: C2(CCC(CC2C4C(C4)C3CC3)O)NC(=O)c1c(nn(C)c1)C(F)F
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10, 11], [12], [13], [14], [15], [16],
-      [17], [18], [19], [20], [21], [22], [23, 24]]
-    soms:
-    - atoms: [11]
-      equiv: [[10, 11]]
-      kind: atom
-      partition:
-      - atoms: [11]
-        molecule: xbm:000000010437
-      pattern: adduct
-      reactions: [xbr:000000010187]
-      rule: Glutathionation
-      walk: 0
-    - atoms: [2]
-      equiv: [[2]]
-      kind: atom
-      partition:
-      - atoms: [2]
-        molecule: xbm:000000010437
-      - atoms: [11]
-        molecule: xbm:000000011702
-      pattern: adduct
-      reactions: [xbr:000000010191, xbr:000000011605]
-      rule: Glutathionation
-      walk: 1
-  - '@id': xbm:000000010473
-    '@type': xb:SomMolecule
-    cxsmiles: C2(c3nc(C5CCN(CC5)C(Cn4c(cc(n4)C(F)(F)F)C)=O)sc3)NOC(C2)C1C(F)CCCC1F
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5, 9], [6, 8], [7], [10], [11], [12], [13], [14], [15], [16], [
-        17], [18, 19, 20], [21], [22], [23], [24], [25], [26], [27], [28], [29], [30, 35], [31, 36], [
-        32, 34], [33]]
-    soms:
-    - atoms: [30]
-      equiv: [[30, 35]]
-      kind: atom
-      partition:
-      - atoms: [30]
-        molecule: xbm:000000010473
-      - atoms: [17]
-        molecule: xbm:000000011494
-      pattern: adduct
-      reactions: [xbr:000000010226, xbr:000000011377]
-      rule: Glutathionation
-      walk: 1
-    - atoms: [35]
-      equiv: [[30, 35]]
-      kind: atom
-      partition:
-      - atoms: [35]
-        molecule: xbm:000000010473
-      - atoms: [36]
-        molecule: xbm:000000010183
-      - atoms: [34]
-        molecule: xbm:000000011837
-      pattern: adduct
-      reactions: [xbr:000000010221, xbr:000000009882, xbr:000000011747]
-      rule: Glutathionation
-      walk: 2
-  - '@id': xbm:000000010518
-    '@type': xb:SomMolecule
-    cxsmiles: C2C(CNC(C2Cl)CCNC(=O)C1C(CCCC1)C(F)(F)F)C(F)(F)F
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
-          16], [17], [18], [19, 20, 21], [22], [23, 24, 25]]
-    soms:
-    - atoms: [10]
-      equiv: [[10]]
-      kind: atom
-      partition:
-      - atoms: [10]
-        molecule: xbm:000000010518
-      - atoms: [8]
-        molecule: xbm:000000011047
-      - atoms: [10]
-        molecule: xbm:000000009520
-      - atoms: [8]
-        molecule: xbm:000000011045
-      pattern: adduct
-      reactions: [xbr:000000010284, xbr:000000010888, xbr:000000009154, xbr:000000010886]
-      rule: Glutathionation
-      walk: 3
-  - '@id': xbm:000000010519
-    '@type': xb:SomMolecule
-    cxsmiles: C2C(Cl)C(NCC2C(F)(F)F)CNC(=O)C1C(Cl)CCCC1Cl
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8, 9, 10], [11], [12], [13], [14], [15], [16, 
-          21], [17, 22], [18, 20], [19]]
-    soms:
-    - atoms: [16]
-      equiv: [[16, 21]]
-      kind: atom
-      partition:
-      - atoms: [16]
-        molecule: xbm:000000010519
-      pattern: adduct
-      reactions: [xbr:000000010292]
-      rule: Glutathionation
-      walk: 0
-  - '@id': xbm:000000010546
-    '@type': xb:SomMolecule
-    cxsmiles: C2CC(C(C3C(C3)C(=O)CCO)CC2)NC(c1cn(C)nc1C(F)F)=O
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
-          16], [17], [18], [19], [20], [21], [22], [23, 24], [25]]
-    soms:
-    - atoms: [10]
-      equiv: [[10]]
-      kind: atom
-      partition:
-      - atoms: [10]
-        molecule: xbm:000000010546
-      pattern: adduct
-      reactions: [xbr:000000010315]
-      rule: Glutathionation
-      walk: 0
-  - '@id': xbm:000000010608
-    '@type': xb:SomMolecule
-    cxsmiles: C3(C(CCCC3)C2CCC(Cl)CC2)NC(=O)C1CCCNC1Cl
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6], [7, 12], [8, 11], [9], [10], [13], [14], [15], [16], [
-        17], [18], [19], [20], [21], [22]]
-    soms:
-    - atoms: [3]
-      equiv: [[3]]
-      kind: atom
-      partition:
-      - atoms: [3]
-        molecule: xbm:000000010608
-      pattern: adduct
-      reactions: [xbr:000000010414]
-      rule: Glutathionation
-      walk: 0
-    - atoms: [21]
-      equiv: [[21]]
-      kind: atom
-      partition:
-      - atoms: [21]
-        molecule: xbm:000000010608
-      pattern: adduct
-      reactions: [xbr:000000010410]
-      rule: Glutathionation
-      walk: 0
-  - '@id': xbm:000000010650
-    '@type': xb:SomMolecule
-    cxsmiles: C3C(C(NC(c4c(nn(C)c4)C(F)F)=O)CCC3)C1C(C2(O)CC2)C1
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12, 13], [14], [15], [16],
-      [17], [18], [19], [20], [21], [22, 23], [24]]
-    soms:
-    - atoms: [16]
-      equiv: [[16]]
-      kind: atom
-      partition:
-      - atoms: [16]
-        molecule: xbm:000000010650
-      - atoms: [11]
-        molecule: xbm:000000011702
-      pattern: adduct
-      reactions: [xbr:000000010445, xbr:000000011605]
-      rule: Glutathionation
-      walk: 1
-  - '@id': xbm:000000010708
-    '@type': xb:SomMolecule
-    cxsmiles: C4C(CCC(C4)C2(Cn3ncnc3)C(O2)C1CCCCC1Cl)F
-    dataset: xbs:0000002
-    orbits: [[0, 2], [1], [3, 5], [4], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [16], [
-        17], [18], [19], [20], [21], [22]]
-    soms:
-    - atoms: [13]
-      equiv: [[13]]
-      kind: atom
-      partition:
-      - atoms: [13]
-        molecule: xbm:000000010708
-      pattern: adduct
-      reactions: [xbr:000000010522]
-      rule: Glutathionation
-      walk: 0
-    - atoms: [18]
-      equiv: [[18]]
-      kind: atom
-      partition:
-      - atoms: [18]
-        molecule: xbm:000000010708
-      pattern: adduct
-      reactions: [xbr:000000010521]
-      rule: Glutathionation
-      walk: 0
-    - atoms: [16]
-      equiv: [[16]]
-      kind: atom
-      partition:
-      - atoms: [16]
-        molecule: xbm:000000010708
-      - atoms: [18]
-        molecule: xbm:000000011610
-      pattern: adduct
-      reactions: [xbr:000000010520, xbr:000000011491]
-      rule: Glutathionation
-      walk: 1
-  - '@id': xbm:000000010750
-    '@type': xb:SomMolecule
-    cxsmiles: CC(C(NC(=O)OC(C)C)C(=O)NC(C)C2=NC1C(S2)CC(CC1)F)C
-    dataset: xbs:0000002
-    orbits: [[0, 25], [1], [2], [3], [4], [5], [6], [7], [8, 9], [10], [11], [12], [13], [14], [15], [
-        16], [17], [18], [19], [20], [21], [22], [23], [24]]
-    soms:
-    - atoms: [22]
-      equiv: [[22]]
-      kind: atom
-      partition:
-      - atoms: [22]
-        molecule: xbm:000000010750
-      - atoms: [18]
-        molecule: xbm:000000010786
-      pattern: adduct
-      reactions: [xbr:000000010560, xbr:000000010607]
-      rule: Glutathionation
-      walk: 1
-  - '@id': xbm:000000010786
-    '@type': xb:SomMolecule
-    cxsmiles: CC(OC(NC(C(=O)NC(C)C=3SC1C(N=3)C2OC2C(=C1)F)C(C)C)=O)C
-    dataset: xbs:0000002
-    orbits: [[0, 26], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15],
-      [16], [17], [18], [19], [20], [21], [22], [23, 24], [25]]
-    soms:
-    - atoms: [18]
-      equiv: [[18]]
-      kind: atom
-      partition:
-      - atoms: [18]
-        molecule: xbm:000000010786
-      pattern: adduct
-      reactions: [xbr:000000010607]
-      rule: Glutathionation
-      walk: 0
-  - '@id': xbm:000000010806
-    '@type': xb:SomMolecule
-    cxsmiles: CC1CCC(N(SC(F)(Cl)Cl)S(=O)(=O)N(C)C)CC1
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2, 18], [3, 17], [4], [5], [6], [7], [8], [9, 10], [11], [12, 13], [14], [15,
-        16]]
-    soms:
-    - atoms: [7]
-      equiv: [[7]]
-      kind: atom
-      partition:
-      - atoms: [7]
-        molecule: xbm:000000010806
-      - atoms: [2]
-        molecule: xbm:000000005323
-      - atoms: [0]
-        molecule: xbm:000000000795
-      - atoms: [1]
-        molecule: xbm:000000002894
-      pattern: adduct
-      reactions: [xbr:000000010621, xbr:000000004867, xbr:000000000712, xbr:000000002656]
-      rule: Glutathionation
-      walk: 3
-  - '@id': xbm:000000010934
-    '@type': xb:SomMolecule
-    cxsmiles: ClC1C(C2NCC(CC2C(O)C1)Cl)C(=O)OC
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
-          16]]
-    soms:
-    - atoms: [1]
-      equiv: [[1]]
-      kind: atom
-      partition:
-      - atoms: [1]
-        molecule: xbm:000000010934
-      pattern: adduct
-      reactions: [xbr:000000010752]
-      rule: Glutathionation
-      walk: 0
-  - '@id': xbm:000000010957
-    '@type': xb:SomMolecule
-    cxsmiles: ClC1CC(C2C(NCC(C2)Cl)C1C(=O)OC)O[*] |$;;;;;;;;;;;;;;;;;GlcA$|
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
-          16], [17]]
-    soms:
-    - atoms: [1]
-      equiv: [[1]]
-      kind: atom
-      partition:
-      - atoms: [1]
-        molecule: xbm:000000010957
-      pattern: adduct
-      reactions: [xbr:000000010778]
-      rule: Glutathionation
-      walk: 0
-  - '@id': xbm:000000011010
-    '@type': xb:SomMolecule
-    cxsmiles: ClC3C(CC(CC3)C2CC(F)CCC2NC(=O)c1cn(C)nc1C(F)F)Cl
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
-          16], [17], [18], [19], [20], [21], [22], [23], [24, 25], [26]]
-    soms:
-    - atoms: [8]
-      equiv: [[8]]
-      kind: atom
-      partition:
-      - atoms: [8]
-        molecule: xbm:000000011010
-      - atoms: [6]
-        molecule: xbm:000000009652
-      pattern: adduct
-      reactions: [xbr:000000010834, xbr:000000009289]
-      rule: Glutathionation
-      walk: 1
-  - '@id': xbm:000000011029
-    '@type': xb:SomMolecule
-    cxsmiles: Cn4nc(c(c4)C(=O)NC3CCCCC3C2CC2C1CC1)C(F)F
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
-          16], [17], [18], [19, 20], [21], [22, 23]]
-    soms:
-    - atoms: [20]
-      equiv: [[19, 20]]
-      kind: atom
-      partition:
-      - atoms: [20]
-        molecule: xbm:000000011029
-      - atoms: [11]
-        molecule: xbm:000000010437
-      pattern: adduct
-      reactions: [xbr:000000010871, xbr:000000010187]
-      rule: Glutathionation
-      walk: 1
-    - atoms: [11]
-      equiv: [[11]]
-      kind: atom
-      partition:
-      - atoms: [11]
-        molecule: xbm:000000011029
-      - atoms: [2]
-        molecule: xbm:000000010437
-      - atoms: [11]
-        molecule: xbm:000000011702
-      pattern: adduct
-      reactions: [xbr:000000010871, xbr:000000010191, xbr:000000011605]
-      rule: Glutathionation
-      walk: 2
-  - '@id': xbm:000000011045
-    '@type': xb:SomMolecule
-    cxsmiles: FC(C1CCCCC1C(=O)O)(F)F
-    dataset: xbs:0000002
-    orbits: [[0, 11, 12], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10]]
-    soms:
-    - atoms: [8]
-      equiv: [[8]]
-      kind: atom
-      partition:
-      - atoms: [8]
-        molecule: xbm:000000011045
-      pattern: adduct
-      reactions: [xbr:000000010886]
-      rule: Glutathionation
-      walk: 0
-  - '@id': xbm:000000011047
-    '@type': xb:SomMolecule
-    cxsmiles: FC(C2C(CCCC2)C(=O)NC(CC1C(Cl)CC(C(F)(F)F)CN1)O)(F)F
-    dataset: xbs:0000002
-    orbits: [[0, 25, 26], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [
-        15], [16], [17], [18], [19, 20, 21], [22], [23], [24]]
-    soms:
-    - atoms: [8]
-      equiv: [[8]]
-      kind: atom
-      partition:
-      - atoms: [8]
-        molecule: xbm:000000011047
-      - atoms: [10]
-        molecule: xbm:000000009520
-      - atoms: [8]
-        molecule: xbm:000000011045
-      pattern: adduct
-      reactions: [xbr:000000010888, xbr:000000009154, xbr:000000010886]
-      rule: Glutathionation
-      walk: 2
-  - '@id': xbm:000000011065
-    '@type': xb:SomMolecule
-    cxsmiles: FC(SCCC(O)=O)(OC2CCC(NC=O)CC2OC1C(O)C(O)C(OC1O)C(O)=O)F
-    dataset: xbs:0000002
-    orbits: [[0, 31], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15],
-      [16], [17], [18], [19], [20], [21], [22], [23], [24], [25], [26], [27], [28], [29], [30]]
-    soms:
-    - atoms: [1]
-      equiv: [[1]]
-      kind: atom
-      partition:
-      - atoms: [1]
-        molecule: xbm:000000011065
-      pattern: adduct
-      reactions: [xbr:000000010908]
-      rule: Glutathionation
-      walk: 0
-  - '@id': xbm:000000011132
-    '@type': xb:SomMolecule
-    cxsmiles: N#CC1C(C(C(Cl)C(C#N)C1Cl)Cl)Cl
-    dataset: xbs:0000002
-    orbits: [[0, 9], [1, 8], [2, 7], [3, 5], [4], [6, 13], [10], [11], [12]]
-    soms:
-    - atoms: [5]
-      equiv: [[3, 5]]
-      kind: atom
-      partition:
-      - atoms: [5]
-        molecule: xbm:000000011132
-      pattern: adduct
-      reactions: [xbr:000000010995]
-      rule: Glutathionation
-      walk: 0
-  - '@id': xbm:000000011205
-    '@type': xb:SomMolecule
-    cxsmiles: N(N=C(CC3CCC(CC3)C#N)C2CC(CCC2)C(F)(F)F)C(=O)NC1CCC(CC1)OC(F)(F)F
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5, 9], [6, 8], [7], [10], [11], [12], [13], [14], [15], [16], [
-        17], [18], [19, 20, 21], [22], [23], [24], [25], [26, 30], [27, 29], [28], [31], [32], [33, 
-          34, 35]]
-    soms:
-    - atoms: [32]
-      equiv: [[32]]
-      kind: atom
-      partition:
-      - atoms: [32]
-        molecule: xbm:000000011205
-      - atoms: [4]
-        molecule: xbm:000000010277
-      - atoms: [1]
-        molecule: xbm:000000011065
-      pattern: adduct
-      reactions: [xbr:000000011078, xbr:000000009988, xbr:000000010908]
-      rule: Glutathionation
-      walk: 2
-  - '@id': xbm:000000011266
-    '@type': xb:SomMolecule
-    cxsmiles: N1CC(CC2CCC(Cl)C(C12)C(=O)OC)Cl
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15]]
-    soms:
-    - atoms: [7]
-      equiv: [[7]]
-      kind: atom
-      partition:
-      - atoms: [7]
-        molecule: xbm:000000011266
-      pattern: adduct
-      reactions: [xbr:000000011155]
-      rule: Glutathionation
-      walk: 0
-    - atoms: [6]
-      equiv: [[6]]
-      kind: atom
-      partition:
-      - atoms: [6]
-        molecule: xbm:000000011266
-      - atoms: [8]
-        molecule: xbm:000000010001
-      pattern: adduct
-      reactions: [xbr:000000011154, xbr:000000009714]
-      rule: Glutathionation
-      walk: 1
-  - '@id': xbm:000000011335
-    '@type': xb:SomMolecule
-    cxsmiles: O(C)C2C(C(NC(N2)NC(=O)NS(=O)(=O)C1NCCCC1C(F)(F)F)OC)O
-    dataset: xbs:0000002
-    orbits: [[0, 25], [1, 26], [2, 4], [3], [5, 7], [6], [8], [9], [10], [11], [12], [13, 14], [15], [
-        16], [17], [18], [19], [20], [21], [22, 23, 24], [27]]
-    soms:
-    - atoms: [15]
-      equiv: [[15]]
-      kind: atom
-      partition:
-      - atoms: [15]
-        molecule: xbm:000000011335
-      pattern: adduct
-      reactions: [xbr:000000011218]
-      rule: Glutathionation
-      walk: 0
-  - '@id': xbm:000000011341
-    '@type': xb:SomMolecule
-    cxsmiles: O(C)CN(C(=O)CCl)C1C(CCCC1CC)C(C)O
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
-          16], [17], [18]]
-    soms:
-    - atoms: [6]
-      equiv: [[6]]
-      kind: atom
-      partition:
-      - atoms: [6]
-        molecule: xbm:000000011341
-      pattern: adduct
-      reactions: [xbr:000000011230]
-      rule: Glutathionation
-      walk: 0
-  - '@id': xbm:000000011491
-    '@type': xb:SomMolecule
-    cxsmiles: O=C(N(CO)C1C(CCCC1CC)CC)CCl
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6, 10], [7, 9], [8], [11, 13], [12, 14], [15], [16]]
-    soms:
-    - atoms: [15]
-      equiv: [[15]]
-      kind: atom
-      partition:
-      - atoms: [15]
-        molecule: xbm:000000011491
-      - atoms: [3]
-        molecule: xbm:000000009908
-      pattern: adduct
-      reactions: [xbr:000000011372, xbr:000000009606]
-      rule: Glutathionation
-      walk: 1
-  - '@id': xbm:000000011494
-    '@type': xb:SomMolecule
-    cxsmiles: O=C(N2CCC(c5nc(cs5)C4CC(ON4)C3C(CCC(O)C3F)F)CC2)Cn1c(cc(n1)C(F)(F)F)C
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3, 26], [4, 25], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [
-        15], [16], [17], [18], [19], [20], [21], [22], [23], [24], [27], [28], [29], [30], [31], [32],
-      [33], [34, 35, 36], [37]]
-    soms:
-    - atoms: [17]
-      equiv: [[17]]
-      kind: atom
-      partition:
-      - atoms: [17]
-        molecule: xbm:000000011494
-      pattern: adduct
-      reactions: [xbr:000000011377]
-      rule: Glutathionation
-      walk: 0
-    - atoms: [22]
-      equiv: [[22]]
-      kind: atom
-      partition:
-      - atoms: [22]
-        molecule: xbm:000000011494
-      - atoms: [34]
-        molecule: xbm:000000011837
-      pattern: adduct
-      reactions: [xbr:000000011378, xbr:000000011747]
-      rule: Glutathionation
-      walk: 1
-  - '@id': xbm:000000011522
-    '@type': xb:SomMolecule
-    cxsmiles: O=C(OC(C)C)NC(C(=O)NC(C=3SC2C(N=3)C1OC1C(=C2)F)C)C(C)(C)O
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4, 5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [16],
-      [17], [18], [19], [20], [21], [22], [23], [24], [25, 26], [27]]
-    soms:
-    - atoms: [19]
-      equiv: [[19]]
-      kind: atom
-      partition:
-      - atoms: [19]
-        molecule: xbm:000000011522
-      pattern: adduct
-      reactions: [xbr:000000011398]
-      rule: Glutathionation
-      walk: 0
-  - '@id': xbm:000000011610
-    '@type': xb:SomMolecule
-    cxsmiles: OC(C(Cn3ncnc3)(C2CCC(CC2)F)O)C1CCCCC1Cl
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10, 14], [11, 13], [12], [15], [16], [
-        17], [18], [19], [20], [21], [22], [23]]
-    soms:
-    - atoms: [18]
-      equiv: [[18]]
-      kind: atom
-      partition:
-      - atoms: [18]
-        molecule: xbm:000000011610
-      pattern: adduct
-      reactions: [xbr:000000011491]
-      rule: Glutathionation
-      walk: 0
-  - '@id': xbm:000000011686
-    '@type': xb:SomMolecule
-    cxsmiles: OC1OC(C3CCC(Cl)CC3Cl)(Cn2ncnc2)CC1
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
-          16], [17], [18], [19]]
-    soms:
-    - atoms: [6]
-      equiv: [[6]]
-      kind: atom
-      partition:
-      - atoms: [6]
-        molecule: xbm:000000011686
-      - atoms: [14]
-        molecule: xbm:000000011949
-      pattern: adduct
-      reactions: [xbr:000000011588, xbr:000000011868]
-      rule: Glutathionation
-      walk: 1
-  - '@id': xbm:000000011702
-    '@type': xb:SomMolecule
-    cxsmiles: OC4(CC4)C1CC1C3CC(O)CCC3NC(c2c(nn(C)c2)C(F)F)=O
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2, 3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [16],
-      [17], [18], [19], [20], [21], [22], [23, 24], [25]]
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12, 13, 14], [15], [16], [
+        17], [18], [19], [20, 24], [21, 23], [22], [25], [26], [27], [28], [29], [30], [31], [32], [
+          33, 34, 35], [36]]
     soms:
     - atoms: [11]
       equiv: [[11]]
       kind: atom
       partition:
       - atoms: [11]
-        molecule: xbm:000000011702
+        molecule: xbm:000000000118
+      - atoms: [6]
+        molecule: xbm:000000000132
       pattern: adduct
-      reactions: [xbr:000000011605]
+      reactions: [xbr:000000000098, xbr:000000000115]
       rule: Glutathionation
-      walk: 0
-  - '@id': xbm:000000011733
+      walk: 1
+  - '@id': xbm:000000000132
     '@type': xb:SomMolecule
-    cxsmiles: P(OC)(OC)(SCN2N=NC1CCCCC1C2=O)=S
+    cxsmiles: C(=O)(O)CCSC(F)(F)Oc2ccc(NC=O)cc2OC1C(O)C(O)C(OC1O)C(=O)O
     dataset: xbs:0000002
-    orbits: [[0], [1, 3], [2, 4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [16], [
-        17], [18]]
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7, 8], [9], [10], [11], [12], [13], [14], [15], [16],
+      [17], [18], [19], [20], [21], [22], [23], [24], [25], [26], [27], [28], [29], [30], [31]]
     soms:
     - atoms: [6]
       equiv: [[6]]
       kind: atom
       partition:
       - atoms: [6]
-        molecule: xbm:000000011733
+        molecule: xbm:000000000132
       pattern: adduct
-      reactions: [xbr:000000011630]
+      reactions: [xbr:000000000115]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:000000011764
+  - '@id': xbm:000000000141
     '@type': xb:SomMolecule
-    cxsmiles: S=C(NC)S
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4]]
-    soms:
-    - atoms: [2]
-      equiv: [[2]]
-      kind: atom
-      partition:
-      - atoms: [2]
-        molecule: xbm:000000011764
-      - atoms: [2]
-        molecule: xbm:000000000189
-      pattern: isocyanate
-      reactions: [xbr:000000011664, xbr:000000000164]
-      rule: Glutathionation
-      walk: 1
-  - '@id': xbm:000000011796
-    '@type': xb:SomMolecule
-    cxsmiles: '[N+](=O)(C1CC(Cl)C(C(Cl)C1)N)[O-]'
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3, 9], [4, 7], [5, 8], [6], [10], [11]]
-    soms:
-    - atoms: [3]
-      equiv: [[3, 9]]
-      kind: atom
-      partition:
-      - atoms: [3]
-        molecule: xbm:000000011796
-      pattern: adduct
-      reactions: [xbr:000000011691]
-      rule: Glutathionation
-      walk: 0
-    - atoms: [4]
-      equiv: [[4, 7]]
-      kind: atom
-      partition:
-      - atoms: [4]
-        molecule: xbm:000000011796
-      pattern: adduct
-      reactions: [xbr:000000011686]
-      rule: Glutathionation
-      walk: 0
-    - atoms: [7]
-      equiv: [[4, 7]]
-      kind: atom
-      partition:
-      - atoms: [7]
-        molecule: xbm:000000011796
-      - atoms: [7]
-        molecule: xbm:000000010101
-      pattern: adduct
-      reactions: [xbr:000000011687, xbr:000000009804]
-      rule: Glutathionation
-      walk: 1
-  - '@id': xbm:000000011837
-    '@type': xb:SomMolecule
-    cxsmiles: c1(CO)cc(C(F)(F)F)nn1CC(=O)N2CCC(c5nc(cs5)C4CC(ON4)C3C(F)CCC(C3F)O)CC2
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6, 7, 8], [9], [10], [11], [12], [13], [14], [15, 38], [
-          16, 37], [17], [18], [19], [20], [21], [22], [23], [24], [25], [26], [27], [28], [29], [30],
-      [31], [32], [33], [34], [35], [36]]
-    soms:
-    - atoms: [34]
-      equiv: [[34]]
-      kind: atom
-      partition:
-      - atoms: [34]
-        molecule: xbm:000000011837
-      pattern: adduct
-      reactions: [xbr:000000011747]
-      rule: Glutathionation
-      walk: 0
-  - '@id': xbm:000000011850
-    '@type': xb:SomMolecule
-    cxsmiles: c1c(C)n(CC(=O)N5CCC(CC5)c4scc(n4)C2NOC(C3C(CC(O)CC3F)F)C2)nc1C(F)(F)F
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8, 12], [9, 11], [10], [13], [14], [15], [16], [
-        17], [18], [19], [20], [21], [22], [23, 28], [24, 27], [25], [26], [29, 30], [31], [32], [33],
-      [34], [35, 36, 37]]
-    soms:
-    - atoms: [23]
-      equiv: [[23, 28]]
-      kind: atom
-      partition:
-      - atoms: [23]
-        molecule: xbm:000000011850
-      pattern: adduct
-      reactions: [xbr:000000011769]
-      rule: Glutathionation
-      walk: 0
-  - '@id': xbm:000000011862
-    '@type': xb:SomMolecule
-    cxsmiles: c2(C(F)(F)F)c(nn(c2N)C1C(Cl)CC(C(F)(F)F)CC1Cl)C#N
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2, 3, 4], [5], [6], [7], [8], [9], [10], [11, 20], [12, 21], [13, 19], [14], [
-        15], [16, 17, 18], [22], [23]]
-    soms:
-    - atoms: [8]
-      equiv: [[8]]
-      kind: atom
-      partition:
-      - atoms: [8]
-        molecule: xbm:000000011862
-      pattern: adduct
-      reactions: [xbr:000000011784]
-      rule: Glutathionation
-      walk: 0
-  - '@id': xbm:000000011921
-    '@type': xb:SomMolecule
-    cxsmiles: n1cncn1CC(C(C3C(CC(O)CC3)Cl)O)(C2CCC(CC2)F)O
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
-          16], [17], [18, 22], [19, 21], [20], [23], [24]]
-    soms:
-    - atoms: [14]
-      equiv: [[14]]
-      kind: atom
-      partition:
-      - atoms: [14]
-        molecule: xbm:000000011921
-      pattern: adduct
-      reactions: [xbr:000000011848]
-      rule: Glutathionation
-      walk: 0
-  - '@id': xbm:000000011924
-    '@type': xb:SomMolecule
-    cxsmiles: n1n(CC(C3CCC(F)CC3)(O)C(C2CCCCC2Cl)[*])cnc1 |$;;;;;;;;;;;;;;;;;;;;GSH;;;$|
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5, 10], [6, 9], [7], [8], [11], [12], [13], [14], [15], [16], [
-        17], [18], [19], [20], [21], [22], [23]]
-    soms:
-    - atoms: [16]
-      equiv: [[16]]
-      kind: atom
-      partition:
-      - atoms: [16]
-        molecule: xbm:000000011924
-      - atoms: [12]
-        molecule: xbm:000000010148
-      pattern: adduct
-      reactions: [xbr:000000011849, xbr:000000009853]
-      rule: Glutathionation
-      walk: 1
-  - '@id': xbm:000000011945
-    '@type': xb:SomMolecule
-    cxsmiles: n3(ncnc3)CC2(OCC=C2)C1CCC(Cl)CC1Cl
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
-          16], [17], [18]]
-    soms:
-    - atoms: [13]
-      equiv: [[13]]
-      kind: atom
-      partition:
-      - atoms: [13]
-        molecule: xbm:000000011945
-      - atoms: [8]
-        molecule: xbm:000000010165
-      - atoms: [4]
-        molecule: xbm:000000010092
-      pattern: adduct
-      reactions: [xbr:000000011864, xbr:000000009871, xbr:000000009793]
-      rule: Glutathionation
-      walk: 2
-  - '@id': xbm:000000011949
-    '@type': xb:SomMolecule
-    cxsmiles: n3cnn(c3)CC2(CCC(O2)=O)C1CCC(Cl)CC1Cl
-    dataset: xbs:0000002
-    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
-          16], [17], [18], [19]]
-    soms:
-    - atoms: [14]
-      equiv: [[14]]
-      kind: atom
-      partition:
-      - atoms: [14]
-        molecule: xbm:000000011949
-      pattern: adduct
-      reactions: [xbr:000000011868]
-      rule: Glutathionation
-      walk: 0
-  - '@id': xbm:0000141
-    '@type': xb:SomMolecule
-    cxsmiles: Cc1ccc(-n2[nH]c(C)c(N=Nc3cccc(-c4cccc(C(=O)O)c4)c3O)c2=O)cc1C
+    cxsmiles: "Cc1ccc(-n2[nH]c(C)c(N=Nc3cccc(-c4cccc(C(=O)O)c4)c3O)c2=O)cc1C"
     dataset: xbs:0000002
     orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
           16], [17], [18], [19], [20], [21], [22], [23], [24], [25], [26], [27], [28], [29], [30], [
@@ -1448,7 +167,25 @@ jsonld:
       reactions: [xbr:000000000120]
       rule: Glutathionation
       walk: 1
-  - '@id': xbm:0000178
+  - '@id': xbm:000000000154
+    '@type': xb:SomMolecule
+    cxsmiles: C(=O)(c1c(C(=O)Nc2ccc(C(F)(C(F)(F)F)C(F)(F)F)cc2C)cccc1I)NC(CS(=O)(C)=O)(C)C
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13, 17], [14, 15, 
+          16, 18, 19, 20], [21], [22], [23], [24], [25], [26], [27], [28], [29], [30], [31], [32], [
+          33, 35], [34], [36, 37]]
+    soms:
+    - atoms: [25]
+      equiv: [[25]]
+      kind: atom
+      partition:
+      - atoms: [25]
+        molecule: xbm:000000000154
+      pattern: adduct
+      reactions: [xbr:000000000133]
+      rule: Glutathionation
+      walk: 0
+  - '@id': xbm:000000000178
     '@type': xb:SomMolecule
     cxsmiles: C=CC=O
     dataset: xbs:0000002
@@ -1464,7 +201,7 @@ jsonld:
       reactions: [xbr:000000000155]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0000180
+  - '@id': xbm:000000000180
     '@type': xb:SomMolecule
     cxsmiles: O=CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
     dataset: xbs:0000002
@@ -1483,7 +220,7 @@ jsonld:
       reactions: [xbr:000000000160, xbr:000000004397]
       rule: Glutathionation
       walk: 1
-  - '@id': xbm:0000189
+  - '@id': xbm:000000000189
     '@type': xb:SomMolecule
     cxsmiles: C(=S)=NC
     dataset: xbs:0000002
@@ -1499,7 +236,7 @@ jsonld:
       reactions: [xbr:000000000164]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0000192
+  - '@id': xbm:000000000192
     '@type': xb:SomMolecule
     cxsmiles: BrCc1ccccc1I
     dataset: xbs:0000002
@@ -1515,7 +252,7 @@ jsonld:
       reactions: [xbr:000000000179]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0000236
+  - '@id': xbm:000000000236
     '@type': xb:SomMolecule
     cxsmiles: O=P(O)(O)OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
     dataset: xbs:0000002
@@ -1536,7 +273,7 @@ jsonld:
       reactions: [xbr:000000000224, xbr:000000002927, xbr:000000004397]
       rule: Glutathionation
       walk: 2
-  - '@id': xbm:0000444
+  - '@id': xbm:000000000444
     '@type': xb:SomMolecule
     cxsmiles: CCCCCC(O)C=CC=O
     dataset: xbs:0000002
@@ -1552,7 +289,7 @@ jsonld:
       reactions: [xbr:000000000361]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0000450
+  - '@id': xbm:000000000450
     '@type': xb:SomMolecule
     cxsmiles: CCCCCI
     dataset: xbs:0000002
@@ -1568,9 +305,9 @@ jsonld:
       reactions: [xbr:000000000367]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0000484
+  - '@id': xbm:000000000484
     '@type': xb:SomMolecule
-    cxsmiles: C(C(C)C)N(CC(C)C)C(=O)[S+](CC)[O-]
+    cxsmiles: "C(C(C)C)N(CC(C)C)C(=O)[S+](CC)[O-]"
     dataset: xbs:0000002
     orbits: [[0, 5], [1, 6], [2, 3, 7, 8], [4], [9], [10], [11], [12], [13], [14]]
     soms:
@@ -1584,9 +321,9 @@ jsonld:
       reactions: [xbr:000000008499]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0000557
+  - '@id': xbm:000000000557
     '@type': xb:SomMolecule
-    cxsmiles: O=[N+]([O-])c1ccc(CCBr)cc1
+    cxsmiles: "O=[N+]([O-])c1ccc(CCBr)cc1"
     dataset: xbs:0000002
     orbits: [[0], [1], [2], [3], [4, 11], [5, 10], [6], [7], [8], [9]]
     soms:
@@ -1600,7 +337,7 @@ jsonld:
       reactions: [xbr:000000000476]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0000562
+  - '@id': xbm:000000000562
     '@type': xb:SomMolecule
     cxsmiles: O=C(O)CC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
     dataset: xbs:0000002
@@ -1619,7 +356,7 @@ jsonld:
       reactions: [xbr:000000000482, xbr:000000004397]
       rule: Glutathionation
       walk: 1
-  - '@id': xbm:0000648
+  - '@id': xbm:000000000648
     '@type': xb:SomMolecule
     cxsmiles: CCCCCCCCI
     dataset: xbs:0000002
@@ -1635,9 +372,9 @@ jsonld:
       reactions: [xbr:000000000571]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0000651
+  - '@id': xbm:000000000651
     '@type': xb:SomMolecule
-    cxsmiles: CCCCC/C=C\[C@H](/C=C\CCCCCCCC(=O)O)OO
+    cxsmiles: "CCCCC/C=C\\[C@H](/C=C\\CCCCCCCC(=O)O)OO"
     dataset: xbs:0000002
     orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
           16], [17], [18], [19], [20], [21]]
@@ -1652,7 +389,7 @@ jsonld:
       reactions: [xbr:000000000576]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0000699
+  - '@id': xbm:000000000699
     '@type': xb:SomMolecule
     cxsmiles: O=P1(NCCCl)OCCCN1CCCl
     dataset: xbs:0000002
@@ -1682,7 +419,7 @@ jsonld:
       reactions: [xbr:000000000625, xbr:000000004483]
       rule: Glutathionation
       walk: 1
-  - '@id': xbm:0000702
+  - '@id': xbm:000000000702
     '@type': xb:SomMolecule
     cxsmiles: CCCI
     dataset: xbs:0000002
@@ -1698,7 +435,7 @@ jsonld:
       reactions: [xbr:000000000627]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0000703
+  - '@id': xbm:000000000703
     '@type': xb:SomMolecule
     cxsmiles: CCCCCCCI
     dataset: xbs:0000002
@@ -1714,7 +451,30 @@ jsonld:
       reactions: [xbr:000000000628]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0000789
+  - '@id': xbm:000000000787
+    '@type': xb:SomMolecule
+    cxsmiles: C(Cl)(Cl)(F)SN(c1ccc(C)cc1)S(=O)(=O)N(C)C
+    dataset: xbs:0000002
+    orbits: [[0], [1, 2], [3], [4], [5], [6], [7, 12], [8, 11], [9], [10], [13], [14, 15], [16], [17,
+        18]]
+    soms:
+    - atoms: [0]
+      equiv: [[0]]
+      kind: atom
+      partition:
+      - atoms: [0]
+        molecule: xbm:000000000787
+      - atoms: [2]
+        molecule: xbm:000000005323
+      - atoms: [0]
+        molecule: xbm:000000000795
+      - atoms: [1]
+        molecule: xbm:000000002894
+      pattern: adduct
+      reactions: [xbr:000000000705, xbr:000000004867, xbr:000000000712, xbr:000000002656]
+      rule: Glutathionation
+      walk: 3
+  - '@id': xbm:000000000789
     '@type': xb:SomMolecule
     cxsmiles: ClC(Cl)=C(Cl)C(Cl)=C(Cl)Cl
     dataset: xbs:0000002
@@ -1730,7 +490,7 @@ jsonld:
       reactions: [xbr:000000000709]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0000795
+  - '@id': xbm:000000000795
     '@type': xb:SomMolecule
     cxsmiles: C(Cl)(S)(Cl)F
     dataset: xbs:0000002
@@ -1748,7 +508,7 @@ jsonld:
       reactions: [xbr:000000000712, xbr:000000002656]
       rule: Glutathionation
       walk: 1
-  - '@id': xbm:0000799
+  - '@id': xbm:000000000799
     '@type': xb:SomMolecule
     cxsmiles: ClC=CCCl
     dataset: xbs:0000002
@@ -1766,7 +526,7 @@ jsonld:
       reactions: [xbr:000000000717, xbr:000000000155]
       rule: Glutathionation
       walk: 1
-  - '@id': xbm:0000801
+  - '@id': xbm:000000000801
     '@type': xb:SomMolecule
     cxsmiles: NP(=O)(O)N(CCCl)CCCl
     dataset: xbs:0000002
@@ -1782,7 +542,7 @@ jsonld:
       reactions: [xbr:000000000719]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0000802
+  - '@id': xbm:000000000802
     '@type': xb:SomMolecule
     cxsmiles: O=P1(N(CCCl)CCCl)NC(O)CCO1
     dataset: xbs:0000002
@@ -1828,7 +588,7 @@ jsonld:
       reactions: [xbr:000000000721, xbr:000000001002, xbr:000000000155]
       rule: Glutathionation
       walk: 2
-  - '@id': xbm:0000803
+  - '@id': xbm:000000000803
     '@type': xb:SomMolecule
     cxsmiles: O=P1(N(CCCl)CCCl)NCCCO1
     dataset: xbs:0000002
@@ -1872,7 +632,7 @@ jsonld:
       reactions: [xbr:000000000728, xbr:000000001002, xbr:000000000155]
       rule: Glutathionation
       walk: 2
-  - '@id': xbm:0000833
+  - '@id': xbm:000000000833
     '@type': xb:SomMolecule
     cxsmiles: FC(F)(F)C1(F)CO1
     dataset: xbs:0000002
@@ -1888,7 +648,32 @@ jsonld:
       reactions: [xbr:000000000758]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0000948
+  - '@id': xbm:000000000894
+    '@type': xb:SomMolecule
+    cxsmiles: "C(N(c1ccc(cc1)F)C(C)C)(=O)C[*] |$;;;;;;;;;;;;;;NAC$|"
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3, 7], [4, 6], [5], [8], [9], [10, 11], [12], [13], [14]]
+    soms:
+    - atoms: [4]
+      equiv: [[4, 6]]
+      kind: atom
+      partition:
+      - atoms: [4]
+        molecule: xbm:000000000894
+      - atoms: [9]
+        molecule: xbm:000000005178
+      - atoms: [2]
+        molecule: xbm:000000003219
+      - atoms: [2]
+        molecule: xbm:000000005847
+      - atoms: [6]
+        molecule: xbm:000000002250
+      pattern: michael
+      reactions: [xbr:000000008524, xbr:000000008728, xbr:000000003027, xbr:000000005356, 
+          xbr:000000001977]
+      rule: Glutathionation
+      walk: 4
+  - '@id': xbm:000000000948
     '@type': xb:SomMolecule
     cxsmiles: 
       C(NC(N)=N)CNC(c4cc(cn4C)NC(=O)c1n(C)cc(NC(c3n(cc(c3)NC(c2cc(NC(=O)C(=C)Br)cn2C)=O)C)=O)c1)=O
@@ -1908,7 +693,7 @@ jsonld:
       reactions: [xbr:000000000852]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0000983
+  - '@id': xbm:000000000983
     '@type': xb:SomMolecule
     cxsmiles: CCOc1ccc(NC(C)=O)cc1
     dataset: xbs:0000002
@@ -1928,7 +713,7 @@ jsonld:
       reactions: [xbr:000000000888, xbr:000000006628, xbr:000000001977]
       rule: Glutathionation
       walk: 2
-  - '@id': xbm:0001123
+  - '@id': xbm:000000001123
     '@type': xb:SomMolecule
     cxsmiles: NP(=O)(OCCC=O)N(CCCl)CCCl
     dataset: xbs:0000002
@@ -1972,7 +757,32 @@ jsonld:
       reactions: [xbr:000000001004, xbr:000000000722, xbr:000000004200]
       rule: Glutathionation
       walk: 2
-  - '@id': xbm:0001143
+  - '@id': xbm:000000001125
+    '@type': xb:SomMolecule
+    cxsmiles: "CCOP(=O)(OCC)Oc1ccc([N+](=O)[O-])cc1"
+    dataset: xbs:0000002
+    orbits: [[0, 7], [1, 6], [2, 5], [3], [4], [8], [9], [10, 17], [11, 16], [12], [13], [14], [15]]
+    soms:
+    - atoms: [10]
+      equiv: [[10, 17]]
+      kind: atom
+      partition:
+      - atoms: [10]
+        molecule: xbm:000000001125
+      - atoms: [5]
+        molecule: xbm:000000004530
+      - atoms: [3]
+        molecule: xbm:000000004990
+      - atoms: [6]
+        molecule: xbm:000000007268
+      - atoms: [6]
+        molecule: xbm:000000002250
+      pattern: michael
+      reactions: [xbr:000000001008, xbr:000000004260, xbr:000000004668, xbr:000000006628, 
+          xbr:000000001977]
+      rule: Glutathionation
+      walk: 4
+  - '@id': xbm:000000001143
     '@type': xb:SomMolecule
     cxsmiles: CC(=O)Nc1ccc(OC(C)C)cc1
     dataset: xbs:0000002
@@ -1992,7 +802,7 @@ jsonld:
       reactions: [xbr:000000001017, xbr:000000006628, xbr:000000001977]
       rule: Glutathionation
       walk: 2
-  - '@id': xbm:0001164
+  - '@id': xbm:000000001164
     '@type': xb:SomMolecule
     cxsmiles: C(S)(=S)N(C)CNC
     dataset: xbs:0000002
@@ -2010,9 +820,9 @@ jsonld:
       reactions: [xbr:000000001051, xbr:000000000164]
       rule: Glutathionation
       walk: 1
-  - '@id': xbm:0001169
+  - '@id': xbm:000000001169
     '@type': xb:SomMolecule
-    cxsmiles: C(Sc2c1nc[nH]c1ncn2)=CC(=O)C
+    cxsmiles: "C(Sc2c1nc[nH]c1ncn2)=CC(=O)C"
     dataset: xbs:0000002
     orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14]]
     soms:
@@ -2026,7 +836,7 @@ jsonld:
       reactions: [xbr:000000001054]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0001219
+  - '@id': xbm:000000001219
     '@type': xb:SomMolecule
     cxsmiles: C/C=C/c1ccccc1
     dataset: xbs:0000002
@@ -2044,7 +854,24 @@ jsonld:
       reactions: [xbr:000000001095, xbr:000000007465]
       rule: Glutathionation
       walk: 2
-  - '@id': xbm:0001296
+  - '@id': xbm:000000001271
+    '@type': xb:SomMolecule
+    cxsmiles: "C(c3c[nH]nc3C(F)F)(=O)Nc1c(-c2cc(Cl)c(Cl)cc2)c(F)c(O)cc1"
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7, 8], [9], [10], [11], [12], [13], [14], [15], [16],
+      [17], [18], [19], [20], [21], [22], [23], [24], [25], [26]]
+    soms:
+    - atoms: [21]
+      equiv: [[21]]
+      kind: atom
+      partition:
+      - atoms: [21]
+        molecule: xbm:000000001271
+      pattern: halide
+      reactions: [xbr:000000002986]
+      rule: Glutathionation
+      walk: 0
+  - '@id': xbm:000000001296
     '@type': xb:SomMolecule
     cxsmiles: CC(C)(O)c1ccc(N2CCN(c3nnc(/C=C4\C=CC(F)=CC4(O)F)c4ccccc34)CC2)nc1
     dataset: xbs:0000002
@@ -2064,7 +891,7 @@ jsonld:
       reactions: [xbr:000000001147, xbr:000000003427]
       rule: Glutathionation
       walk: 1
-  - '@id': xbm:0001381
+  - '@id': xbm:000000001381
     '@type': xb:SomMolecule
     cxsmiles: 
       C1(C(OC)C(OC6CC5C(C6)C4C=C2C(C4C=C5)CC(=O)OC(CCCC(OC3OC(C)C(CC3)N(C)C)C(C2=O)C)CC)OC(C1OC)C)OC
@@ -2096,7 +923,52 @@ jsonld:
       reactions: [xbr:000000001236, xbr:000000001350]
       rule: Glutathionation
       walk: 1
-  - '@id': xbm:0001459
+  - '@id': xbm:000000001414
+    '@type': xb:SomMolecule
+    cxsmiles: C1(C4CC4)CC1c3ccccc3NC(=O)c2cn(C)nc2C(F)F
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2, 3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [16],
+      [17], [18], [19], [20], [21], [22, 23]]
+    soms:
+    - atoms: [3]
+      equiv: [[2, 3]]
+      kind: atom
+      partition:
+      - atoms: [3]
+        molecule: xbm:000000001414
+      - atoms: [9]
+        molecule: xbm:000000007690
+      pattern: adduct
+      reactions: [xbr:000000001272, xbr:000000007002]
+      rule: Glutathionation
+      walk: 1
+    - atoms: [3]
+      equiv: [[2, 3]]
+      kind: atom
+      partition:
+      - atoms: [3]
+        molecule: xbm:000000001414
+      - atoms: [14]
+        molecule: xbm:000000004221
+      pattern: alkene
+      reactions: [xbr:000000001271, xbr:000000003979]
+      rule: Glutathionation
+      walk: 3
+    - atoms: [9]
+      equiv: [[9]]
+      kind: atom
+      partition:
+      - atoms: [9]
+        molecule: xbm:000000001414
+      - atoms: [9]
+        molecule: xbm:000000003077
+      - atoms: [22]
+        molecule: xbm:000000003076
+      pattern: michael
+      reactions: [xbr:000000001269, xbr:000000002844, xbr:000000002843]
+      rule: Glutathionation
+      walk: 3
+  - '@id': xbm:000000001459
     '@type': xb:SomMolecule
     cxsmiles: 
       C1(O)C(OC)C(C(C)OC1OC5CC6C2C(C=CC6C5)C3C(C(C(C)C(OC4CCC(C(O4)C)N(C)C)CCCC(OC(=O)C3)CC)=O)=C2)OC
@@ -2116,9 +988,9 @@ jsonld:
       reactions: [xbr:000000001318]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0001478
+  - '@id': xbm:000000001478
     '@type': xb:SomMolecule
-    cxsmiles: C[N+]1(C)[C@@H]2C[C@@H](OC(=O)C(O)(c3cccs3)c3cccs3)C[C@H]1[C@@H]1O[C@@H]12
+    cxsmiles: "C[N+]1(C)[C@@H]2C[C@@H](OC(=O)C(O)(c3cccs3)c3cccs3)C[C@H]1[C@@H]1O[C@@H]12"
     dataset: xbs:0000002
     orbits: [[0, 2], [1], [3], [4], [5], [6], [7], [8], [9], [10], [11, 16], [12, 17], [13, 18], [14,
         19], [15, 20], [21], [22], [23], [24], [25]]
@@ -2135,7 +1007,7 @@ jsonld:
       reactions: [xbr:000000001340, xbr:000000004393]
       rule: Glutathionation
       walk: 1
-  - '@id': xbm:0001480
+  - '@id': xbm:000000001480
     '@type': xb:SomMolecule
     cxsmiles: 
       C1(OC)C(C(OC)C(OC3CC2C6C(C5CC(=O)OC(CCCC(C(C)C(C5=C6)=O)OC4CCC(C(C)O4)NC)CC)C=CC2C3)OC1C)OC
@@ -2155,7 +1027,7 @@ jsonld:
       reactions: [xbr:000000001343]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0001481
+  - '@id': xbm:000000001481
     '@type': xb:SomMolecule
     cxsmiles: 
       C1(OC)C(C(OC)C(OC3CC2C6C(C5CC(=O)OC(CCCC(C(C)C(C5=C6)=O)OC4OC(C)C(CC4)N)CC)C=CC2C3)OC1C)OC
@@ -2177,7 +1049,7 @@ jsonld:
       reactions: [xbr:000000001347]
       rule: Glutathionation
       walk: 1
-  - '@id': xbm:0001486
+  - '@id': xbm:000000001486
     '@type': xb:SomMolecule
     cxsmiles: 
       C1(OC6CCCC(OC(=O)CC2C(C(=O)C6C)=CC3C5C(CC(C5)OC4OC(C(OC)C(O)C4OC)C)C=CC23)CC)OC(C)C(CC1)N(C)C
@@ -2197,9 +1069,63 @@ jsonld:
       reactions: [xbr:000000001350]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0001755
+  - '@id': xbm:000000001497
     '@type': xb:SomMolecule
-    cxsmiles: O=[P@@]1(N(CCCl)CCCl)OCCCN1CCCl
+    cxsmiles: "C1(c3c(NC(=O)c4c[nH]nc4C(F)F)cccc3)C(C2CC2)C1"
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12, 13], [14], [15], [16],
+      [17], [18], [19], [20, 21], [22]]
+    soms:
+    - atoms: [21]
+      equiv: [[20, 21]]
+      kind: atom
+      partition:
+      - atoms: [21]
+        molecule: xbm:000000001497
+      - atoms: [22]
+        molecule: xbm:000000005442
+      - atoms: [9]
+        molecule: xbm:000000007690
+      pattern: adduct
+      reactions: [xbr:000000001358, xbr:000000004947, xbr:000000007002]
+      rule: Glutathionation
+      walk: 2
+    - atoms: [15]
+      equiv: [[15]]
+      kind: atom
+      partition:
+      - atoms: [15]
+        molecule: xbm:000000001497
+      - atoms: [6]
+        molecule: xbm:000000001901
+      - atoms: [9]
+        molecule: xbm:000000003077
+      - atoms: [22]
+        molecule: xbm:000000003076
+      pattern: michael
+      reactions: [xbr:000000001357, xbr:000000001683, xbr:000000002844, xbr:000000002843]
+      rule: Glutathionation
+      walk: 4
+  - '@id': xbm:000000001654
+    '@type': xb:SomMolecule
+    cxsmiles: C1CC(=O)OC1(Cn3ncnc3)c2c(Cl)cc(Cl)cc2
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
+          16], [17], [18], [19]]
+    soms:
+    - atoms: [18]
+      equiv: [[18]]
+      kind: atom
+      partition:
+      - atoms: [18]
+        molecule: xbm:000000001654
+      pattern: adduct
+      reactions: [xbr:000000001497]
+      rule: Glutathionation
+      walk: 0
+  - '@id': xbm:000000001755
+    '@type': xb:SomMolecule
+    cxsmiles: "O=[P@@]1(N(CCCl)CCCl)OCCCN1CCCl"
     dataset: xbs:0000002
     orbits: [[0], [1], [2], [3, 6], [4, 7], [5, 8], [9], [10], [11], [12], [13], [14], [15], [16]]
     soms:
@@ -2247,7 +1173,7 @@ jsonld:
       reactions: [xbr:000000001568, xbr:000000000728, xbr:000000001002, xbr:000000000155]
       rule: Glutathionation
       walk: 3
-  - '@id': xbm:0001784
+  - '@id': xbm:000000001784
     '@type': xb:SomMolecule
     cxsmiles: C1SC(=S)N(C)CN1C
     dataset: xbs:0000002
@@ -2267,7 +1193,7 @@ jsonld:
       reactions: [xbr:000000001589, xbr:000000001051, xbr:000000000164]
       rule: Glutathionation
       walk: 2
-  - '@id': xbm:0001801
+  - '@id': xbm:000000001801
     '@type': xb:SomMolecule
     cxsmiles: CN1C(=O)NC(=O)C(C)(C2=CC(=O)CCC2)C1=O
     dataset: xbs:0000002
@@ -2284,10 +1210,30 @@ jsonld:
       reactions: [xbr:000000001600]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0001939
+  - '@id': xbm:000000001901
     '@type': xb:SomMolecule
-    cxsmiles: C2CC(C5C2(C)C4(C)CCC3C(C)(C4CC5O)CCC(O[*])C3(C)C)C(C)(O)CCC1OC1(C)C 
-      |$;;;;;;;;;;;;;;;;;;;;;GlcA;;;;;;;;;;;;;$|
+    cxsmiles: "C2C(C2c4ccccc4NC(=O)c3c[nH]nc3C(F)F)C1(CC1)O"
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
+          16], [17], [18, 19], [20], [21, 22], [23]]
+    soms:
+    - atoms: [6]
+      equiv: [[6]]
+      kind: atom
+      partition:
+      - atoms: [6]
+        molecule: xbm:000000001901
+      - atoms: [9]
+        molecule: xbm:000000003077
+      - atoms: [22]
+        molecule: xbm:000000003076
+      pattern: michael
+      reactions: [xbr:000000001683, xbr:000000002844, xbr:000000002843]
+      rule: Glutathionation
+      walk: 3
+  - '@id': xbm:000000001939
+    '@type': xb:SomMolecule
+    cxsmiles: "C2CC(C5C2(C)C4(C)CCC3C(C)(C4CC5O)CCC(O[*])C3(C)C)C(C)(O)CCC1OC1(C)C |$;;;;;;;;;;;;;;;;;;;;;GlcA;;;;;;;;;;;;;$|"
     dataset: xbs:0000002
     orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
           16], [17], [18], [19], [20], [21], [22], [23, 24], [25], [26], [27], [28], [29], [30], [31],
@@ -2303,7 +1249,7 @@ jsonld:
       reactions: [xbr:000000001711]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0002153
+  - '@id': xbm:000000002153
     '@type': xb:SomMolecule
     cxsmiles: COc1cc2c(c3oc(=O)c4c(c13)CCC4=O)C1C(O2)OC2OC21
     dataset: xbs:0000002
@@ -2320,10 +1266,9 @@ jsonld:
       reactions: [xbr:000000001862]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0002195
+  - '@id': xbm:000000002195
     '@type': xb:SomMolecule
-    cxsmiles: 
-      C[C@@H]1O[C@@H](OC[C@H]2O[C@@H](Oc3c(-c4ccc(O)c(O)c4)oc4cc(OCCO)cc(O)c4c3=O)[C@H](O)[C@@H](O)[C@@H]2O)[C@H](O)[C@H](O)[C@H]1O
+    cxsmiles: "C[C@@H]1O[C@@H](OC[C@H]2O[C@@H](Oc3c(-c4ccc(O)c(O)c4)oc4cc(OCCO)cc(O)c4c3=O)[C@H](O)[C@@H](O)[C@@H]2O)[C@H](O)[C@H](O)[C@H]1O"
     dataset: xbs:0000002
     orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
           16], [17], [18], [19], [20], [21], [22], [23], [24], [25], [26], [27], [28], [29], [30], [
@@ -2339,7 +1284,7 @@ jsonld:
       reactions: [xbr:000000001899]
       rule: Glutathionation
       walk: 1
-  - '@id': xbm:0002250
+  - '@id': xbm:000000002250
     '@type': xb:SomMolecule
     cxsmiles: CC(=O)N=C1C=CC(=O)C=C1
     dataset: xbs:0000002
@@ -2355,7 +1300,7 @@ jsonld:
       reactions: [xbr:000000001977]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0002288
+  - '@id': xbm:000000002288
     '@type': xb:SomMolecule
     cxsmiles: C=CCSSCC=C
     dataset: xbs:0000002
@@ -2371,7 +1316,69 @@ jsonld:
       reactions: [xbr:000000002003]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0002459
+  - '@id': xbm:000000002408
+    '@type': xb:SomMolecule
+    cxsmiles: "C(C(C[S+](CC(N(c1ccc(F)cc1)C(C)C)=O)[O-])NC(=O)C)(O)=O"
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8, 13], [9, 12], [10], [11], [14], [15, 16], [
+          17], [18], [19], [20], [21], [22], [23], [24]]
+    soms:
+    - atoms: [9]
+      equiv: [[9, 12]]
+      kind: atom
+      partition:
+      - atoms: [9]
+        molecule: xbm:000000002408
+      - atoms: [9]
+        molecule: xbm:000000005178
+      - atoms: [2]
+        molecule: xbm:000000003219
+      - atoms: [2]
+        molecule: xbm:000000005847
+      - atoms: [6]
+        molecule: xbm:000000002250
+      pattern: michael
+      reactions: [xbr:000000008524, xbr:000000008728, xbr:000000003027, xbr:000000005356, 
+          xbr:000000001977]
+      rule: Glutathionation
+      walk: 4
+  - '@id': xbm:000000002441
+    '@type': xb:SomMolecule
+    cxsmiles: CC(OC(=O)NC(C(C)(C)O)C(=O)NC(c1nc2c(cc(F)cc2)s1)C)C
+    dataset: xbs:0000002
+    orbits: [[0, 26], [1], [2], [3], [4], [5], [6], [7], [8, 9], [10], [11], [12], [13], [14], [15], [
+        16], [17], [18], [19], [20], [21], [22], [23], [24], [25]]
+    soms:
+    - atoms: [22]
+      equiv: [[22]]
+      kind: atom
+      partition:
+      - atoms: [22]
+        molecule: xbm:000000002441
+      - atoms: [9]
+        molecule: xbm:000000002477
+      pattern: epoxide_ch
+      reactions: [xbr:000000011942, xbr:000000012030]
+      rule: Glutathionation
+      walk: 1
+  - '@id': xbm:000000002453
+    '@type': xb:SomMolecule
+    cxsmiles: CC(c1c(N(COC)C(CCl)=O)c(CC)ccc1)O
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
+          16], [17], [18]]
+    soms:
+    - atoms: [9]
+      equiv: [[9]]
+      kind: atom
+      partition:
+      - atoms: [9]
+        molecule: xbm:000000002453
+      pattern: halide
+      reactions: [xbr:000000002139]
+      rule: Glutathionation
+      walk: 0
+  - '@id': xbm:000000002459
     '@type': xb:SomMolecule
     cxsmiles: CC(C)(O)c1ccc(N2CCN(c3nnc(/C=C4\C=CC(=O)C=C4F)c4ccccc34)CC2)nc1
     dataset: xbs:0000002
@@ -2389,7 +1396,65 @@ jsonld:
       reactions: [xbr:000000002151]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0002542
+  - '@id': xbm:000000002467
+    '@type': xb:SomMolecule
+    cxsmiles: CC(c1cccc(c1NC(CCl)=O)CC)O
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15]]
+    soms:
+    - atoms: [10]
+      equiv: [[10]]
+      kind: atom
+      partition:
+      - atoms: [10]
+        molecule: xbm:000000002467
+      pattern: halide
+      reactions: [xbr:000000002157]
+      rule: Glutathionation
+      walk: 0
+  - '@id': xbm:000000002477
+    '@type': xb:SomMolecule
+    cxsmiles: CC(c3sc2c(n3)C1OC1C(F)=C2)NC(=O)C(C(C)(C)O)NC(=O)OC(C)C
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
+          16], [17], [18, 19], [20], [21], [22], [23], [24], [25], [26, 27]]
+    soms:
+    - atoms: [9]
+      equiv: [[9]]
+      kind: atom
+      partition:
+      - atoms: [9]
+        molecule: xbm:000000002477
+      pattern: epoxide_ch
+      reactions: [xbr:000000012030]
+      rule: Glutathionation
+      walk: 0
+  - '@id': xbm:000000002500
+    '@type': xb:SomMolecule
+    cxsmiles: "C1C[S+](C(C(Nc2ccccc2)=O)C(O1)C)[O-]"
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7, 11], [8, 10], [9], [12], [13], [14], [15], [16]]
+    soms:
+    - atoms: [8]
+      equiv: [[8, 10]]
+      kind: atom
+      partition:
+      - atoms: [8]
+        molecule: xbm:000000002500
+      - atoms: [11]
+        molecule: xbm:000000007695
+      - atoms: [3]
+        molecule: xbm:000000004990
+      - atoms: [6]
+        molecule: xbm:000000007268
+      - atoms: [6]
+        molecule: xbm:000000002250
+      pattern: michael
+      reactions: [xbr:000000008559, xbr:000000008569, xbr:000000004668, xbr:000000006628, 
+          xbr:000000001977]
+      rule: Glutathionation
+      walk: 4
+  - '@id': xbm:000000002542
     '@type': xb:SomMolecule
     cxsmiles: 
       CC4C(OC6CCC(N(C)C)C(O6)C)CCCC(OC(CC3C2C=CC1CC(OC5C(C(OC)C(C(O5)C)O)OC)CC1C2C=C3C4=O)=O)CC
@@ -2409,7 +1474,61 @@ jsonld:
       reactions: [xbr:000000002250]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0002700
+  - '@id': xbm:000000002559
+    '@type': xb:SomMolecule
+    cxsmiles: CCC(NC(=O)c1cc(Cl)c(c(c1)Cl)C)(C(CCl)=O)C
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7, 12], [8, 11], [9, 13], [10], [14], [15], [16], [
+          17], [18], [19]]
+    soms:
+    - atoms: [16]
+      equiv: [[16]]
+      kind: atom
+      partition:
+      - atoms: [16]
+        molecule: xbm:000000002559
+      pattern: halide
+      reactions: [xbr:000000002262]
+      rule: Glutathionation
+      walk: 0
+  - '@id': xbm:000000002590
+    '@type': xb:SomMolecule
+    cxsmiles: CCCCOCN(C(=O)CCl)c1c(CC)cccc1CC
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12, 18], [13, 19], [14, 
+          20], [15, 17], [16]]
+    soms:
+    - atoms: [9]
+      equiv: [[9]]
+      kind: atom
+      partition:
+      - atoms: [9]
+        molecule: xbm:000000002590
+      - atoms: [13]
+        molecule: xbm:000000005731
+      pattern: halide
+      reactions: [xbr:000000002304, xbr:000000005231]
+      rule: Glutathionation
+      walk: 1
+  - '@id': xbm:000000002646
+    '@type': xb:SomMolecule
+    cxsmiles: CCc1cccc(c1N(CO)C(=O)CCl)CC
+    dataset: xbs:0000002
+    orbits: [[0, 16], [1, 15], [2, 6], [3, 5], [4], [7], [8], [9], [10], [11], [12], [13], [14]]
+    soms:
+    - atoms: [13]
+      equiv: [[13]]
+      kind: atom
+      partition:
+      - atoms: [13]
+        molecule: xbm:000000002646
+      - atoms: [13]
+        molecule: xbm:000000005731
+      pattern: halide
+      reactions: [xbr:000000002368, xbr:000000005231]
+      rule: Glutathionation
+      walk: 1
+  - '@id': xbm:000000002700
     '@type': xb:SomMolecule
     cxsmiles: CNc1ccccc1
     dataset: xbs:0000002
@@ -2431,7 +1550,7 @@ jsonld:
       reactions: [xbr:000000002443, xbr:000000003521, xbr:000000006628, xbr:000000001977]
       rule: Glutathionation
       walk: 3
-  - '@id': xbm:0002723
+  - '@id': xbm:000000002723
     '@type': xb:SomMolecule
     cxsmiles: CCc1cccc(CC)c1N(COC)C(=O)CCl
     dataset: xbs:0000002
@@ -2447,7 +1566,24 @@ jsonld:
       reactions: [xbr:000000002467]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0002867
+  - '@id': xbm:000000002801
+    '@type': xb:SomMolecule
+    cxsmiles: CSC2CC(Cn3ncnc3)(OC2)c1c(Cl)cc(Cl)cc1
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
+          16], [17], [18], [19], [20]]
+    soms:
+    - atoms: [19]
+      equiv: [[19]]
+      kind: atom
+      partition:
+      - atoms: [19]
+        molecule: xbm:000000002801
+      pattern: adduct
+      reactions: [xbr:000000002560]
+      rule: Glutathionation
+      walk: 0
+  - '@id': xbm:000000002867
     '@type': xb:SomMolecule
     cxsmiles: Cc1c(C)n2c(CCl)c(C)c(=O)n2c1=O
     dataset: xbs:0000002
@@ -2463,7 +1599,7 @@ jsonld:
       reactions: [xbr:000000002632]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0002868
+  - '@id': xbm:000000002868
     '@type': xb:SomMolecule
     cxsmiles: Cc1cc(C(C)(C)C)c(O)c(C)c1CC1=NCCN1
     dataset: xbs:0000002
@@ -2480,7 +1616,7 @@ jsonld:
       reactions: [xbr:000000002633]
       rule: Glutathionation
       walk: 1
-  - '@id': xbm:0002894
+  - '@id': xbm:000000002894
     '@type': xb:SomMolecule
     cxsmiles: ClC(=S)Cl
     dataset: xbs:0000002
@@ -2496,7 +1632,7 @@ jsonld:
       reactions: [xbr:000000002656]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0002898
+  - '@id': xbm:000000002898
     '@type': xb:SomMolecule
     cxsmiles: O=C(O)C(F)Cl
     dataset: xbs:0000002
@@ -2512,9 +1648,9 @@ jsonld:
       reactions: [xbr:000000002657]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0002910
+  - '@id': xbm:000000002910
     '@type': xb:SomMolecule
-    cxsmiles: O=[N+]([O-])c1ccc(CCl)cc1
+    cxsmiles: "O=[N+]([O-])c1ccc(CCl)cc1"
     dataset: xbs:0000002
     orbits: [[0], [1], [2], [3], [4, 10], [5, 9], [6], [7], [8]]
     soms:
@@ -2528,9 +1664,25 @@ jsonld:
       reactions: [xbr:000000002669]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0002937
+  - '@id': xbm:000000002933
     '@type': xb:SomMolecule
-    cxsmiles: O=[N+]([O-])c1cccc(Cl)c1[N+](=O)[O-]
+    cxsmiles: "Clc1c(c(c(Cl)c(C#N)c1[*])C#N)[*] |$;;;;;;;;;;GSH;;;GSH$|"
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2, 9], [3, 6], [4], [5], [7, 11], [8, 12], [10, 13]]
+    soms:
+    - atoms: [4]
+      equiv: [[4]]
+      kind: atom
+      partition:
+      - atoms: [4]
+        molecule: xbm:000000002933
+      pattern: halide
+      reactions: [xbr:000000002685]
+      rule: Glutathionation
+      walk: 0
+  - '@id': xbm:000000002937
+    '@type': xb:SomMolecule
+    cxsmiles: "O=[N+]([O-])c1cccc(Cl)c1[N+](=O)[O-]"
     dataset: xbs:0000002
     orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12]]
     soms:
@@ -2544,7 +1696,312 @@ jsonld:
       reactions: [xbr:000000002687]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0003064
+  - '@id': xbm:000000002947
+    '@type': xb:SomMolecule
+    cxsmiles: Clc1cc(C(F)(F)F)cnc1CCNC(=O)c2c(C(F)(F)F)cccc2
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5, 6, 7], [8], [9], [10], [11], [12], [13], [14], [15], [16], [
+        17], [18], [19, 20, 21], [22], [23], [24], [25]]
+    soms:
+    - atoms: [14]
+      equiv: [[14]]
+      kind: atom
+      partition:
+      - atoms: [14]
+        molecule: xbm:000000002947
+      - atoms: [10]
+        molecule: xbm:000000008174
+      - atoms: [0]
+        molecule: xbm:000000000094
+      - atoms: [10]
+        molecule: xbm:000000007054
+      pattern: adduct
+      reactions: [xbr:000000002698, xbr:000000007511, xbr:000000000085, xbr:000000006425]
+      rule: Glutathionation
+      walk: 3
+  - '@id': xbm:000000002963
+    '@type': xb:SomMolecule
+    cxsmiles: "Clc1cc([N+](=O)[O-])cc(c1N)Cl"
+    dataset: xbs:0000002
+    orbits: [[0, 11], [1, 8], [2, 7], [3], [4], [5], [6], [9], [10]]
+    soms:
+    - atoms: [1]
+      equiv: [[1, 8]]
+      kind: atom
+      partition:
+      - atoms: [1]
+        molecule: xbm:000000002963
+      pattern: halide
+      reactions: [xbr:000000002716]
+      rule: Glutathionation
+      walk: 0
+    - atoms: [2]
+      equiv: [[2, 7]]
+      kind: atom
+      partition:
+      - atoms: [2]
+        molecule: xbm:000000002963
+      pattern: michael
+      reactions: [xbr:000000002714]
+      rule: Glutathionation
+      walk: 1
+  - '@id': xbm:000000002970
+    '@type': xb:SomMolecule
+    cxsmiles: Clc1cc(cnc1CNC(=O)c2c(Cl)cccc2Cl)C(F)(F)F
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12, 17], [13, 18], [14, 
+          16], [15], [19], [20, 21, 22]]
+    soms:
+    - atoms: [12]
+      equiv: [[12, 17]]
+      kind: atom
+      partition:
+      - atoms: [12]
+        molecule: xbm:000000002970
+      pattern: halide
+      reactions: [xbr:000000002732]
+      rule: Glutathionation
+      walk: 0
+  - '@id': xbm:000000002976
+    '@type': xb:SomMolecule
+    cxsmiles: Clc1cc2c(c(C(=O)OC)c(c3c2O3)Cl)nc1
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
+          16]]
+    soms:
+    - atoms: [10]
+      equiv: [[10]]
+      kind: atom
+      partition:
+      - atoms: [10]
+        molecule: xbm:000000002976
+      - atoms: [8]
+        molecule: xbm:000000003040
+      pattern: halide
+      reactions: [xbr:000000002737, xbr:000000002803]
+      rule: Glutathionation
+      walk: 1
+    - atoms: [11]
+      equiv: [[11]]
+      kind: atom
+      partition:
+      - atoms: [11]
+        molecule: xbm:000000002976
+      - atoms: [9]
+        molecule: xbm:000000003040
+      pattern: alkene
+      reactions: [xbr:000000002737, xbr:000000002736]
+      rule: Glutathionation
+      walk: 2
+    - atoms: [2]
+      equiv: [[2]]
+      kind: atom
+      partition:
+      - atoms: [2]
+        molecule: xbm:000000002976
+      - atoms: [2]
+        molecule: xbm:000000003040
+      - atoms: [2]
+        molecule: xbm:000000003035
+      pattern: michael
+      reactions: [xbr:000000002737, xbr:000000002803, xbr:000000002821]
+      rule: Glutathionation
+      walk: 3
+  - '@id': xbm:000000002979
+    '@type': xb:SomMolecule
+    cxsmiles: "Clc1cc2c(c(c(cc2)[*])C(=O)OC)nc1 |$;;;;;;;;;GSH;;;;;;$|"
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15]]
+    soms:
+    - atoms: [7]
+      equiv: [[7]]
+      kind: atom
+      partition:
+      - atoms: [7]
+        molecule: xbm:000000002979
+      - atoms: [9]
+        molecule: xbm:000000003059
+      pattern: epoxide_c
+      reactions: [xbr:000000002739, xbr:000000002823]
+      rule: Glutathionation
+      walk: 1
+    - atoms: [2]
+      equiv: [[2]]
+      kind: atom
+      partition:
+      - atoms: [2]
+        molecule: xbm:000000002979
+      - atoms: [2]
+        molecule: xbm:000000003059
+      - atoms: [2]
+        molecule: xbm:000000003035
+      pattern: michael
+      reactions: [xbr:000000002739, xbr:000000002822, xbr:000000002821]
+      rule: Glutathionation
+      walk: 3
+  - '@id': xbm:000000003035
+    '@type': xb:SomMolecule
+    cxsmiles: "Clc2cc1c(O)cc([*])c(c1nc2)C(=O)OC |$;;;;;;;;GSH;;;;;;;;$|"
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
+          16]]
+    soms:
+    - atoms: [2]
+      equiv: [[2]]
+      kind: atom
+      partition:
+      - atoms: [2]
+        molecule: xbm:000000003035
+      pattern: michael
+      reactions: [xbr:000000002821]
+      rule: Glutathionation
+      walk: 1
+  - '@id': xbm:000000003040
+    '@type': xb:SomMolecule
+    cxsmiles: Clc2cc1c(nc2)c(c(cc1O)Cl)C(=O)OC
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
+          16]]
+    soms:
+    - atoms: [8]
+      equiv: [[8]]
+      kind: atom
+      partition:
+      - atoms: [8]
+        molecule: xbm:000000003040
+      pattern: halide
+      reactions: [xbr:000000002803]
+      rule: Glutathionation
+      walk: 0
+    - atoms: [9]
+      equiv: [[9]]
+      kind: atom
+      partition:
+      - atoms: [9]
+        molecule: xbm:000000003040
+      pattern: alkene
+      reactions: [xbr:000000002736]
+      rule: Glutathionation
+      walk: 1
+    - atoms: [2]
+      equiv: [[2]]
+      kind: atom
+      partition:
+      - atoms: [2]
+        molecule: xbm:000000003040
+      - atoms: [2]
+        molecule: xbm:000000003035
+      pattern: michael
+      reactions: [xbr:000000002803, xbr:000000002821]
+      rule: Glutathionation
+      walk: 2
+  - '@id': xbm:000000003041
+    '@type': xb:SomMolecule
+    cxsmiles: "Clc2cc1c(nc2)c(c(cc1O[*])Cl)C(=O)OC |$;;;;;;;;;;;;GlcA;;;;;$|"
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
+          16], [17]]
+    soms:
+    - atoms: [8]
+      equiv: [[8]]
+      kind: atom
+      partition:
+      - atoms: [8]
+        molecule: xbm:000000003041
+      pattern: halide
+      reactions: [xbr:000000002805]
+      rule: Glutathionation
+      walk: 0
+  - '@id': xbm:000000003042
+    '@type': xb:SomMolecule
+    cxsmiles: Clc2cc1ccc(Cl)c(c1nc2)C(=O)OC
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15]]
+    soms:
+    - atoms: [6]
+      equiv: [[6]]
+      kind: atom
+      partition:
+      - atoms: [6]
+        molecule: xbm:000000003042
+      pattern: halide
+      reactions: [xbr:000000002807]
+      rule: Glutathionation
+      walk: 0
+    - atoms: [5]
+      equiv: [[5]]
+      kind: atom
+      partition:
+      - atoms: [5]
+        molecule: xbm:000000003042
+      - atoms: [7]
+        molecule: xbm:000000002979
+      - atoms: [9]
+        molecule: xbm:000000003059
+      pattern: epoxide_c
+      reactions: [xbr:000000002807, xbr:000000002739, xbr:000000002823]
+      rule: Glutathionation
+      walk: 2
+    - atoms: [5]
+      equiv: [[5]]
+      kind: atom
+      partition:
+      - atoms: [5]
+        molecule: xbm:000000003042
+      - atoms: [11]
+        molecule: xbm:000000002976
+      - atoms: [9]
+        molecule: xbm:000000003040
+      pattern: alkene
+      reactions: [xbr:000000002806, xbr:000000002737, xbr:000000002736]
+      rule: Glutathionation
+      walk: 3
+    - atoms: [2]
+      equiv: [[2]]
+      kind: atom
+      partition:
+      - atoms: [2]
+        molecule: xbm:000000003042
+      - atoms: [2]
+        molecule: xbm:000000002979
+      - atoms: [2]
+        molecule: xbm:000000003059
+      - atoms: [2]
+        molecule: xbm:000000003035
+      pattern: michael
+      reactions: [xbr:000000002807, xbr:000000002739, xbr:000000002822, xbr:000000002821]
+      rule: Glutathionation
+      walk: 4
+  - '@id': xbm:000000003059
+    '@type': xb:SomMolecule
+    cxsmiles: "Clc3cc1c(nc3)c(c(c2c1O2)[*])C(=O)OC |$;;;;;;;;;;;;GSH;;;;$|"
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
+          16]]
+    soms:
+    - atoms: [9]
+      equiv: [[9]]
+      kind: atom
+      partition:
+      - atoms: [9]
+        molecule: xbm:000000003059
+      pattern: epoxide_c
+      reactions: [xbr:000000002823]
+      rule: Glutathionation
+      walk: 0
+    - atoms: [2]
+      equiv: [[2]]
+      kind: atom
+      partition:
+      - atoms: [2]
+        molecule: xbm:000000003059
+      - atoms: [2]
+        molecule: xbm:000000003035
+      pattern: michael
+      reactions: [xbr:000000002822, xbr:000000002821]
+      rule: Glutathionation
+      walk: 2
+  - '@id': xbm:000000003064
     '@type': xb:SomMolecule
     cxsmiles: COc1cc2nccc(Oc3ccc(NC(=O)NC4CC4)c(Cl)c3)c2cc1C(N)=O.CS(=O)(=O)O
     dataset: xbs:0000002
@@ -2562,7 +2019,43 @@ jsonld:
       reactions: [xbr:000000002828]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0003128
+  - '@id': xbm:000000003076
+    '@type': xb:SomMolecule
+    cxsmiles: Cn1nc(C(F)F)c(C(Nc2c(C4C(C4)C3(O)CC3)cc(O)cc2)=O)c1
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5, 6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [16],
+      [17, 18], [19], [20], [21], [22], [23], [24], [25]]
+    soms:
+    - atoms: [22]
+      equiv: [[22]]
+      kind: atom
+      partition:
+      - atoms: [22]
+        molecule: xbm:000000003076
+      pattern: michael
+      reactions: [xbr:000000002843]
+      rule: Glutathionation
+      walk: 1
+  - '@id': xbm:000000003077
+    '@type': xb:SomMolecule
+    cxsmiles: Cn1nc(c(C(Nc4ccccc4C2C(C3(O)CC3)C2)=O)c1)C(F)F
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
+          16], [17, 18], [19], [20], [21], [22], [23, 24]]
+    soms:
+    - atoms: [9]
+      equiv: [[9]]
+      kind: atom
+      partition:
+      - atoms: [9]
+        molecule: xbm:000000003077
+      - atoms: [22]
+        molecule: xbm:000000003076
+      pattern: michael
+      reactions: [xbr:000000002844, xbr:000000002843]
+      rule: Glutathionation
+      walk: 2
+  - '@id': xbm:000000003128
     '@type': xb:SomMolecule
     cxsmiles: OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
     dataset: xbs:0000002
@@ -2581,7 +2074,7 @@ jsonld:
       reactions: [xbr:000000002927, xbr:000000004397]
       rule: Glutathionation
       walk: 1
-  - '@id': xbm:0003134
+  - '@id': xbm:000000003134
     '@type': xb:SomMolecule
     cxsmiles: O=C/C=C(\F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
     dataset: xbs:0000002
@@ -2600,7 +2093,7 @@ jsonld:
       reactions: [xbr:000000002935, xbr:000000004397]
       rule: Glutathionation
       walk: 1
-  - '@id': xbm:0003136
+  - '@id': xbm:000000003136
     '@type': xb:SomMolecule
     cxsmiles: C=C(F)C(F)(F)F
     dataset: xbs:0000002
@@ -2618,7 +2111,7 @@ jsonld:
       reactions: [xbr:000000002937, xbr:000000000758]
       rule: Glutathionation
       walk: 1
-  - '@id': xbm:0003139
+  - '@id': xbm:000000003139
     '@type': xb:SomMolecule
     cxsmiles: 
       O=P(O)(OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F)OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
@@ -2657,7 +2150,7 @@ jsonld:
       reactions: [xbr:000000002942, xbr:000000000224, xbr:000000002927, xbr:000000004397]
       rule: Glutathionation
       walk: 3
-  - '@id': xbm:0003144
+  - '@id': xbm:000000003144
     '@type': xb:SomMolecule
     cxsmiles: FC(Cl)=S
     dataset: xbs:0000002
@@ -2673,7 +2166,84 @@ jsonld:
       reactions: [xbr:000000002948]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0003254
+  - '@id': xbm:000000003160
+    '@type': xb:SomMolecule
+    cxsmiles: FC(c1c(S(=O)(=O)NC(Nc2nc(OC)c(O)c(n2)OC)=O)nccc1)(F)F
+    dataset: xbs:0000002
+    orbits: [[0, 26, 27], [1], [2], [3], [4], [5, 6], [7], [8], [9], [10], [11, 18], [12, 17], [13, 
+          19], [14, 20], [15], [16], [21], [22], [23], [24], [25]]
+    soms:
+    - atoms: [3]
+      equiv: [[3]]
+      kind: atom
+      partition:
+      - atoms: [3]
+        molecule: xbm:000000003160
+      pattern: adduct
+      reactions: [xbr:000000002964]
+      rule: Glutathionation
+      walk: 0
+  - '@id': xbm:000000003192
+    '@type': xb:SomMolecule
+    cxsmiles: "FC(c3c(c[nH]n3)C(=O)Nc1c(-c2cc(c(Cl)cc2)Cl)cc(F)cc1)F"
+    dataset: xbs:0000002
+    orbits: [[0, 25], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15],
+      [16], [17], [18], [19], [20], [21], [22], [23], [24]]
+    soms:
+    - atoms: [20]
+      equiv: [[20]]
+      kind: atom
+      partition:
+      - atoms: [20]
+        molecule: xbm:000000003192
+      - atoms: [21]
+        molecule: xbm:000000001271
+      pattern: halide
+      reactions: [xbr:000000002983, xbr:000000002986]
+      rule: Glutathionation
+      walk: 1
+  - '@id': xbm:000000003219
+    '@type': xb:SomMolecule
+    cxsmiles: Fc1ccc(cc1)N(C(=O)CS(C)(=O)=O)C(C)C
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2, 6], [3, 5], [4], [7], [8], [9], [10], [11], [12], [13, 14], [15], [16, 17]]
+    soms:
+    - atoms: [2]
+      equiv: [[2, 6]]
+      kind: atom
+      partition:
+      - atoms: [2]
+        molecule: xbm:000000003219
+      - atoms: [2]
+        molecule: xbm:000000005847
+      - atoms: [6]
+        molecule: xbm:000000002250
+      pattern: michael
+      reactions: [xbr:000000003027, xbr:000000005356, xbr:000000001977]
+      rule: Glutathionation
+      walk: 2
+  - '@id': xbm:000000003231
+    '@type': xb:SomMolecule
+    cxsmiles: Fc2cc(-c3ccc(Cl)c(Cl)c3)c(cc2)NC(c1cn(C)nc1C(F)F)=O
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
+          16], [17], [18], [19], [20], [21], [22], [23], [24, 25], [26]]
+    soms:
+    - atoms: [2]
+      equiv: [[2]]
+      kind: atom
+      partition:
+      - atoms: [2]
+        molecule: xbm:000000003231
+      - atoms: [20]
+        molecule: xbm:000000003192
+      - atoms: [21]
+        molecule: xbm:000000001271
+      pattern: halide
+      reactions: [xbr:000000003046, xbr:000000002983, xbr:000000002986]
+      rule: Glutathionation
+      walk: 2
+  - '@id': xbm:000000003254
     '@type': xb:SomMolecule
     cxsmiles: CI
     dataset: xbs:0000002
@@ -2689,7 +2259,7 @@ jsonld:
       reactions: [xbr:000000003073]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0003255
+  - '@id': xbm:000000003255
     '@type': xb:SomMolecule
     cxsmiles: CCI
     dataset: xbs:0000002
@@ -2705,7 +2275,7 @@ jsonld:
       reactions: [xbr:000000003074]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0003256
+  - '@id': xbm:000000003256
     '@type': xb:SomMolecule
     cxsmiles: CCCCI
     dataset: xbs:0000002
@@ -2721,7 +2291,37 @@ jsonld:
       reactions: [xbr:000000003075]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0003405
+  - '@id': xbm:000000003275
+    '@type': xb:SomMolecule
+    cxsmiles: "N#Cc1c(c(c(c(c1Cl)Cl)Cl)C#N)Cl"
+    dataset: xbs:0000002
+    orbits: [[0, 12], [1, 11], [2, 4], [3], [5, 7], [6], [8, 10], [9], [13]]
+    soms:
+    - atoms: [7]
+      equiv: [[5, 7]]
+      kind: atom
+      partition:
+      - atoms: [7]
+        molecule: xbm:000000003275
+      pattern: halide
+      reactions: [xbr:000000003095]
+      rule: Glutathionation
+      walk: 0
+    - atoms: [3]
+      equiv: [[3]]
+      kind: atom
+      partition:
+      - atoms: [3]
+        molecule: xbm:000000003275
+      - atoms: [0]
+        molecule: xbm:000000006134
+      - atoms: [4]
+        molecule: xbm:000000002933
+      pattern: halide
+      reactions: [xbr:000000003095, xbr:000000005619, xbr:000000002685]
+      rule: Glutathionation
+      walk: 2
+  - '@id': xbm:000000003405
     '@type': xb:SomMolecule
     cxsmiles: N(CC(C)C)(CC(C)C)C(=O)SCC
     dataset: xbs:0000002
@@ -2739,7 +2339,54 @@ jsonld:
       reactions: [xbr:000000008621, xbr:000000008499]
       rule: Glutathionation
       walk: 1
-  - '@id': xbm:0003521
+  - '@id': xbm:000000003514
+    '@type': xb:SomMolecule
+    cxsmiles: N1(C(C)C)C(=NC(C)(C)C)SCN(c2ccccc2)C1=O
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2, 3], [4], [5], [6], [7, 8, 9], [10], [11], [12], [13], [14, 18], [15, 17], [
+        16], [19], [20]]
+    soms:
+    - atoms: [17]
+      equiv: [[15, 17]]
+      kind: atom
+      partition:
+      - atoms: [17]
+        molecule: xbm:000000003514
+      - atoms: [18]
+        molecule: xbm:000000004405
+      - atoms: [2]
+        molecule: xbm:000000007440
+      - atoms: [6]
+        molecule: xbm:000000007268
+      - atoms: [6]
+        molecule: xbm:000000002250
+      pattern: michael
+      reactions: [xbr:000000008626, xbr:000000008577, xbr:000000006764, xbr:000000006628, 
+          xbr:000000001977]
+      rule: Glutathionation
+      walk: 4
+    - atoms: [15]
+      equiv: [[15, 17]]
+      kind: atom
+      partition:
+      - atoms: [15]
+        molecule: xbm:000000003514
+      - atoms: [16]
+        molecule: xbm:000000004405
+      - atoms: [0]
+        molecule: xbm:000000007440
+      - atoms: [9]
+        molecule: xbm:000000005890
+      - atoms: [6]
+        molecule: xbm:000000007268
+      - atoms: [6]
+        molecule: xbm:000000002250
+      pattern: michael
+      reactions: [xbr:000000008626, xbr:000000008577, xbr:000000006763, xbr:000000005428, 
+          xbr:000000006628, xbr:000000001977]
+      rule: Glutathionation
+      walk: 5
+  - '@id': xbm:000000003521
     '@type': xb:SomMolecule
     cxsmiles: CSc1ccc2c(c1)N(CCC1CCCCN1C)c1ccccc1S2
     dataset: xbs:0000002
@@ -2756,7 +2403,48 @@ jsonld:
       reactions: [xbr:000000003357]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0003549
+  - '@id': xbm:000000003542
+    '@type': xb:SomMolecule
+    cxsmiles: N1(c2ccccc2)CSC(=O)N(C1=O)C(C)C
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2, 6], [3, 5], [4], [7], [8], [9], [10], [11], [12], [13], [14], [15, 16]]
+    soms:
+    - atoms: [5]
+      equiv: [[3, 5]]
+      kind: atom
+      partition:
+      - atoms: [5]
+        molecule: xbm:000000003542
+      - atoms: [2]
+        molecule: xbm:000000007440
+      - atoms: [6]
+        molecule: xbm:000000007268
+      - atoms: [6]
+        molecule: xbm:000000002250
+      pattern: michael
+      reactions: [xbr:000000003378, xbr:000000006764, xbr:000000006628, xbr:000000001977]
+      rule: Glutathionation
+      walk: 3
+    - atoms: [3]
+      equiv: [[3, 5]]
+      kind: atom
+      partition:
+      - atoms: [3]
+        molecule: xbm:000000003542
+      - atoms: [0]
+        molecule: xbm:000000007440
+      - atoms: [9]
+        molecule: xbm:000000005890
+      - atoms: [6]
+        molecule: xbm:000000007268
+      - atoms: [6]
+        molecule: xbm:000000002250
+      pattern: michael
+      reactions: [xbr:000000003378, xbr:000000006763, xbr:000000005428, xbr:000000006628, 
+          xbr:000000001977]
+      rule: Glutathionation
+      walk: 4
+  - '@id': xbm:000000003549
     '@type': xb:SomMolecule
     cxsmiles: CC(C)(O)c1ccc(N2CCN(c3nnc(CC4=CC=C(F)C5OC45F)c4ccccc34)CC2)nc1
     dataset: xbs:0000002
@@ -2786,7 +2474,7 @@ jsonld:
       reactions: [xbr:000000003386, xbr:000000003427]
       rule: Glutathionation
       walk: 1
-  - '@id': xbm:0003615
+  - '@id': xbm:000000003615
     '@type': xb:SomMolecule
     cxsmiles: CC(C)(O)c1ccc(N2CCN(c3nnc(/C=C4\C=CC(F)=CC4=O)c4ccccc34)CC2)nc1
     dataset: xbs:0000002
@@ -2804,7 +2492,7 @@ jsonld:
       reactions: [xbr:000000003427]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0003700
+  - '@id': xbm:000000003700
     '@type': xb:SomMolecule
     cxsmiles: Nc1ccccc1
     dataset: xbs:0000002
@@ -2824,7 +2512,7 @@ jsonld:
       reactions: [xbr:000000003521, xbr:000000006628, xbr:000000001977]
       rule: Glutathionation
       walk: 2
-  - '@id': xbm:0003721
+  - '@id': xbm:000000003721
     '@type': xb:SomMolecule
     cxsmiles: FCOC(=C(F)F)C(F)(F)F
     dataset: xbs:0000002
@@ -2840,10 +2528,66 @@ jsonld:
       reactions: [xbr:000000003534]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0003878
+  - '@id': xbm:000000003754
     '@type': xb:SomMolecule
-    cxsmiles: 
-      C=C/C=C(\CCC)C(=O)SCCNC(=O)CCNC(=O)[C@H](O)C(C)(C)COP(=O)(O)OP(=O)(O)OC[C@H]1O[C@@H](n2cnc3c(N)ncnc32)[C@H](O)[C@@H]1OP(=O)(O)O
+    cxsmiles: O(C(Nc1cc(OC(=O)Nc2ccccc2)ccc1)=O)CC
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11, 15], [12, 14], [13], [16], [
+        17], [18], [19], [20], [21]]
+    soms:
+    - atoms: [5]
+      equiv: [[5]]
+      kind: atom
+      partition:
+      - atoms: [5]
+        molecule: xbm:000000003754
+      - atoms: [3]
+        molecule: xbm:000000003700
+      - atoms: [6]
+        molecule: xbm:000000007268
+      - atoms: [6]
+        molecule: xbm:000000002250
+      pattern: michael
+      reactions: [xbr:000000003576, xbr:000000003521, xbr:000000006628, xbr:000000001977]
+      rule: Glutathionation
+      walk: 3
+  - '@id': xbm:000000003771
+    '@type': xb:SomMolecule
+    cxsmiles: O(C)P(SCn2c(=O)c1c(nn2)cccc1)(=S)OC
+    dataset: xbs:0000002
+    orbits: [[0, 17], [1, 18], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [
+        15], [16]]
+    soms:
+    - atoms: [4]
+      equiv: [[4]]
+      kind: atom
+      partition:
+      - atoms: [4]
+        molecule: xbm:000000003771
+      pattern: carbonyl
+      reactions: [xbr:000000003600]
+      rule: Glutathionation
+      walk: 1
+  - '@id': xbm:000000003832
+    '@type': xb:SomMolecule
+    cxsmiles: "O(C=C(C(OC)=O)c1c(Oc3ncnc(c3)Oc2ccccc2C#N)cccc1)C"
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
+          16], [17], [18], [19], [20], [21], [22], [23], [24], [25], [26], [27], [28], [29]]
+    soms:
+    - atoms: [21]
+      equiv: [[21]]
+      kind: atom
+      partition:
+      - atoms: [21]
+        molecule: xbm:000000003832
+      pattern: adduct
+      reactions: [xbr:000000003634]
+      rule: Glutathionation
+      walk: 0
+  - '@id': xbm:000000003878
+    '@type': xb:SomMolecule
+    cxsmiles: "C=C/C=C(\\CCC)C(=O)SCCNC(=O)CCNC(=O)[C@H](O)C(C)(C)COP(=O)(O)OP(=O)(O)OC[C@H]1O[C@@H](n2cnc3c(N)ncnc32)[C@H](O)[C@@H]1OP(=O)(O)O"
     dataset: xbs:0000002
     orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
           16], [17], [18], [19], [20], [21], [22], [23, 24], [25], [26], [27], [28], [29], [30], [31],
@@ -2860,10 +2604,9 @@ jsonld:
       reactions: [xbr:000000003690]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0003885
+  - '@id': xbm:000000003885
     '@type': xb:SomMolecule
-    cxsmiles: 
-      Cc1cccc(Nc2ccccc2C(=O)SCCNC(=O)CCNC(=O)C(O)C(C)(C)COP(=O)(O)OP(=O)(O)OC[C@H]2O[C@@H](n3cnc4c(N)ncnc43)[C@H](O)[C@@H]2OP(=O)(O)O)c1C
+    cxsmiles: "Cc1cccc(Nc2ccccc2C(=O)SCCNC(=O)CCNC(=O)C(O)C(C)(C)COP(=O)(O)OP(=O)(O)OC[C@H]2O[C@@H](n3cnc4c(N)ncnc43)[C@H](O)[C@@H]2OP(=O)(O)O)c1C"
     dataset: xbs:0000002
     orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
           16], [17], [18], [19], [20], [21], [22], [23], [24], [25], [26], [27], [28], [29, 30], [31],
@@ -2877,10 +2620,12 @@ jsonld:
       partition:
       - atoms: [13]
         molecule: xbm:000000003885
-      pattern: adduct
+      - atoms: [13]
+        molecule: xbm:000000007614
+      pattern: alkene
       reactions: [xbr:000000003700]
       rule: Glutathionation
-      walk: 0
+      walk: 3
     - atoms: [11]
       equiv: [[11]]
       kind: atom
@@ -2895,9 +2640,9 @@ jsonld:
       reactions: [xbr:000000003700, xbr:000000006936, xbr:000000005469]
       rule: Glutathionation
       walk: 4
-  - '@id': xbm:0003939
+  - '@id': xbm:000000003939
     '@type': xb:SomMolecule
-    cxsmiles: COc1cc2c(c3oc(=O)c4c(c13)CCC4=O)[C@@H]1C=CO[C@@H]1O2
+    cxsmiles: "COc1cc2c(c3oc(=O)c4c(c13)CCC4=O)[C@@H]1C=CO[C@@H]1O2"
     dataset: xbs:0000002
     orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
           16], [17], [18], [19], [20], [21], [22]]
@@ -2914,7 +2659,7 @@ jsonld:
       reactions: [xbr:000000003717, xbr:000000001862]
       rule: Glutathionation
       walk: 1
-  - '@id': xbm:0003951
+  - '@id': xbm:000000003951
     '@type': xb:SomMolecule
     cxsmiles: COc1ccc(NC(C)=O)cc1
     dataset: xbs:0000002
@@ -2934,9 +2679,9 @@ jsonld:
       reactions: [xbr:000000003721, xbr:000000006628, xbr:000000001977]
       rule: Glutathionation
       walk: 2
-  - '@id': xbm:0003967
+  - '@id': xbm:000000003967
     '@type': xb:SomMolecule
-    cxsmiles: COc1cc2c(c3oc(=O)c4c(c13)CCC4=O)[C@H]1[C@H](OC[C@@H]1O)O2
+    cxsmiles: "COc1cc2c(c3oc(=O)c4c(c13)CCC4=O)[C@H]1[C@H](OC[C@@H]1O)O2"
     dataset: xbs:0000002
     orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
           16], [17], [18], [19], [20], [21], [22], [23]]
@@ -2951,9 +2696,9 @@ jsonld:
       reactions: [xbr:000000003729]
       rule: Glutathionation
       walk: 1
-  - '@id': xbm:0003974
+  - '@id': xbm:000000003974
     '@type': xb:SomMolecule
-    cxsmiles: C=CC(=O)N1CCC[C@@H](n2nc(-c3ccc(Oc4ccccc4)cc3)c3c(N)ncnc32)C1
+    cxsmiles: "C=CC(=O)N1CCC[C@@H](n2nc(-c3ccc(Oc4ccccc4)cc3)c3c(N)ncnc32)C1"
     dataset: xbs:0000002
     orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13, 24], [14, 23], [
         15], [16], [17], [18, 22], [19, 21], [20], [25], [26], [27], [28], [29], [30], [31], [32]]
@@ -2968,7 +2713,7 @@ jsonld:
       reactions: [xbr:000000003746]
       rule: Glutathionation
       walk: 2
-  - '@id': xbm:0003992
+  - '@id': xbm:000000003992
     '@type': xb:SomMolecule
     cxsmiles: COc1c(C)cnc(Cn2cnc3c(Cl)nc(N)nc32)c1C
     dataset: xbs:0000002
@@ -2985,9 +2730,28 @@ jsonld:
       reactions: [xbr:000000003769]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0004091
+  - '@id': xbm:000000004027
     '@type': xb:SomMolecule
-    cxsmiles: COC(=O)[C@H](c1ccccc1Cl)N1CCC(S)/C(=C/C(=O)O)C1
+    cxsmiles: O1C=CCC1(Cn3ncnc3)c2c(Cl)cc(Cl)cc2
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
+          16], [17], [18]]
+    soms:
+    - atoms: [17]
+      equiv: [[17]]
+      kind: atom
+      partition:
+      - atoms: [17]
+        molecule: xbm:000000004027
+      - atoms: [18]
+        molecule: xbm:000000001654
+      pattern: adduct
+      reactions: [xbr:000000003802, xbr:000000001497]
+      rule: Glutathionation
+      walk: 1
+  - '@id': xbm:000000004091
+    '@type': xb:SomMolecule
+    cxsmiles: "COC(=O)[C@H](c1ccccc1Cl)N1CCC(S)/C(=C/C(=O)O)C1"
     dataset: xbs:0000002
     orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
           16], [17], [18], [19], [20], [21], [22]]
@@ -3002,9 +2766,9 @@ jsonld:
       reactions: [xbr:000000003856]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0004093
+  - '@id': xbm:000000004093
     '@type': xb:SomMolecule
-    cxsmiles: COC(=O)[C@H](c1ccccc1Cl)N1CCC(SO)/C(=C\C(=O)O)C1
+    cxsmiles: "COC(=O)[C@H](c1ccccc1Cl)N1CCC(SO)/C(=C\\C(=O)O)C1"
     dataset: xbs:0000002
     orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
           16], [17], [18], [19], [20], [21], [22], [23]]
@@ -3021,9 +2785,9 @@ jsonld:
       reactions: [xbr:000000003856]
       rule: Glutathionation
       walk: 1
-  - '@id': xbm:0004096
+  - '@id': xbm:000000004096
     '@type': xb:SomMolecule
-    cxsmiles: COC(=O)[C@H](c1ccccc1Cl)N1CCC2C(=CC(=O)[S+]2[O-])C1
+    cxsmiles: "COC(=O)[C@H](c1ccccc1Cl)N1CCC2C(=CC(=O)[S+]2[O-])C1"
     dataset: xbs:0000002
     orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
           16], [17], [18], [19], [20], [21], [22]]
@@ -3040,9 +2804,9 @@ jsonld:
       reactions: [xbr:000000008664, xbr:000000003856]
       rule: Glutathionation
       walk: 1
-  - '@id': xbm:0004097
+  - '@id': xbm:000000004097
     '@type': xb:SomMolecule
-    cxsmiles: COC(=O)[C@H](c1ccccc1Cl)N1CCC2SC(=O)C=C2C1
+    cxsmiles: "COC(=O)[C@H](c1ccccc1Cl)N1CCC2SC(=O)C=C2C1"
     dataset: xbs:0000002
     orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
           16], [17], [18], [19], [20], [21]]
@@ -3059,9 +2823,9 @@ jsonld:
       reactions: [xbr:000000008664, xbr:000000003856]
       rule: Glutathionation
       walk: 1
-  - '@id': xbm:0004098
+  - '@id': xbm:000000004098
     '@type': xb:SomMolecule
-    cxsmiles: COC(=O)[C@H](c1ccccc1Cl)N1CCc2sccc2C1
+    cxsmiles: "COC(=O)[C@H](c1ccccc1Cl)N1CCc2sccc2C1"
     dataset: xbs:0000002
     orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
           16], [17], [18], [19], [20]]
@@ -3080,7 +2844,115 @@ jsonld:
       reactions: [xbr:000000003864, xbr:000000008664, xbr:000000003856]
       rule: Glutathionation
       walk: 2
-  - '@id': xbm:0004372
+  - '@id': xbm:000000004102
+    '@type': xb:SomMolecule
+    cxsmiles: O=C(C(NC(OC(C)C)=O)C(C)C)NC(C)c3sc2C=C(F)C1C(c2n3)O1
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7, 8], [9], [10], [11, 12], [13], [14], [15], [16], [
+        17], [18], [19], [20], [21], [22], [23], [24], [25], [26]]
+    soms:
+    - atoms: [22]
+      equiv: [[22]]
+      kind: atom
+      partition:
+      - atoms: [22]
+        molecule: xbm:000000004102
+      pattern: epoxide_ch
+      reactions: [xbr:000000011944]
+      rule: Glutathionation
+      walk: 0
+  - '@id': xbm:000000004145
+    '@type': xb:SomMolecule
+    cxsmiles: O=C(COc2sc(C(F)(F)F)nn2)N(c1ccc(F)cc1)C(C)C
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8, 9, 10], [11], [12], [13], [14], [15, 20], [
+          16, 19], [17], [18], [21], [22, 23]]
+    soms:
+    - atoms: [16]
+      equiv: [[16, 19]]
+      kind: atom
+      partition:
+      - atoms: [16]
+        molecule: xbm:000000004145
+      - atoms: [4]
+        molecule: xbm:000000000894
+      - atoms: [9]
+        molecule: xbm:000000005178
+      - atoms: [2]
+        molecule: xbm:000000003219
+      - atoms: [2]
+        molecule: xbm:000000005847
+      - atoms: [6]
+        molecule: xbm:000000002250
+      pattern: michael
+      reactions: [xbr:000000003912, xbr:000000008524, xbr:000000008728, xbr:000000003027, 
+          xbr:000000005356, xbr:000000001977]
+      rule: Glutathionation
+      walk: 5
+  - '@id': xbm:000000004221
+    '@type': xb:SomMolecule
+    cxsmiles: O=C(Nc2ccccc2C3C(C(=O)CCO)C3)c1c(C(F)F)nn(C)c1
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
+          16], [17], [18], [19], [20, 21], [22], [23], [24], [25]]
+    soms:
+    - atoms: [14]
+      equiv: [[14]]
+      kind: atom
+      partition:
+      - atoms: [14]
+        molecule: xbm:000000004221
+      pattern: alkene
+      reactions: [xbr:000000003979]
+      rule: Glutathionation
+      walk: 2
+  - '@id': xbm:000000004255
+    '@type': xb:SomMolecule
+    cxsmiles: O=C(OC(C)C)NC(C(C)C)C(=O)NC(C)c1sc2cc(F)ccc2n1
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4, 5], [6], [7], [8], [9, 10], [11], [12], [13], [14], [15], [16], [
+        17], [18], [19], [20], [21], [22], [23], [24], [25]]
+    soms:
+    - atoms: [22]
+      equiv: [[22]]
+      kind: atom
+      partition:
+      - atoms: [22]
+        molecule: xbm:000000004255
+      - atoms: [22]
+        molecule: xbm:000000004102
+      pattern: epoxide_ch
+      reactions: [xbr:000000012031, xbr:000000011944]
+      rule: Glutathionation
+      walk: 1
+  - '@id': xbm:000000004321
+    '@type': xb:SomMolecule
+    cxsmiles: O=C(c3c(Cl)nccc3)Nc1c(-c2ccc(Cl)cc2)cccc1
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13, 18], [14, 17], [
+        15], [16], [19], [20], [21], [22]]
+    soms:
+    - atoms: [3]
+      equiv: [[3]]
+      kind: atom
+      partition:
+      - atoms: [3]
+        molecule: xbm:000000004321
+      pattern: halide
+      reactions: [xbr:000000004083]
+      rule: Glutathionation
+      walk: 0
+    - atoms: [20]
+      equiv: [[20]]
+      kind: atom
+      partition:
+      - atoms: [20]
+        molecule: xbm:000000004321
+      pattern: alkene
+      reactions: [xbr:000000004079]
+      rule: Glutathionation
+      walk: 2
+  - '@id': xbm:000000004372
     '@type': xb:SomMolecule
     cxsmiles: O=C1C=C2CCNC2=CC1=O
     dataset: xbs:0000002
@@ -3096,7 +2968,49 @@ jsonld:
       reactions: [xbr:000000004125]
       rule: Glutathionation
       walk: 1
-  - '@id': xbm:0004456
+  - '@id': xbm:000000004405
+    '@type': xb:SomMolecule
+    cxsmiles: "CC(N=C2[S+]([O-])CN(C(N2C(C)C)=O)c1ccccc1)(C)C"
+    dataset: xbs:0000002
+    orbits: [[0, 20, 21], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11, 12], [13], [14], [
+          15, 19], [16, 18], [17]]
+    soms:
+    - atoms: [18]
+      equiv: [[16, 18]]
+      kind: atom
+      partition:
+      - atoms: [18]
+        molecule: xbm:000000004405
+      - atoms: [2]
+        molecule: xbm:000000007440
+      - atoms: [6]
+        molecule: xbm:000000007268
+      - atoms: [6]
+        molecule: xbm:000000002250
+      pattern: michael
+      reactions: [xbr:000000008577, xbr:000000006764, xbr:000000006628, xbr:000000001977]
+      rule: Glutathionation
+      walk: 3
+    - atoms: [16]
+      equiv: [[16, 18]]
+      kind: atom
+      partition:
+      - atoms: [16]
+        molecule: xbm:000000004405
+      - atoms: [0]
+        molecule: xbm:000000007440
+      - atoms: [9]
+        molecule: xbm:000000005890
+      - atoms: [6]
+        molecule: xbm:000000007268
+      - atoms: [6]
+        molecule: xbm:000000002250
+      pattern: michael
+      reactions: [xbr:000000008577, xbr:000000006763, xbr:000000005428, xbr:000000006628, 
+          xbr:000000001977]
+      rule: Glutathionation
+      walk: 4
+  - '@id': xbm:000000004456
     '@type': xb:SomMolecule
     cxsmiles: O=Cc1ccc(-c2ccccn2)cc1
     dataset: xbs:0000002
@@ -3112,7 +3026,7 @@ jsonld:
       reactions: [xbr:000000004194]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0004469
+  - '@id': xbm:000000004469
     '@type': xb:SomMolecule
     cxsmiles: O=P1(N(CCCl)CCCl)N=CCCO1
     dataset: xbs:0000002
@@ -3130,7 +3044,24 @@ jsonld:
       reactions: [xbr:000000004200]
       rule: Glutathionation
       walk: 1
-  - '@id': xbm:0004509
+  - '@id': xbm:000000004488
+    '@type': xb:SomMolecule
+    cxsmiles: O=S(NC(=O)Nc2nc(OC)cc(n2)OC)(c1c(cccn1)C(F)(F)F)=O
+    dataset: xbs:0000002
+    orbits: [[0, 26], [1], [2], [3], [4], [5], [6], [7, 13], [8, 12], [9, 14], [10, 15], [11], [16], [
+        17], [18], [19], [20], [21], [22], [23, 24, 25]]
+    soms:
+    - atoms: [16]
+      equiv: [[16]]
+      kind: atom
+      partition:
+      - atoms: [16]
+        molecule: xbm:000000004488
+      pattern: adduct
+      reactions: [xbr:000000004226]
+      rule: Glutathionation
+      walk: 0
+  - '@id': xbm:000000004509
     '@type': xb:SomMolecule
     cxsmiles: Nc1ccc(S(=O)(=O)c2ccc(N=O)cc2)cc1
     dataset: xbs:0000002
@@ -3146,9 +3077,31 @@ jsonld:
       reactions: [xbr:000000004245]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0004676
+  - '@id': xbm:000000004530
     '@type': xb:SomMolecule
-    cxsmiles: C[N+]1(C)[C@@H]2C[C@@H](OC(=O)C(O)(C3=CC4OC4S3)c3cccs3)C[C@H]1[C@@H]1O[C@@H]12
+    cxsmiles: "O=[N+]([O-])c1ccc(O)cc1"
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4, 9], [5, 8], [6], [7]]
+    soms:
+    - atoms: [5]
+      equiv: [[5, 8]]
+      kind: atom
+      partition:
+      - atoms: [5]
+        molecule: xbm:000000004530
+      - atoms: [3]
+        molecule: xbm:000000004990
+      - atoms: [6]
+        molecule: xbm:000000007268
+      - atoms: [6]
+        molecule: xbm:000000002250
+      pattern: michael
+      reactions: [xbr:000000004260, xbr:000000004668, xbr:000000006628, xbr:000000001977]
+      rule: Glutathionation
+      walk: 3
+  - '@id': xbm:000000004676
+    '@type': xb:SomMolecule
+    cxsmiles: "C[N+]1(C)[C@@H]2C[C@@H](OC(=O)C(O)(C3=CC4OC4S3)c3cccs3)C[C@H]1[C@@H]1O[C@@H]12"
     dataset: xbs:0000002
     orbits: [[0, 2], [1], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [16],
       [17], [18], [19], [20], [21], [22], [23], [24], [25], [26]]
@@ -3163,7 +3116,7 @@ jsonld:
       reactions: [xbr:000000004393]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0004678
+  - '@id': xbm:000000004678
     '@type': xb:SomMolecule
     cxsmiles: O=C(O)/C=C(/F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
     dataset: xbs:0000002
@@ -3180,7 +3133,43 @@ jsonld:
       reactions: [xbr:000000004397]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0004769
+  - '@id': xbm:000000004742
+    '@type': xb:SomMolecule
+    cxsmiles: OC(c3ccccc3Cl)C(c2ccc(cc2)F)(O)Cn1ncnc1
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11, 15], [12, 14], [13], [16], [
+        17], [18], [19], [20], [21], [22], [23]]
+    soms:
+    - atoms: [7]
+      equiv: [[7]]
+      kind: atom
+      partition:
+      - atoms: [7]
+        molecule: xbm:000000004742
+      pattern: halide
+      reactions: [xbr:000000004461]
+      rule: Glutathionation
+      walk: 0
+  - '@id': xbm:000000004768
+    '@type': xb:SomMolecule
+    cxsmiles: OC1CCC(Cn3ncnc3)(c2c(Cl)cc(Cl)cc2)O1
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
+          16], [17], [18], [19]]
+    soms:
+    - atoms: [17]
+      equiv: [[17]]
+      kind: atom
+      partition:
+      - atoms: [17]
+        molecule: xbm:000000004768
+      - atoms: [18]
+        molecule: xbm:000000001654
+      pattern: adduct
+      reactions: [xbr:000000004480, xbr:000000001497]
+      rule: Glutathionation
+      walk: 1
+  - '@id': xbm:000000004769
     '@type': xb:SomMolecule
     cxsmiles: O=P1(NCCCl)OCCC(O)N1CCCl
     dataset: xbs:0000002
@@ -3196,9 +3185,71 @@ jsonld:
       reactions: [xbr:000000004483]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0005323
+  - '@id': xbm:000000004990
     '@type': xb:SomMolecule
-    cxsmiles: '[*]SC(F)(Cl)Cl |$Cys;;;;;$|'
+    cxsmiles: Nc1ccc(O)cc1
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2, 7], [3, 6], [4], [5]]
+    soms:
+    - atoms: [3]
+      equiv: [[3, 6]]
+      kind: atom
+      partition:
+      - atoms: [3]
+        molecule: xbm:000000004990
+      - atoms: [6]
+        molecule: xbm:000000007268
+      - atoms: [6]
+        molecule: xbm:000000002250
+      pattern: michael
+      reactions: [xbr:000000004668, xbr:000000006628, xbr:000000001977]
+      rule: Glutathionation
+      walk: 2
+  - '@id': xbm:000000005164
+    '@type': xb:SomMolecule
+    cxsmiles: "c1(NC(C[S+]([O-])C)=O)ccc(F)cc1"
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8, 13], [9, 12], [10], [11]]
+    soms:
+    - atoms: [9]
+      equiv: [[9, 12]]
+      kind: atom
+      partition:
+      - atoms: [9]
+        molecule: xbm:000000005164
+      - atoms: [2]
+        molecule: xbm:000000005847
+      - atoms: [6]
+        molecule: xbm:000000002250
+      pattern: michael
+      reactions: [xbr:000000008747, xbr:000000005356, xbr:000000001977]
+      rule: Glutathionation
+      walk: 2
+  - '@id': xbm:000000005178
+    '@type': xb:SomMolecule
+    cxsmiles: "[S+]([O-])(C)CC(=O)N(c1ccc(F)cc1)C(C)C"
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8, 13], [9, 12], [10], [11], [14], [15, 16]]
+    soms:
+    - atoms: [9]
+      equiv: [[9, 12]]
+      kind: atom
+      partition:
+      - atoms: [9]
+        molecule: xbm:000000005178
+      - atoms: [2]
+        molecule: xbm:000000003219
+      - atoms: [2]
+        molecule: xbm:000000005847
+      - atoms: [6]
+        molecule: xbm:000000002250
+      pattern: michael
+      reactions: [xbr:000000008728, xbr:000000003027, xbr:000000005356, xbr:000000001977]
+      rule: Glutathionation
+      walk: 3
+  - '@id': xbm:000000005323
+    '@type': xb:SomMolecule
+    cxsmiles: "[*]SC(F)(Cl)Cl |$Cys;;;;;$|"
     dataset: xbs:0000002
     orbits: [[0], [1], [2], [3], [4, 5]]
     soms:
@@ -3216,9 +3267,25 @@ jsonld:
       reactions: [xbr:000000004867, xbr:000000000712, xbr:000000002656]
       rule: Glutathionation
       walk: 2
-  - '@id': xbm:0005372
+  - '@id': xbm:000000005347
     '@type': xb:SomMolecule
-    cxsmiles: '[O-][N+](N=C2N(COCN2C)Cc1cnc(Cl)s1)=O'
+    cxsmiles: "[N+](=O)(c1cc(O)c(c(Cl)c1)N)[O-]"
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11]]
+    soms:
+    - atoms: [7]
+      equiv: [[7]]
+      kind: atom
+      partition:
+      - atoms: [7]
+        molecule: xbm:000000005347
+      pattern: halide
+      reactions: [xbr:000000004879]
+      rule: Glutathionation
+      walk: 0
+  - '@id': xbm:000000005372
+    '@type': xb:SomMolecule
+    cxsmiles: "[O-][N+](N=C2N(COCN2C)Cc1cnc(Cl)s1)=O"
     dataset: xbs:0000002
     orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
           16], [17]]
@@ -3233,9 +3300,9 @@ jsonld:
       reactions: [xbr:000000004907]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0005376
+  - '@id': xbm:000000005376
     '@type': xb:SomMolecule
-    cxsmiles: O=[N+]([O-])c1cc([N+](=O)[O-])cc([N+](=O)[O-])c1
+    cxsmiles: "O=[N+]([O-])c1cc([N+](=O)[O-])cc([N+](=O)[O-])c1"
     dataset: xbs:0000002
     orbits: [[0, 7, 12], [1, 6, 11], [2, 8, 13], [3, 5, 10], [4, 9, 14]]
     soms:
@@ -3249,9 +3316,9 @@ jsonld:
       reactions: [xbr:000000004911]
       rule: Glutathionation
       walk: 1
-  - '@id': xbm:0005377
+  - '@id': xbm:000000005377
     '@type': xb:SomMolecule
-    cxsmiles: O=[N+]([O-])c1ccc(Cl)c([N+](=O)[O-])c1
+    cxsmiles: "O=[N+]([O-])c1ccc(Cl)c([N+](=O)[O-])c1"
     dataset: xbs:0000002
     orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12]]
     soms:
@@ -3275,9 +3342,9 @@ jsonld:
       reactions: [xbr:000000004912]
       rule: Glutathionation
       walk: 1
-  - '@id': xbm:0005379
+  - '@id': xbm:000000005379
     '@type': xb:SomMolecule
-    cxsmiles: O=C(O)C(Br)Cc1ccc([N+](=O)[O-])cc1
+    cxsmiles: "O=C(O)C(Br)Cc1ccc([N+](=O)[O-])cc1"
     dataset: xbs:0000002
     orbits: [[0], [1], [2], [3], [4], [5], [6], [7, 14], [8, 13], [9], [10], [11], [12]]
     soms:
@@ -3291,10 +3358,67 @@ jsonld:
       reactions: [xbr:000000004914]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0005479
+  - '@id': xbm:000000005380
     '@type': xb:SomMolecule
-    cxsmiles: 
-      COC(=O)N[C@H](C(=O)N[C@@H](Cc1ccccc1)[C@@H](O)CN(Cc1ccc(-c2ccccn2)cc1)NC(=O)[C@@H](NC(=O)OC)C(C)(C)C)C(C)(C)C
+    cxsmiles: "CCOP(=S)(OCC)Oc1ccc([N+](=O)[O-])cc1"
+    dataset: xbs:0000002
+    orbits: [[0, 7], [1, 6], [2, 5], [3], [4], [8], [9], [10, 17], [11, 16], [12], [13], [14], [15]]
+    soms:
+    - atoms: [10]
+      equiv: [[10, 17]]
+      kind: atom
+      partition:
+      - atoms: [10]
+        molecule: xbm:000000005380
+      - atoms: [5]
+        molecule: xbm:000000004530
+      - atoms: [3]
+        molecule: xbm:000000004990
+      - atoms: [6]
+        molecule: xbm:000000007268
+      - atoms: [6]
+        molecule: xbm:000000002250
+      pattern: michael
+      reactions: [xbr:000000004916, xbr:000000004260, xbr:000000004668, xbr:000000006628, 
+          xbr:000000001977]
+      rule: Glutathionation
+      walk: 4
+  - '@id': xbm:000000005442
+    '@type': xb:SomMolecule
+    cxsmiles: "[nH]4nc(C(F)F)c(c4)C(Nc1ccc(O)cc1C3CC3C2CC2)=O"
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4, 5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [16],
+      [17], [18], [19], [20], [21, 22], [23]]
+    soms:
+    - atoms: [22]
+      equiv: [[21, 22]]
+      kind: atom
+      partition:
+      - atoms: [22]
+        molecule: xbm:000000005442
+      - atoms: [9]
+        molecule: xbm:000000007690
+      pattern: adduct
+      reactions: [xbr:000000004947, xbr:000000007002]
+      rule: Glutathionation
+      walk: 1
+    - atoms: [12]
+      equiv: [[12]]
+      kind: atom
+      partition:
+      - atoms: [12]
+        molecule: xbm:000000005442
+      - atoms: [12]
+        molecule: xbm:000000007690
+      - atoms: [22]
+        molecule: xbm:000000003076
+      pattern: michael
+      reactions: [xbr:000000004947, xbr:000000006997, xbr:000000002843]
+      rule: Glutathionation
+      walk: 3
+  - '@id': xbm:000000005479
+    '@type': xb:SomMolecule
+    cxsmiles: "COC(=O)N[C@H](C(=O)N[C@@H](Cc1ccccc1)[C@@H](O)CN(Cc1ccc(-c2ccccn2)cc1)NC(=O)[C@@H](NC(=O)OC)C(C)(C)C)C(C)(C)C"
     dataset: xbs:0000002
     orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12, 16], [13, 15], [14], [
         17], [18], [19], [20], [21], [22], [23, 33], [24, 32], [25], [26], [27], [28], [29], [30], [
@@ -3313,9 +3437,43 @@ jsonld:
       reactions: [xbr:000000005002, xbr:000000004194]
       rule: Glutathionation
       walk: 1
-  - '@id': xbm:0005631
+  - '@id': xbm:000000005564
     '@type': xb:SomMolecule
-    cxsmiles: Cc1cc(C(C)(C)C)c(O)c(C)c1Cc1ncc[nH]1
+    cxsmiles: "c1(C(F)(F)F)cc(Cl)c(-n2c(N)c(C(F)(F)F)c(n2)C#N)c(c1)Cl"
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2, 3, 4], [5, 22], [6, 21], [7, 23], [8], [9], [10], [11], [12], [13], [14, 
+          15, 16], [17], [18], [19], [20]]
+    soms:
+    - atoms: [10]
+      equiv: [[10]]
+      kind: atom
+      partition:
+      - atoms: [10]
+        molecule: xbm:000000005564
+      pattern: adduct
+      reactions: [xbr:000000005077]
+      rule: Glutathionation
+      walk: 0
+  - '@id': xbm:000000005614
+    '@type': xb:SomMolecule
+    cxsmiles: c1(C(S)C(c3ccc(cc3)F)(Cn2cncn2)O)c(cccc1)Cl
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5, 9], [6, 8], [7], [10], [11], [12], [13], [14], [15], [16], [
+        17], [18], [19], [20], [21], [22], [23]]
+    soms:
+    - atoms: [20]
+      equiv: [[20]]
+      kind: atom
+      partition:
+      - atoms: [20]
+        molecule: xbm:000000005614
+      pattern: alkene
+      reactions: [xbr:000000005118]
+      rule: Glutathionation
+      walk: 2
+  - '@id': xbm:000000005631
+    '@type': xb:SomMolecule
+    cxsmiles: "Cc1cc(C(C)(C)C)c(O)c(C)c1Cc1ncc[nH]1"
     dataset: xbs:0000002
     orbits: [[0], [1], [2], [3], [4], [5, 6, 7], [8], [9], [10], [11], [12], [13], [14], [15], [16], [
         17], [18]]
@@ -3330,7 +3488,23 @@ jsonld:
       reactions: [xbr:000000005134]
       rule: Glutathionation
       walk: 1
-  - '@id': xbm:0005823
+  - '@id': xbm:000000005731
+    '@type': xb:SomMolecule
+    cxsmiles: CCc1cccc(CC)c1NC(=O)CCl
+    dataset: xbs:0000002
+    orbits: [[0, 8], [1, 7], [2, 6], [3, 5], [4], [9], [10], [11], [12], [13], [14]]
+    soms:
+    - atoms: [13]
+      equiv: [[13]]
+      kind: atom
+      partition:
+      - atoms: [13]
+        molecule: xbm:000000005731
+      pattern: halide
+      reactions: [xbr:000000005231]
+      rule: Glutathionation
+      walk: 0
+  - '@id': xbm:000000005823
     '@type': xb:SomMolecule
     cxsmiles: O=C(O)Cc1ccccc1Nc1c(Cl)cccc1Cl
     dataset: xbs:0000002
@@ -3401,7 +3575,78 @@ jsonld:
       reactions: [xbr:000000005316]
       rule: Glutathionation
       walk: 2
-  - '@id': xbm:0005874
+  - '@id': xbm:000000005828
+    '@type': xb:SomMolecule
+    cxsmiles: c1(Cl)ccccc1C3OC3(c4ccc(F)cc4)Cn2ncnc2
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11, 16], [12, 15], [13], [14], [
+        17], [18], [19], [20], [21], [22]]
+    soms:
+    - atoms: [3]
+      equiv: [[3]]
+      kind: atom
+      partition:
+      - atoms: [3]
+        molecule: xbm:000000005828
+      pattern: adduct
+      reactions: [xbr:000000005338]
+      rule: Glutathionation
+      walk: 0
+    - atoms: [7]
+      equiv: [[7]]
+      kind: atom
+      partition:
+      - atoms: [7]
+        molecule: xbm:000000005828
+      pattern: epoxide_ch
+      reactions: [xbr:000000005339]
+      rule: Glutathionation
+      walk: 0
+    - atoms: [0]
+      equiv: [[0]]
+      kind: atom
+      partition:
+      - atoms: [0]
+        molecule: xbm:000000005828
+      - atoms: [7]
+        molecule: xbm:000000004742
+      pattern: halide
+      reactions: [xbr:000000005337, xbr:000000004461]
+      rule: Glutathionation
+      walk: 1
+    - atoms: [3]
+      equiv: [[3]]
+      kind: atom
+      partition:
+      - atoms: [3]
+        molecule: xbm:000000005828
+      - atoms: [2]
+        molecule: xbm:000000007441
+      - atoms: [20]
+        molecule: xbm:000000005614
+      pattern: alkene
+      reactions: [xbr:000000005339, xbr:000000006765, xbr:000000005118]
+      rule: Glutathionation
+      walk: 4
+  - '@id': xbm:000000005847
+    '@type': xb:SomMolecule
+    cxsmiles: c1(F)ccc(cc1)NC(=O)CS(=O)(=O)C
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2, 6], [3, 5], [4], [7], [8], [9], [10], [11], [12, 13], [14]]
+    soms:
+    - atoms: [2]
+      equiv: [[2, 6]]
+      kind: atom
+      partition:
+      - atoms: [2]
+        molecule: xbm:000000005847
+      - atoms: [6]
+        molecule: xbm:000000002250
+      pattern: michael
+      reactions: [xbr:000000005356, xbr:000000001977]
+      rule: Glutathionation
+      walk: 1
+  - '@id': xbm:000000005874
     '@type': xb:SomMolecule
     cxsmiles: Cc1cc(NS(=O)(=O)c2ccc(N)cc2)no1
     dataset: xbs:0000002
@@ -3429,9 +3674,29 @@ jsonld:
       reactions: [xbr:000000005413, xbr:000000005587]
       rule: Glutathionation
       walk: 1
-  - '@id': xbm:0005928
+  - '@id': xbm:000000005890
     '@type': xb:SomMolecule
-    cxsmiles: c1(Nc2c(C)c(C)ccc2)c(C(O[*])=O)cccc1 |$;;;;;;;;;;;;;GlcA;;;;;$|
+    cxsmiles: c1(NC(=O)NC(C)C)ccc(cc1)O
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6, 7], [8, 12], [9, 11], [10], [13]]
+    soms:
+    - atoms: [9]
+      equiv: [[9, 11]]
+      kind: atom
+      partition:
+      - atoms: [9]
+        molecule: xbm:000000005890
+      - atoms: [6]
+        molecule: xbm:000000007268
+      - atoms: [6]
+        molecule: xbm:000000002250
+      pattern: michael
+      reactions: [xbr:000000005428, xbr:000000006628, xbr:000000001977]
+      rule: Glutathionation
+      walk: 2
+  - '@id': xbm:000000005928
+    '@type': xb:SomMolecule
+    cxsmiles: "c1(Nc2c(C)c(C)ccc2)c(C(O[*])=O)cccc1 |$;;;;;;;;;;;;;GlcA;;;;;$|"
     dataset: xbs:0000002
     orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
           16], [17], [18]]
@@ -3446,7 +3711,7 @@ jsonld:
       reactions: [xbr:000000005469]
       rule: Glutathionation
       walk: 2
-  - '@id': xbm:0006077
+  - '@id': xbm:000000006077
     '@type': xb:SomMolecule
     cxsmiles: Cc1cc(NS(=O)(=O)c2ccc(N=O)cc2)no1
     dataset: xbs:0000002
@@ -3463,7 +3728,35 @@ jsonld:
       reactions: [xbr:000000005587]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0006256
+  - '@id': xbm:000000006134
+    '@type': xb:SomMolecule
+    cxsmiles: "c1(c(c(c(c(c1C#N)Cl)Cl)[*])C#N)Cl |$;;;;;;;;;;GSH;;;$|"
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13]]
+    soms:
+    - atoms: [4]
+      equiv: [[4]]
+      kind: atom
+      partition:
+      - atoms: [4]
+        molecule: xbm:000000006134
+      pattern: halide
+      reactions: [xbr:000000005619]
+      rule: Glutathionation
+      walk: 0
+    - atoms: [0]
+      equiv: [[0]]
+      kind: atom
+      partition:
+      - atoms: [0]
+        molecule: xbm:000000006134
+      - atoms: [4]
+        molecule: xbm:000000002933
+      pattern: halide
+      reactions: [xbr:000000005619, xbr:000000002685]
+      rule: Glutathionation
+      walk: 1
+  - '@id': xbm:000000006256
     '@type': xb:SomMolecule
     cxsmiles: O=C=NCCc1ccccc1
     dataset: xbs:0000002
@@ -3479,7 +3772,7 @@ jsonld:
       reactions: [xbr:000000005740]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0006257
+  - '@id': xbm:000000006257
     '@type': xb:SomMolecule
     cxsmiles: S=C=NCCc1ccccc1
     dataset: xbs:0000002
@@ -3495,7 +3788,7 @@ jsonld:
       reactions: [xbr:000000005742]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0006606
+  - '@id': xbm:000000006606
     '@type': xb:SomMolecule
     cxsmiles: CC(C)(O)c1ccc(N2CCN(c3nnc(Cc4ccc(F)cc4F)c4ccccc34)CC2)nc1
     dataset: xbs:0000002
@@ -3555,9 +3848,63 @@ jsonld:
       reactions: [xbr:000000006025, xbr:000000001147, xbr:000000003427]
       rule: Glutathionation
       walk: 2
-  - '@id': xbm:0006702
+  - '@id': xbm:000000006676
     '@type': xb:SomMolecule
-    cxsmiles: O=S(=O)([O-])c1cc(S(=O)(=O)[O-])c2c(N=Nc3ccccc3)c(O)ccc2c1.[Na+].[Na+]
+    cxsmiles: c1c(Cl)cc(Cl)c(C2(Cn3ncnc3)CC(CO2)Br)c1
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
+          16], [17], [18], [19]]
+    soms:
+    - atoms: [15]
+      equiv: [[15]]
+      kind: atom
+      partition:
+      - atoms: [15]
+        molecule: xbm:000000006676
+      pattern: halide
+      reactions: [xbr:000000006115]
+      rule: Glutathionation
+      walk: 0
+    - atoms: [0]
+      equiv: [[0]]
+      kind: atom
+      partition:
+      - atoms: [0]
+        molecule: xbm:000000006676
+      - atoms: [19]
+        molecule: xbm:000000002801
+      pattern: adduct
+      reactions: [xbr:000000006112, xbr:000000002560]
+      rule: Glutathionation
+      walk: 1
+  - '@id': xbm:000000006701
+    '@type': xb:SomMolecule
+    cxsmiles: CN(C)c1ccc(N=Nc2ccccc2)cc1
+    dataset: xbs:0000002
+    orbits: [[0, 2], [1], [3], [4, 16], [5, 15], [6], [7], [8], [9], [10, 14], [11, 13], [12]]
+    soms:
+    - atoms: [5]
+      equiv: [[5, 15]]
+      kind: atom
+      partition:
+      - atoms: [5]
+        molecule: xbm:000000006701
+      - atoms: [3]
+        molecule: xbm:000000007433
+      - atoms: [3]
+        molecule: xbm:000000004990
+      - atoms: [6]
+        molecule: xbm:000000007268
+      - atoms: [6]
+        molecule: xbm:000000002250
+      pattern: michael
+      reactions: [xbr:000000006135, xbr:000000006754, xbr:000000004668, xbr:000000006628, 
+          xbr:000000001977]
+      rule: Glutathionation
+      walk: 4
+  - '@id': xbm:000000006702
+    '@type': xb:SomMolecule
+    cxsmiles: "O=S(=O)([O-])c1cc(S(=O)(=O)[O-])c2c(N=Nc3ccccc3)c(O)ccc2c1.[Na+].[Na+]"
     dataset: xbs:0000002
     orbits: [[0, 2], [1], [3], [4], [5], [6], [7], [8, 9], [10], [11], [12], [13], [14], [15], [16, 
           20], [17, 19], [18], [21], [22], [23], [24], [25], [26], [27, 28]]
@@ -3578,9 +3925,9 @@ jsonld:
       reactions: [xbr:000000006137, xbr:000000003521, xbr:000000006628, xbr:000000001977]
       rule: Glutathionation
       walk: 3
-  - '@id': xbm:0006776
+  - '@id': xbm:000000006776
     '@type': xb:SomMolecule
-    cxsmiles: CN1CCCCC1CCN1c2ccccc2Sc2ccc([S+](C)[O-])cc21
+    cxsmiles: "CN1CCCCC1CCN1c2ccccc2Sc2ccc([S+](C)[O-])cc21"
     dataset: xbs:0000002
     orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
           16], [17], [18], [19], [20], [21], [22], [23], [24], [25]]
@@ -3597,7 +3944,7 @@ jsonld:
       reactions: [xbr:000000008628, xbr:000000003357]
       rule: Glutathionation
       walk: 1
-  - '@id': xbm:0006831
+  - '@id': xbm:000000006831
     '@type': xb:SomMolecule
     cxsmiles: c1c(c(c(s1)C)N(C(=O)CCl)C(COC)C)C
     dataset: xbs:0000002
@@ -3614,7 +3961,24 @@ jsonld:
       reactions: [xbr:000000006233]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0006941
+  - '@id': xbm:000000006891
+    '@type': xb:SomMolecule
+    cxsmiles: c1c(ccc(C(Cn3ncnc3)(O)C(c2ccc(O)cc2Cl)O)c1)F
+    dataset: xbs:0000002
+    orbits: [[0, 2], [1], [3, 23], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
+        16], [17], [18], [19], [20], [21], [22], [24]]
+    soms:
+    - atoms: [20]
+      equiv: [[20]]
+      kind: atom
+      partition:
+      - atoms: [20]
+        molecule: xbm:000000006891
+      pattern: halide
+      reactions: [xbr:000000006284]
+      rule: Glutathionation
+      walk: 0
+  - '@id': xbm:000000006941
     '@type': xb:SomMolecule
     cxsmiles: CC(C)(OO)c1ccccc1
     dataset: xbs:0000002
@@ -3630,7 +3994,45 @@ jsonld:
       reactions: [xbr:000000006317]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0007268
+  - '@id': xbm:000000007054
+    '@type': xb:SomMolecule
+    cxsmiles: c1cc(C(F)(F)F)c(cc1)C(=O)O
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4, 5, 6], [7], [8], [9], [10], [11], [12]]
+    soms:
+    - atoms: [10]
+      equiv: [[10]]
+      kind: atom
+      partition:
+      - atoms: [10]
+        molecule: xbm:000000007054
+      pattern: adduct
+      reactions: [xbr:000000006425]
+      rule: Glutathionation
+      walk: 0
+  - '@id': xbm:000000007123
+    '@type': xb:SomMolecule
+    cxsmiles: "c1cc(F)ccc1NC(C[*])=O |$;;;;;;;;;;NAC;$|"
+    dataset: xbs:0000002
+    orbits: [[0, 5], [1, 4], [2], [3], [6], [7], [8], [9], [10], [11]]
+    soms:
+    - atoms: [1]
+      equiv: [[1, 4]]
+      kind: atom
+      partition:
+      - atoms: [1]
+        molecule: xbm:000000007123
+      - atoms: [9]
+        molecule: xbm:000000005164
+      - atoms: [2]
+        molecule: xbm:000000005847
+      - atoms: [6]
+        molecule: xbm:000000002250
+      pattern: michael
+      reactions: [xbr:000000008797, xbr:000000008747, xbr:000000005356, xbr:000000001977]
+      rule: Glutathionation
+      walk: 3
+  - '@id': xbm:000000007268
     '@type': xb:SomMolecule
     cxsmiles: CC(=O)Nc1ccc(O)cc1
     dataset: xbs:0000002
@@ -3648,7 +4050,32 @@ jsonld:
       reactions: [xbr:000000006628, xbr:000000001977]
       rule: Glutathionation
       walk: 1
-  - '@id': xbm:0007367
+  - '@id': xbm:000000007285
+    '@type': xb:SomMolecule
+    cxsmiles: "COc1ccc([N+](=O)[O-])cc1"
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3, 10], [4, 9], [5], [6], [7], [8]]
+    soms:
+    - atoms: [3]
+      equiv: [[3, 10]]
+      kind: atom
+      partition:
+      - atoms: [3]
+        molecule: xbm:000000007285
+      - atoms: [5]
+        molecule: xbm:000000004530
+      - atoms: [3]
+        molecule: xbm:000000004990
+      - atoms: [6]
+        molecule: xbm:000000007268
+      - atoms: [6]
+        molecule: xbm:000000002250
+      pattern: michael
+      reactions: [xbr:000000006639, xbr:000000004260, xbr:000000004668, xbr:000000006628, 
+          xbr:000000001977]
+      rule: Glutathionation
+      walk: 4
+  - '@id': xbm:000000007367
     '@type': xb:SomMolecule
     cxsmiles: CN(C)c1ccccc1
     dataset: xbs:0000002
@@ -3670,7 +4097,54 @@ jsonld:
       reactions: [xbr:000000006698, xbr:000000003521, xbr:000000006628, xbr:000000001977]
       rule: Glutathionation
       walk: 3
-  - '@id': xbm:0007434
+  - '@id': xbm:000000007395
+    '@type': xb:SomMolecule
+    cxsmiles: "O=[N+]([O-])c1ccccc1"
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4, 8], [5, 7], [6]]
+    soms:
+    - atoms: [5]
+      equiv: [[5, 7]]
+      kind: atom
+      partition:
+      - atoms: [5]
+        molecule: xbm:000000007395
+      - atoms: [5]
+        molecule: xbm:000000004530
+      - atoms: [3]
+        molecule: xbm:000000004990
+      - atoms: [6]
+        molecule: xbm:000000007268
+      - atoms: [6]
+        molecule: xbm:000000002250
+      pattern: michael
+      reactions: [xbr:000000006726, xbr:000000004260, xbr:000000004668, xbr:000000006628, 
+          xbr:000000001977]
+      rule: Glutathionation
+      walk: 4
+  - '@id': xbm:000000007433
+    '@type': xb:SomMolecule
+    cxsmiles: Nc1ccc(N=Nc2ccccc2)cc1
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2, 14], [3, 13], [4], [5], [6], [7], [8, 12], [9, 11], [10]]
+    soms:
+    - atoms: [3]
+      equiv: [[3, 13]]
+      kind: atom
+      partition:
+      - atoms: [3]
+        molecule: xbm:000000007433
+      - atoms: [3]
+        molecule: xbm:000000004990
+      - atoms: [6]
+        molecule: xbm:000000007268
+      - atoms: [6]
+        molecule: xbm:000000002250
+      pattern: michael
+      reactions: [xbr:000000006754, xbr:000000004668, xbr:000000006628, xbr:000000001977]
+      rule: Glutathionation
+      walk: 3
+  - '@id': xbm:000000007434
     '@type': xb:SomMolecule
     cxsmiles: CC(=O)Nc1ccccc1
     dataset: xbs:0000002
@@ -3690,7 +4164,62 @@ jsonld:
       reactions: [xbr:000000006758, xbr:000000006628, xbr:000000001977]
       rule: Glutathionation
       walk: 2
-  - '@id': xbm:0007511
+  - '@id': xbm:000000007440
+    '@type': xb:SomMolecule
+    cxsmiles: c1cccc(c1)NC(NC(C)C)=O
+    dataset: xbs:0000002
+    orbits: [[0, 2], [1], [3, 5], [4], [6], [7], [8], [9], [10, 11], [12]]
+    soms:
+    - atoms: [2]
+      equiv: [[0, 2]]
+      kind: atom
+      partition:
+      - atoms: [2]
+        molecule: xbm:000000007440
+      - atoms: [6]
+        molecule: xbm:000000007268
+      - atoms: [6]
+        molecule: xbm:000000002250
+      pattern: michael
+      reactions: [xbr:000000006764, xbr:000000006628, xbr:000000001977]
+      rule: Glutathionation
+      walk: 2
+    - atoms: [0]
+      equiv: [[0, 2]]
+      kind: atom
+      partition:
+      - atoms: [0]
+        molecule: xbm:000000007440
+      - atoms: [9]
+        molecule: xbm:000000005890
+      - atoms: [6]
+        molecule: xbm:000000007268
+      - atoms: [6]
+        molecule: xbm:000000002250
+      pattern: michael
+      reactions: [xbr:000000006763, xbr:000000005428, xbr:000000006628, xbr:000000001977]
+      rule: Glutathionation
+      walk: 3
+  - '@id': xbm:000000007441
+    '@type': xb:SomMolecule
+    cxsmiles: "c1cccc(c1C([*])C(O)(Cn3cncn3)c2ccc(cc2)F)Cl |$;;;;;;;GSH;;;;;;;;;;;;;;;;$|"
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
+          16], [17, 21], [18, 20], [19], [22], [23]]
+    soms:
+    - atoms: [2]
+      equiv: [[2]]
+      kind: atom
+      partition:
+      - atoms: [2]
+        molecule: xbm:000000007441
+      - atoms: [20]
+        molecule: xbm:000000005614
+      pattern: alkene
+      reactions: [xbr:000000006765, xbr:000000005118]
+      rule: Glutathionation
+      walk: 3
+  - '@id': xbm:000000007511
     '@type': xb:SomMolecule
     cxsmiles: ICCCc1ccccc1
     dataset: xbs:0000002
@@ -3706,7 +4235,7 @@ jsonld:
       reactions: [xbr:000000006842]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0007515
+  - '@id': xbm:000000007515
     '@type': xb:SomMolecule
     cxsmiles: c1ccc(N=Nc2ccccc2)cc1
     dataset: xbs:0000002
@@ -3728,7 +4257,7 @@ jsonld:
       reactions: [xbr:000000006848, xbr:000000003521, xbr:000000006628, xbr:000000001977]
       rule: Glutathionation
       walk: 3
-  - '@id': xbm:0007614
+  - '@id': xbm:000000007614
     '@type': xb:SomMolecule
     cxsmiles: Cc1cccc(Nc2ccccc2C(=O)O)c1C
     dataset: xbs:0000002
@@ -3741,12 +4270,10 @@ jsonld:
       partition:
       - atoms: [13]
         molecule: xbm:000000007614
-      - atoms: [13]
-        molecule: xbm:000000003885
-      pattern: adduct
-      reactions: [xbr:000000006935, xbr:000000003700]
+      pattern: alkene
+      reactions: [xbr:000000003700]
       rule: Glutathionation
-      walk: 1
+      walk: 2
     - atoms: [11]
       equiv: [[11]]
       kind: atom
@@ -3759,7 +4286,7 @@ jsonld:
       reactions: [xbr:000000006936, xbr:000000005469]
       rule: Glutathionation
       walk: 3
-  - '@id': xbm:0007630
+  - '@id': xbm:000000007630
     '@type': xb:SomMolecule
     cxsmiles: CC(C)(O)c1ccc(N2CCN(c3nnc(/C=C4\C=CC(O)(F)C=C4F)c4ccccc34)CC2)nc1
     dataset: xbs:0000002
@@ -3779,7 +4306,77 @@ jsonld:
       reactions: [xbr:000000006951, xbr:000000002151]
       rule: Glutathionation
       walk: 1
-  - '@id': xbm:0007825
+  - '@id': xbm:000000007663
+    '@type': xb:SomMolecule
+    cxsmiles: c2(Cl)ccc(cc2)C(C(Cl)(Cl)Cl)(O)c1ccc(Cl)cc1
+    dataset: xbs:0000002
+    orbits: [[0, 16], [1, 17], [2, 6, 15, 18], [3, 5, 14, 19], [4, 13], [7], [8], [9, 10, 11], [12]]
+    soms:
+    - atoms: [8]
+      equiv: [[8]]
+      kind: atom
+      partition:
+      - atoms: [8]
+        molecule: xbm:000000007663
+      - atoms: [8]
+        molecule: xbm:000000007925
+      pattern: halide
+      reactions: [xbr:000000006977, xbr:000000007252]
+      rule: Glutathionation
+      walk: 1
+  - '@id': xbm:000000007690
+    '@type': xb:SomMolecule
+    cxsmiles: c2(O)cc(C4C(C4)C3CC3)c(cc2)NC(=O)c1cn(C)nc1C(F)F
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8, 9], [10], [11], [12], [13], [14], [15], [16],
+      [17], [18], [19], [20], [21], [22], [23, 24]]
+    soms:
+    - atoms: [9]
+      equiv: [[8, 9]]
+      kind: atom
+      partition:
+      - atoms: [9]
+        molecule: xbm:000000007690
+      pattern: adduct
+      reactions: [xbr:000000007002]
+      rule: Glutathionation
+      walk: 0
+    - atoms: [12]
+      equiv: [[12]]
+      kind: atom
+      partition:
+      - atoms: [12]
+        molecule: xbm:000000007690
+      - atoms: [22]
+        molecule: xbm:000000003076
+      pattern: michael
+      reactions: [xbr:000000006997, xbr:000000002843]
+      rule: Glutathionation
+      walk: 2
+  - '@id': xbm:000000007695
+    '@type': xb:SomMolecule
+    cxsmiles: "C=1(C)OCC[S+](C=1C(Nc2ccc(O)cc2)=O)[O-]"
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10, 15], [11, 14], [12], [13], [16], [
+        17]]
+    soms:
+    - atoms: [11]
+      equiv: [[11, 14]]
+      kind: atom
+      partition:
+      - atoms: [11]
+        molecule: xbm:000000007695
+      - atoms: [3]
+        molecule: xbm:000000004990
+      - atoms: [6]
+        molecule: xbm:000000007268
+      - atoms: [6]
+        molecule: xbm:000000002250
+      pattern: michael
+      reactions: [xbr:000000008569, xbr:000000004668, xbr:000000006628, xbr:000000001977]
+      rule: Glutathionation
+      walk: 3
+  - '@id': xbm:000000007825
     '@type': xb:SomMolecule
     cxsmiles: CC1=C(C(=O)Nc2ccccc2)SCCO1
     dataset: xbs:0000002
@@ -3799,7 +4396,7 @@ jsonld:
       reactions: [xbr:000000007165, xbr:000000006628, xbr:000000001977]
       rule: Glutathionation
       walk: 2
-  - '@id': xbm:0007898
+  - '@id': xbm:000000007898
     '@type': xb:SomMolecule
     cxsmiles: OC1C=Cc2c(cc3ccc4cccc5ccc2c3c45)C1O
     dataset: xbs:0000002
@@ -3816,7 +4413,23 @@ jsonld:
       reactions: [xbr:000000008111]
       rule: Glutathionation
       walk: 0
-  - '@id': xbm:0008124
+  - '@id': xbm:000000007925
+    '@type': xb:SomMolecule
+    cxsmiles: c2c(Cl)ccc(c2)C(C(Cl)Cl)(O)c1ccc(Cl)cc1
+    dataset: xbs:0000002
+    orbits: [[0, 3, 14, 17], [1, 15], [2, 16], [4, 6, 13, 18], [5, 12], [7], [8], [9, 10], [11]]
+    soms:
+    - atoms: [8]
+      equiv: [[8]]
+      kind: atom
+      partition:
+      - atoms: [8]
+        molecule: xbm:000000007925
+      pattern: halide
+      reactions: [xbr:000000007252]
+      rule: Glutathionation
+      walk: 0
+  - '@id': xbm:000000008124
     '@type': xb:SomMolecule
     cxsmiles: CC1OC1c1ccccc1
     dataset: xbs:0000002
@@ -3832,7 +4445,28 @@ jsonld:
       reactions: [xbr:000000007465]
       rule: Glutathionation
       walk: 1
-  - '@id': xbm:0008201
+  - '@id': xbm:000000008174
+    '@type': xb:SomMolecule
+    cxsmiles: c2ccc(c(c2)C(F)(F)F)C(=O)NC(O)Cc1c(cc(C(F)(F)F)cn1)Cl
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7, 8, 9], [10], [11], [12], [13], [14], [15], [16], [
+        17], [18], [19], [20], [21, 22, 23], [24], [25], [26]]
+    soms:
+    - atoms: [10]
+      equiv: [[10]]
+      kind: atom
+      partition:
+      - atoms: [10]
+        molecule: xbm:000000008174
+      - atoms: [0]
+        molecule: xbm:000000000094
+      - atoms: [10]
+        molecule: xbm:000000007054
+      pattern: adduct
+      reactions: [xbr:000000007511, xbr:000000000085, xbr:000000006425]
+      rule: Glutathionation
+      walk: 2
+  - '@id': xbm:000000008201
     '@type': xb:SomMolecule
     cxsmiles: Oc1ccc2ccccc2c1N=Nc1ccccc1
     dataset: xbs:0000002
@@ -3855,7 +4489,7 @@ jsonld:
       reactions: [xbr:000000007538, xbr:000000003521, xbr:000000006628, xbr:000000001977]
       rule: Glutathionation
       walk: 3
-  - '@id': xbm:0008215
+  - '@id': xbm:000000008215
     '@type': xb:SomMolecule
     cxsmiles: O=C(O)COC(=O)Cc1ccccc1Nc1c(Cl)cccc1Cl
     dataset: xbs:0000002
@@ -3938,7 +4572,86 @@ jsonld:
       reactions: [xbr:000000007552, xbr:000000005316]
       rule: Glutathionation
       walk: 3
-  - '@id': xbm:0008788
+  - '@id': xbm:000000008260
+    '@type': xb:SomMolecule
+    cxsmiles: c3(Cl)c(ccc(Cl)c3)C2(OCC=C2)Cn1ncnc1
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
+          16], [17], [18]]
+    soms:
+    - atoms: [4]
+      equiv: [[4]]
+      kind: atom
+      partition:
+      - atoms: [4]
+        molecule: xbm:000000008260
+      - atoms: [0]
+        molecule: xbm:000000008409
+      - atoms: [19]
+        molecule: xbm:000000002801
+      pattern: adduct
+      reactions: [xbr:000000007571, xbr:000000007702, xbr:000000002560]
+      rule: Glutathionation
+      walk: 2
+  - '@id': xbm:000000008348
+    '@type': xb:SomMolecule
+    cxsmiles: "c3(ccc(C#N)cc3)CC(=NNC(=O)Nc2ccc(cc2)OC(F)(F)F)c1cc(ccc1)C(F)(F)F"
+    dataset: xbs:0000002
+    orbits: [[0], [1, 7], [2, 6], [3], [4], [5], [8], [9], [10], [11], [12], [13], [14], [15], [16, 
+          20], [17, 19], [18], [21], [22], [23, 24, 25], [26], [27], [28], [29], [30], [31], [32], [
+          33, 34, 35]]
+    soms:
+    - atoms: [22]
+      equiv: [[22]]
+      kind: atom
+      partition:
+      - atoms: [22]
+        molecule: xbm:000000008348
+      - atoms: [11]
+        molecule: xbm:000000000118
+      - atoms: [6]
+        molecule: xbm:000000000132
+      pattern: adduct
+      reactions: [xbr:000000007634, xbr:000000000098, xbr:000000000115]
+      rule: Glutathionation
+      walk: 2
+  - '@id': xbm:000000008409
+    '@type': xb:SomMolecule
+    cxsmiles: c3c(Cl)cc(Cl)c(c3)C1(Cn2ncnc2)OCC(O)C1
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
+          16], [17], [18], [19]]
+    soms:
+    - atoms: [0]
+      equiv: [[0]]
+      kind: atom
+      partition:
+      - atoms: [0]
+        molecule: xbm:000000008409
+      - atoms: [19]
+        molecule: xbm:000000002801
+      pattern: adduct
+      reactions: [xbr:000000007702, xbr:000000002560]
+      rule: Glutathionation
+      walk: 1
+  - '@id': xbm:000000008691
+    '@type': xb:SomMolecule
+    cxsmiles: c4c(ccc(F)c4)C2(Cn3cncn3)OC2c1c(Cl)cc(O)cc1
+    dataset: xbs:0000002
+    orbits: [[0, 2], [1], [3, 6], [4], [5], [7], [8], [9], [10], [11], [12], [13], [14], [15], [16], [
+        17], [18], [19], [20], [21], [22], [23]]
+    soms:
+    - atoms: [15]
+      equiv: [[15]]
+      kind: atom
+      partition:
+      - atoms: [15]
+        molecule: xbm:000000008691
+      pattern: epoxide_ch
+      reactions: [xbr:000000008018]
+      rule: Glutathionation
+      walk: 0
+  - '@id': xbm:000000008788
     '@type': xb:SomMolecule
     cxsmiles: C1=CC2OC2c2cc3ccc4cccc5ccc(c21)c3c45
     dataset: xbs:0000002
@@ -3957,7 +4670,7 @@ jsonld:
       reactions: [xbr:000000008111]
       rule: Glutathionation
       walk: 1
-  - '@id': xbm:0008804
+  - '@id': xbm:000000008804
     '@type': xb:SomMolecule
     cxsmiles: c1ccc2c(c1)cc1ccc3cccc4ccc2c1c34
     dataset: xbs:0000002
@@ -3978,7 +4691,25 @@ jsonld:
       reactions: [xbr:000000008130, xbr:000000008111]
       rule: Glutathionation
       walk: 2
-  - '@id': xbm:0009037
+  - '@id': xbm:000000008886
+    '@type': xb:SomMolecule
+    cxsmiles: Cc1nc(N(C)C)nc(OC(=O)N(C)C)c1C
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5, 6], [7], [8], [9], [10], [11], [12], [13, 14], [15], [16]]
+    soms:
+    - atoms: [8]
+      equiv: [[8]]
+      kind: atom
+      partition:
+      - atoms: [8]
+        molecule: xbm:000000008886
+      - atoms: [6]
+        molecule: xbm:000000012042
+      pattern: adduct
+      reactions: [xbr:000000012127, xbr:000000012023]
+      rule: Glutathionation
+      walk: 1
+  - '@id': xbm:000000009037
     '@type': xb:SomMolecule
     cxsmiles: CC(C)(O)c1ccc(N2CCN(c3nnc(CC4=CC5OC5(F)C=C4F)c4ccccc34)CC2)nc1
     dataset: xbs:0000002
@@ -4008,3 +4739,408 @@ jsonld:
       reactions: [xbr:000000008395, xbr:000000002151]
       rule: Glutathionation
       walk: 1
+  - '@id': xbm:000000009134
+    '@type': xb:SomMolecule
+    cxsmiles: C(c5cnc(cc5)N4CCN(CC4)c2c1ccccc1c(CC3=CCC(O)(F)C=C3F)nn2)(O)(C)C
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8, 12], [9, 11], [10], [13], [14], [15], [16], [
+        17], [18], [19], [20], [21], [22], [23], [24], [25], [26], [27], [28], [29], [30], [31], [32],
+      [33], [34, 35]]
+    soms:
+    - atoms: [24]
+      equiv: [[24]]
+      kind: atom
+      partition:
+      - atoms: [24]
+        molecule: xbm:000000009134
+      - atoms: [19]
+        molecule: xbm:000000002459
+      pattern: alkene
+      reactions: [xbr:000000008395, xbr:000000002151]
+      rule: Glutathionation
+      walk: 1
+  - '@id': xbm:000000009140
+    '@type': xb:SomMolecule
+    cxsmiles: C12c3c(ncc(c3)Cl)C(C(=O)OC)C(Cl)=C1O2
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
+          16]]
+    soms:
+    - atoms: [13]
+      equiv: [[13]]
+      kind: atom
+      partition:
+      - atoms: [13]
+        molecule: xbm:000000009140
+      - atoms: [10]
+        molecule: xbm:000000002976
+      - atoms: [8]
+        molecule: xbm:000000003040
+      pattern: halide
+      reactions: [xbr:000000002806, xbr:000000002737, xbr:000000002803]
+      rule: Glutathionation
+      walk: 2
+    - atoms: [15]
+      equiv: [[15]]
+      kind: atom
+      partition:
+      - atoms: [15]
+        molecule: xbm:000000009140
+      - atoms: [11]
+        molecule: xbm:000000002976
+      - atoms: [9]
+        molecule: xbm:000000003040
+      pattern: alkene
+      reactions: [xbr:000000002806, xbr:000000002737, xbr:000000002736]
+      rule: Glutathionation
+      walk: 3
+    - atoms: [6]
+      equiv: [[6]]
+      kind: atom
+      partition:
+      - atoms: [6]
+        molecule: xbm:000000009140
+      - atoms: [2]
+        molecule: xbm:000000002976
+      - atoms: [2]
+        molecule: xbm:000000003040
+      - atoms: [2]
+        molecule: xbm:000000003035
+      pattern: michael
+      reactions: [xbr:000000002806, xbr:000000002737, xbr:000000002803, xbr:000000002821]
+      rule: Glutathionation
+      walk: 4
+  - '@id': xbm:000000009142
+    '@type': xb:SomMolecule
+    cxsmiles: C1C=CNP(O1)(N(CCCl)CCCl)=O
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7, 10], [8, 11], [9, 12], [13]]
+    soms:
+    - atoms: [2]
+      equiv: [[2]]
+      kind: atom
+      partition:
+      - atoms: [2]
+        molecule: xbm:000000009142
+      pattern: alkene
+      reactions: [xbr:000000004200]
+      rule: Glutathionation
+      walk: 0
+  - '@id': xbm:000000009214
+    '@type': xb:SomMolecule
+    cxsmiles: Cc1cnc(Cn2cnc3c(Cl)nc(N)nc32)c(C)c1O
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
+          16], [17], [18], [19], [20]]
+    soms:
+    - atoms: [10]
+      equiv: [[10]]
+      kind: atom
+      partition:
+      - atoms: [10]
+        molecule: xbm:000000009214
+      pattern: halide
+      reactions: [xbr:000000008710]
+      rule: Glutathionation
+      walk: 0
+  - '@id': xbm:000000009237
+    '@type': xb:SomMolecule
+    cxsmiles: "Cn1cnc([N+](=O)[O-])c1Sc1ncnc2[nH]cnc12"
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
+          16], [17], [18]]
+    soms:
+    - atoms: [8]
+      equiv: [[8]]
+      kind: atom
+      partition:
+      - atoms: [8]
+        molecule: xbm:000000009237
+      pattern: adduct
+      reactions: [xbr:000000008753]
+      rule: Glutathionation
+      walk: 0
+  - '@id': xbm:000000009239
+    '@type': xb:SomMolecule
+    cxsmiles: c1(cccc(c1N=C2C(=CC(C=C2)=O)CC(O)=O)Cl)Cl
+    dataset: xbs:0000002
+    orbits: [[0, 4], [1, 3], [2], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [16], [
+        17], [18, 19]]
+    soms:
+    - atoms: [9]
+      equiv: [[9]]
+      kind: atom
+      partition:
+      - atoms: [9]
+        molecule: xbm:000000009239
+      pattern: michael
+      reactions: [xbr:000000005322]
+      rule: Glutathionation
+      walk: 0
+    - atoms: [11]
+      equiv: [[11]]
+      kind: atom
+      partition:
+      - atoms: [11]
+        molecule: xbm:000000009239
+      pattern: michael
+      reactions: [xbr:000000005324]
+      rule: Glutathionation
+      walk: 0
+  - '@id': xbm:000000009244
+    '@type': xb:SomMolecule
+    cxsmiles: c13c(CCN(C3)C(c2c(Cl)cccc2)C(OC)=O)sc(c1)O
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
+          16], [17], [18], [19], [20], [21]]
+    soms:
+    - atoms: [18]
+      equiv: [[18]]
+      kind: atom
+      partition:
+      - atoms: [18]
+        molecule: xbm:000000009244
+      - atoms: [16]
+        molecule: xbm:000000004097
+      - atoms: [16]
+        molecule: xbm:000000004091
+      pattern: thiol
+      reactions: [xbr:000000003864, xbr:000000008664, xbr:000000003856]
+      rule: Glutathionation
+      walk: 2
+  - '@id': xbm:000000009249
+    '@type': xb:SomMolecule
+    cxsmiles: c1c(C(C)(C)O)cnc(N5CCN(CC5)c3c2ccccc2c(CC=4C(F)(O)CC(=CC=4)F)nn3)c1
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3, 4], [5], [6], [7], [8], [9], [10, 14], [11, 13], [12], [15], [16], [
+          17], [18], [19], [20], [21], [22], [23], [24], [25], [26], [27], [28], [29], [30], [31], [
+          32], [33], [34], [35]]
+    soms:
+    - atoms: [28]
+      equiv: [[28]]
+      kind: atom
+      partition:
+      - atoms: [28]
+        molecule: xbm:000000009249
+      - atoms: [22]
+        molecule: xbm:000000003615
+      pattern: alkene
+      reactions: [xbr:000000003386, xbr:000000003427]
+      rule: Glutathionation
+      walk: 1
+  - '@id': xbm:000000010786
+    '@type': xb:SomMolecule
+    cxsmiles: CC(OC(NC(C(=O)NC(C)C=3SC1C(N=3)C2OC2C(=C1)F)C(C)C)=O)C
+    dataset: xbs:0000002
+    orbits: [[0, 26], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15],
+      [16], [17], [18], [19], [20], [21], [22], [23, 24], [25]]
+    soms:
+    - atoms: [18]
+      equiv: [[18]]
+      kind: atom
+      partition:
+      - atoms: [18]
+        molecule: xbm:000000010786
+      - atoms: [22]
+        molecule: xbm:000000004102
+      pattern: epoxide_ch
+      reactions: [xbr:000000011944]
+      rule: Glutathionation
+      walk: 1
+  - '@id': xbm:000000011522
+    '@type': xb:SomMolecule
+    cxsmiles: O=C(OC(C)C)NC(C(=O)NC(C=3SC2C(N=3)C1OC1C(=C2)F)C)C(C)(C)O
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4, 5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [16],
+      [17], [18], [19], [20], [21], [22], [23], [24], [25, 26], [27]]
+    soms:
+    - atoms: [19]
+      equiv: [[19]]
+      kind: atom
+      partition:
+      - atoms: [19]
+        molecule: xbm:000000011522
+      - atoms: [9]
+        molecule: xbm:000000002477
+      pattern: epoxide_ch
+      reactions: [xbr:000000012030]
+      rule: Glutathionation
+      walk: 1
+  - '@id': xbm:000000011764
+    '@type': xb:SomMolecule
+    cxsmiles: S=C(NC)S
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4]]
+    soms:
+    - atoms: [2]
+      equiv: [[2]]
+      kind: atom
+      partition:
+      - atoms: [2]
+        molecule: xbm:000000011764
+      - atoms: [2]
+        molecule: xbm:000000000189
+      pattern: isocyanate
+      reactions: [xbr:000000011664, xbr:000000000164]
+      rule: Glutathionation
+      walk: 1
+  - '@id': xbm:000000011979
+    '@type': xb:SomMolecule
+    cxsmiles: C2(c5nc(cs5)C3NOC(c4c(cccc4F)F)C3)CCN(CC2)C(Cn1c(C)cc(C(F)(F)F)n1)=O
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11, 15], [12, 14], [13], [16, 
+          17], [18], [19, 23], [20, 22], [21], [24], [25], [26], [27], [28], [29], [30], [31], [32, 
+          33, 34], [35], [36]]
+    soms:
+    - atoms: [11]
+      equiv: [[11, 15]]
+      kind: atom
+      partition:
+      - atoms: [11]
+        molecule: xbm:000000011979
+      - atoms: [18]
+        molecule: xbm:000000012121
+      pattern: halide
+      reactions: [xbr:000000011917, xbr:000000012145]
+      rule: Glutathionation
+      walk: 1
+    - atoms: [15]
+      equiv: [[11, 15]]
+      kind: atom
+      partition:
+      - atoms: [15]
+        molecule: xbm:000000011979
+      - atoms: [35]
+        molecule: xbm:000000012031
+      pattern: halide
+      reactions: [xbr:000000011906, xbr:000000011996]
+      rule: Glutathionation
+      walk: 1
+  - '@id': xbm:000000011982
+    '@type': xb:SomMolecule
+    cxsmiles: C2C(c3scc(C4CC(c5c(cccc5F)F)ON4)n3)CCN(C2)C(Cn1c(CO)cc(n1)C(F)(F)F)=O
+    dataset: xbs:0000002
+    orbits: [[0, 20], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10, 14], [11, 13], [12], [15, 16],
+      [17], [18], [19], [21, 23], [22], [24], [25], [26], [27], [28], [29], [30], [31], [32], [33], [
+        34, 35, 36], [37]]
+    soms:
+    - atoms: [14]
+      equiv: [[10, 14]]
+      kind: atom
+      partition:
+      - atoms: [14]
+        molecule: xbm:000000011982
+      - atoms: [9]
+        molecule: xbm:000000012033
+      pattern: halide
+      reactions: [xbr:000000011919, xbr:000000012004]
+      rule: Glutathionation
+      walk: 2
+  - '@id': xbm:000000012031
+    '@type': xb:SomMolecule
+    cxsmiles: N1C(c5nc(sc5)C4CCN(CC4)C(=O)Cn3c(C)cc(n3)C(F)(F)F)CC(c2c(F)c(O)ccc2F)O1
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8, 12], [9, 11], [10], [13], [14], [15], [16], [
+        17], [18], [19], [20], [21], [22], [23, 24, 25], [26], [27], [28], [29], [30], [31], [32], [
+          33], [34], [35], [36], [37]]
+    soms:
+    - atoms: [35]
+      equiv: [[35]]
+      kind: atom
+      partition:
+      - atoms: [35]
+        molecule: xbm:000000012031
+      pattern: halide
+      reactions: [xbr:000000011996]
+      rule: Glutathionation
+      walk: 0
+    - atoms: [29]
+      equiv: [[29]]
+      kind: atom
+      partition:
+      - atoms: [29]
+        molecule: xbm:000000012031
+      - atoms: [9]
+        molecule: xbm:000000012033
+      pattern: halide
+      reactions: [xbr:000000011995, xbr:000000012004]
+      rule: Glutathionation
+      walk: 2
+  - '@id': xbm:000000012033
+    '@type': xb:SomMolecule
+    cxsmiles: N1OC(c5c(F)ccc(c5F)O)CC1c4nc(sc4)C3CCN(CC3)C(=O)Cn2c(cc(n2)C(F)(F)F)CO
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [
+          16], [17], [18], [19], [20, 24], [21, 23], [22], [25], [26], [27], [28], [29], [30], [31], [
+        32], [33], [34, 35, 36], [37], [38]]
+    soms:
+    - atoms: [9]
+      equiv: [[9]]
+      kind: atom
+      partition:
+      - atoms: [9]
+        molecule: xbm:000000012033
+      pattern: halide
+      reactions: [xbr:000000012004]
+      rule: Glutathionation
+      walk: 1
+  - '@id': xbm:000000012042
+    '@type': xb:SomMolecule
+    cxsmiles: "O(C(N(C)C)=O)c1c(c(C)nc([n+]1[O-])N(C)C)C"
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3, 4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15, 16], [
+        17]]
+    soms:
+    - atoms: [6]
+      equiv: [[6]]
+      kind: atom
+      partition:
+      - atoms: [6]
+        molecule: xbm:000000012042
+      pattern: adduct
+      reactions: [xbr:000000012023]
+      rule: Glutathionation
+      walk: 0
+  - '@id': xbm:000000012121
+    '@type': xb:SomMolecule
+    cxsmiles: n1n(CC(N5CCC(CC5)c2scc(C3CC(c4c(cc(cc4F)O)F)ON3)n2)=O)c(cc1C(F)(F)F)C
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5, 9], [6, 8], [7], [10], [11], [12], [13], [14], [15], [16], [
+        17], [18, 22], [19, 21], [20], [23, 25], [24], [26], [27], [28], [29], [30], [31], [32], [33],
+      [34, 35, 36], [37]]
+    soms:
+    - atoms: [18]
+      equiv: [[18, 22]]
+      kind: atom
+      partition:
+      - atoms: [18]
+        molecule: xbm:000000012121
+      pattern: halide
+      reactions: [xbr:000000012145]
+      rule: Glutathionation
+      walk: 0
+  - '@id': xbm:000000012129
+    '@type': xb:SomMolecule
+    cxsmiles: "O2CC[S+](C(=C2C)C(=O)Nc1ccccc1)[O-]"
+    dataset: xbs:0000002
+    orbits: [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11, 15], [12, 14], [13], [16]]
+    soms:
+    - atoms: [12]
+      equiv: [[12, 14]]
+      kind: atom
+      partition:
+      - atoms: [12]
+        molecule: xbm:000000012129
+      - atoms: [11]
+        molecule: xbm:000000007695
+      - atoms: [3]
+        molecule: xbm:000000004990
+      - atoms: [6]
+        molecule: xbm:000000007268
+      - atoms: [6]
+        molecule: xbm:000000002250
+      pattern: michael
+      reactions: [xbr:000000008559, xbr:000000008569, xbr:000000004668, xbr:000000006628, 
+          xbr:000000001977]
+      rule: Glutathionation
+      walk: 4

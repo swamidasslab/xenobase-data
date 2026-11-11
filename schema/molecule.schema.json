@@ -14,6 +14,14 @@
       "description": "Canonical CXSMILES (kind 2); 1:1 with xbm: id.",
       "type": "string"
     },
+    "exactMatch": {
+      "description": "SSSOM skos:exactMatch objects mirrored from mappings/molecules.sssom.tsv (ChEBI)",
+      "items": {
+        "pattern": "^CHEBI:[0-9]+$",
+        "type": "string"
+      },
+      "type": "array"
+    },
     "hasPart": {
       "description": "SSSOM BFO:0000051 (has part) objects mirrored from mappings/molecules.sssom.tsv",
       "items": {

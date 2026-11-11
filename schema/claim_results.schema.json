@@ -44,6 +44,35 @@
         },
         "type": "array"
       },
+      "source": {
+        "additionalProperties": false,
+        "description": "Where the value sits in the source (MetaPath data table cell), to rebuild the table grid.",
+        "properties": {
+          "cell": {
+            "type": "string"
+          },
+          "col": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string"
+          },
+          "row": {
+            "type": "string"
+          },
+          "table": {
+            "type": "string"
+          },
+          "table_title": {
+            "type": "string"
+          },
+          "xbt": {
+            "pattern": "^xbt:",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "tips": {
         "description": "Result descriptor CURIEs (matrix, endpoint, …) — not context tips",
         "items": {

@@ -10,11 +10,16 @@
 @prefix uberon: <http://purl.obolibrary.org/obo/UBERON_> .
 @prefix ncit: <http://purl.obolibrary.org/obo/NCIT_> .
 @prefix obi: <http://purl.obolibrary.org/obo/OBI_> .
+@prefix cl: <http://purl.obolibrary.org/obo/CL_> .
+@prefix bao: <http://www.bioassayontology.org/bao#BAO_> .
 @prefix hgnc: <https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/> .
+@prefix hgnc.genegroup: <https://www.genenames.org/data/genegroup/#!/group/> .
+@prefix ncbigene: <https://www.ncbi.nlm.nih.gov/gene/> .
+@prefix dataset: <https://w3id.org/xenosite/xenobase/dataset/> .
 
 <https://w3id.org/xenosite/xenobase/ontology> a owl:Ontology ;
   rdfs:label "XenoBase context and taxon ontology" ;
-  rdfs:comment "Local xb:/xbctx: tips, NCBITaxon subset, and crosswalks dumped from Postgres." .
+  rdfs:comment "Local xb:/xbctx: tips, NCBITaxon subset, HGNC enzyme gene-group hierarchy, and crosswalks dumped from Postgres." .
 
 xb:Claim a owl:Class ; rdfs:label "Claim" .
 xb:Context a owl:Class ; rdfs:label "Claim context" .
@@ -29,206 +34,594 @@ xb:result a owl:ObjectProperty ; rdfs:domain xb:Claim .
 xb:dataset a owl:ObjectProperty ; rdfs:domain xb:Claim .
 xb:supportedBy a owl:ObjectProperty ; rdfs:domain xb:Claim .
 xb:organism a owl:ObjectProperty ; rdfs:domain xb:Context .
-xb:aboutParent a owl:ObjectProperty ; rdfs:domain xb:Context .
-xb:includesOrganism a owl:ObjectProperty ;
-  rdfs:comment "Projection tip includes this taxon clade." .
+xb:parent a owl:ObjectProperty ; rdfs:domain xb:Context .
 skos:exactMatch a owl:ObjectProperty .
+skos:broader a owl:ObjectProperty ;
+  rdfs:comment "Enzyme gene → gene-group and child-group → parent-group." .
 
-xbctx:endpoint/ad a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/curation/corrected> a skos:Concept ;
+  rdfs:label "corrected" ;
+  xb:facet "curation" .
+
+<https://w3id.org/xenosite/xenobase/context/curation/inconsistent> a skos:Concept ;
+  rdfs:label "inconsistent" ;
+  xb:facet "curation" .
+
+<https://w3id.org/xenosite/xenobase/context/endpoint/ad> a skos:Concept ;
   rdfs:label "administered dose of parent" ;
   xb:facet "endpoint" .
 
-xbctx:endpoint/cd a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/endpoint/cd> a skos:Concept ;
   rdfs:label "cumulative dose" ;
   xb:facet "endpoint" .
 
-xbctx:endpoint/err a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/endpoint/err> a skos:Concept ;
   rdfs:label "extractable radioactive residues" ;
   xb:facet "endpoint" .
 
-xbctx:endpoint/hplc a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/endpoint/hplc> a skos:Concept ;
   rdfs:label "HPLC radioactivity" ;
   xb:facet "endpoint" .
 
-xbctx:endpoint/qty a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/endpoint/qty> a skos:Concept ;
   rdfs:label "quantity" ;
   xb:facet "endpoint" .
 
-xbctx:endpoint/trr a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/endpoint/trr> a skos:Concept ;
   rdfs:label "total radioactive residues" ;
   xb:facet "endpoint" .
 
-xbctx:matrix/bile a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/matrix/bile> a skos:Concept ;
   rdfs:label "bile" ;
   xb:facet "matrix" .
 
-xbctx:matrix/blood a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/matrix/blood> a skos:Concept ;
   rdfs:label "blood" ;
   xb:facet "matrix" .
 
-xbctx:matrix/brain a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/matrix/brain> a skos:Concept ;
   rdfs:label "brain" ;
   xb:facet "matrix" .
 
-xbctx:matrix/cage_wash a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/matrix/cage_wash> a skos:Concept ;
   rdfs:label "cage wash" ;
   xb:facet "matrix" .
 
-xbctx:matrix/excreta a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/matrix/excreta> a skos:Concept ;
   rdfs:label "excreta" ;
   xb:facet "matrix" .
 
-xbctx:matrix/expired_air a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/matrix/expired_air> a skos:Concept ;
   rdfs:label "expired air" ;
   xb:facet "matrix" .
 
-xbctx:matrix/fat a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/matrix/fat> a skos:Concept ;
   rdfs:label "fat" ;
   xb:facet "matrix" .
 
-xbctx:matrix/feces a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/matrix/feces> a skos:Concept ;
   rdfs:label "feces" ;
   xb:facet "matrix" .
 
-xbctx:matrix/gi_tract a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/matrix/gi_tract> a skos:Concept ;
   rdfs:label "GI tract" ;
   xb:facet "matrix" .
 
-xbctx:matrix/gut_microbiota a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/matrix/gut_microbiota> a skos:Concept ;
   rdfs:label "gut microbiota" ;
   xb:facet "matrix" .
 
-xbctx:matrix/kidney a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/matrix/kidney> a skos:Concept ;
   rdfs:label "kidney" ;
   xb:facet "matrix" .
 
-xbctx:matrix/liver a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/matrix/liver> a skos:Concept ;
   rdfs:label "liver" ;
   xb:facet "matrix" .
 
-xbctx:matrix/lung a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/matrix/lung> a skos:Concept ;
   rdfs:label "lung" ;
   xb:facet "matrix" .
 
-xbctx:matrix/milk a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/matrix/milk> a skos:Concept ;
   rdfs:label "milk" ;
   xb:facet "matrix" .
 
-xbctx:matrix/muscle a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/matrix/muscle> a skos:Concept ;
   rdfs:label "muscle" ;
   xb:facet "matrix" .
 
-xbctx:matrix/plasma a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/matrix/plasma> a skos:Concept ;
   rdfs:label "plasma" ;
   xb:facet "matrix" .
 
-xbctx:matrix/spleen a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/matrix/spleen> a skos:Concept ;
   rdfs:label "spleen" ;
   xb:facet "matrix" .
 
-xbctx:matrix/tissue a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/matrix/tissue> a skos:Concept ;
   rdfs:label "tissue" ;
   xb:facet "matrix" .
 
-xbctx:matrix/urine a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/matrix/urine> a skos:Concept ;
   rdfs:label "urine" ;
   xb:facet "matrix" .
 
-xbctx:phase/gut a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/phase/gut> a skos:Concept ;
   rdfs:label "gut microbial" ;
   xb:facet "phase" .
 
-xbctx:phase/I a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/phase/I> a skos:Concept ;
   rdfs:label "phase I" ;
   xb:facet "phase" .
 
-xbctx:phase/II a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/phase/II> a skos:Concept ;
   rdfs:label "phase II" ;
   xb:facet "phase" .
 
-xbctx:proj/human_metabolism a skos:Concept ;
-  rdfs:label "human metabolism" ;
-  xb:facet "projection" .
-
-xbctx:proj/mammalian_xenobiotic a skos:Concept ;
-  rdfs:label "mammalian xenobiotic" ;
-  xb:facet "projection" .
-
-xbctx:proj/rat_metabolism a skos:Concept ;
-  rdfs:label "rat metabolism" ;
-  xb:facet "projection" .
-
-xbctx:prominence/major a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/prominence/major> a skos:Concept ;
   rdfs:label "major" ;
   xb:facet "prominence" .
 
-xbctx:prominence/minor a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/prominence/minor> a skos:Concept ;
   rdfs:label "minor" ;
   xb:facet "prominence" .
 
-xbctx:prominence/predominant a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/prominence/predominant> a skos:Concept ;
   rdfs:label "predominant" ;
   xb:facet "prominence" .
 
-xbctx:route/dermal a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/role/active> a skos:Concept ;
+  rdfs:label "pharmacologically active" ;
+  xb:facet "role" .
+
+<https://w3id.org/xenosite/xenobase/context/role/inactive> a skos:Concept ;
+  rdfs:label "inactive" ;
+  xb:facet "role" .
+
+<https://w3id.org/xenosite/xenobase/context/role/reactive> a skos:Concept ;
+  rdfs:label "reactive" ;
+  xb:facet "role" .
+
+<https://w3id.org/xenosite/xenobase/context/role/toxic> a skos:Concept ;
+  rdfs:label "toxic" ;
+  xb:facet "role" .
+
+<https://w3id.org/xenosite/xenobase/context/route/dermal> a skos:Concept ;
   rdfs:label "dermal" ;
   xb:facet "route" .
 
-xbctx:route/inhalation a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/route/inhalation> a skos:Concept ;
   rdfs:label "inhalation" ;
   xb:facet "route" .
 
-xbctx:route/intraduodenal a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/route/intraduodenal> a skos:Concept ;
   rdfs:label "intraduodenal" ;
   xb:facet "route" .
 
-xbctx:route/intravenous a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/route/intravenous> a skos:Concept ;
   rdfs:label "intravenous" ;
   xb:facet "route" .
 
-xbctx:route/oral a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/route/oral> a skos:Concept ;
   rdfs:label "oral" ;
   xb:facet "route" .
 
-xbctx:route/subcutaneous a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/route/subcutaneous> a skos:Concept ;
   rdfs:label "subcutaneous" ;
   xb:facet "route" .
 
-xbctx:sex/female a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/sex/female> a skos:Concept ;
   rdfs:label "female" ;
   xb:facet "sex" .
 
-xbctx:sex/male a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/sex/male> a skos:Concept ;
   rdfs:label "male" ;
   xb:facet "sex" .
 
-xbctx:system/hepatocytes a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/site/blood> a skos:Concept ;
+  rdfs:label "blood" ;
+  xb:facet "site" .
+
+<https://w3id.org/xenosite/xenobase/context/site/brain> a skos:Concept ;
+  rdfs:label "brain" ;
+  xb:facet "site" .
+
+<https://w3id.org/xenosite/xenobase/context/site/erythrocyte> a skos:Concept ;
+  rdfs:label "erythrocytes" ;
+  xb:facet "site" .
+
+<https://w3id.org/xenosite/xenobase/context/site/gut_microbiota> a skos:Concept ;
+  rdfs:label "gut microbiota" ;
+  xb:facet "site" .
+
+<https://w3id.org/xenosite/xenobase/context/site/intestine> a skos:Concept ;
+  rdfs:label "intestine" ;
+  xb:facet "site" .
+
+<https://w3id.org/xenosite/xenobase/context/site/kidney> a skos:Concept ;
+  rdfs:label "kidney" ;
+  xb:facet "site" .
+
+<https://w3id.org/xenosite/xenobase/context/site/liver> a skos:Concept ;
+  rdfs:label "liver" ;
+  xb:facet "site" .
+
+<https://w3id.org/xenosite/xenobase/context/site/lung> a skos:Concept ;
+  rdfs:label "lung" ;
+  xb:facet "site" .
+
+<https://w3id.org/xenosite/xenobase/context/site/plasma> a skos:Concept ;
+  rdfs:label "plasma" ;
+  xb:facet "site" .
+
+<https://w3id.org/xenosite/xenobase/context/site/small_intestine> a skos:Concept ;
+  rdfs:label "small intestine" ;
+  xb:facet "site" .
+
+<https://w3id.org/xenosite/xenobase/context/strain/b6c3f1> a skos:Concept ;
+  rdfs:label "B6C3F1" ;
+  xb:facet "strain" .
+
+<https://w3id.org/xenosite/xenobase/context/strain/beagle> a skos:Concept ;
+  rdfs:label "Beagle" ;
+  xb:facet "strain" .
+
+<https://w3id.org/xenosite/xenobase/context/strain/cd-1> a skos:Concept ;
+  rdfs:label "CD-1" ;
+  xb:facet "strain" .
+
+<https://w3id.org/xenosite/xenobase/context/strain/fischer-344> a skos:Concept ;
+  rdfs:label "Fischer 344" ;
+  xb:facet "strain" .
+
+<https://w3id.org/xenosite/xenobase/context/strain/sprague-dawley> a skos:Concept ;
+  rdfs:label "Sprague-Dawley" ;
+  xb:facet "strain" .
+
+<https://w3id.org/xenosite/xenobase/context/strain/wistar> a skos:Concept ;
+  rdfs:label "Wistar" ;
+  xb:facet "strain" .
+
+<https://w3id.org/xenosite/xenobase/context/system/hepatocytes> a skos:Concept ;
   rdfs:label "hepatocytes" ;
   xb:facet "system" .
 
-xbctx:system/hlm a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/system/hlm> a skos:Concept ;
   rdfs:label "human liver microsomes" ;
   xb:facet "system" .
 
-xbctx:system/in-vitro a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/system/in-vitro> a skos:Concept ;
   rdfs:label "in vitro" ;
   xb:facet "system" .
 
-xbctx:system/in-vivo a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/system/in-vivo> a skos:Concept ;
   rdfs:label "in vivo" ;
   xb:facet "system" .
 
-xbctx:system/microsomes a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/system/microsomes> a skos:Concept ;
   rdfs:label "microsomes" ;
   xb:facet "system" .
 
-xbctx:system/rat-microsomes a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/system/rat-microsomes> a skos:Concept ;
   rdfs:label "rat liver microsomes" ;
   xb:facet "system" .
 
-xbctx:system/s9 a skos:Concept ;
+<https://w3id.org/xenosite/xenobase/context/system/s9> a skos:Concept ;
   rdfs:label "S9" ;
   xb:facet "system" .
+
+hgnc:11377 a skos:Concept ;
+  rdfs:label "SULT1E1" ;
+  xb:facet "enzyme" .
+
+hgnc:11453 a skos:Concept ;
+  rdfs:label "SULT1A1" ;
+  xb:facet "enzyme" .
+
+hgnc:11454 a skos:Concept ;
+  rdfs:label "SULT1A2" ;
+  xb:facet "enzyme" .
+
+hgnc:11455 a skos:Concept ;
+  rdfs:label "SULT1A3" ;
+  xb:facet "enzyme" .
+
+hgnc:11456 a skos:Concept ;
+  rdfs:label "SULT1C2" ;
+  xb:facet "enzyme" .
+
+hgnc:11457 a skos:Concept ;
+  rdfs:label "SULT1C4" ;
+  xb:facet "enzyme" .
+
+hgnc:11458 a skos:Concept ;
+  rdfs:label "SULT2A1" ;
+  xb:facet "enzyme" .
+
+hgnc:12530 a skos:Concept ;
+  rdfs:label "UGT1A1" ;
+  xb:facet "enzyme" .
+
+hgnc:12531 a skos:Concept ;
+  rdfs:label "UGT1A10" ;
+  xb:facet "enzyme" .
+
+hgnc:12535 a skos:Concept ;
+  rdfs:label "UGT1A3" ;
+  xb:facet "enzyme" .
+
+hgnc:12536 a skos:Concept ;
+  rdfs:label "UGT1A4" ;
+  xb:facet "enzyme" .
+
+hgnc:12538 a skos:Concept ;
+  rdfs:label "UGT1A6" ;
+  xb:facet "enzyme" .
+
+hgnc:12539 a skos:Concept ;
+  rdfs:label "UGT1A7" ;
+  xb:facet "enzyme" .
+
+hgnc:12540 a skos:Concept ;
+  rdfs:label "UGT1A8" ;
+  xb:facet "enzyme" .
+
+hgnc:12541 a skos:Concept ;
+  rdfs:label "UGT1A9" ;
+  xb:facet "enzyme" .
+
+hgnc:12544 a skos:Concept ;
+  rdfs:label "UGT2B10" ;
+  xb:facet "enzyme" .
+
+hgnc:12546 a skos:Concept ;
+  rdfs:label "UGT2B15" ;
+  xb:facet "enzyme" .
+
+hgnc:12547 a skos:Concept ;
+  rdfs:label "UGT2B17" ;
+  xb:facet "enzyme" .
+
+hgnc:12553 a skos:Concept ;
+  rdfs:label "UGT2B4" ;
+  xb:facet "enzyme" .
+
+hgnc:12554 a skos:Concept ;
+  rdfs:label "UGT2B7" ;
+  xb:facet "enzyme" .
+
+hgnc:17450 a skos:Concept ;
+  rdfs:label "CYP3A43" ;
+  xb:facet "enzyme" .
+
+hgnc:17845 a skos:Concept ;
+  rdfs:label "SULT1B1" ;
+  xb:facet "enzyme" .
+
+hgnc:1863 a skos:Concept ;
+  rdfs:label "CES1" ;
+  xb:facet "enzyme" .
+
+hgnc:1864 a skos:Concept ;
+  rdfs:label "CES2" ;
+  xb:facet "enzyme" .
+
+hgnc:18857 a skos:Concept ;
+  rdfs:label "CYP4F12" ;
+  xb:facet "enzyme" .
+
+hgnc:2595 a skos:Concept ;
+  rdfs:label "CYP1A1" ;
+  xb:facet "enzyme" .
+
+hgnc:2596 a skos:Concept ;
+  rdfs:label "CYP1A2" ;
+  xb:facet "enzyme" .
+
+hgnc:2597 a skos:Concept ;
+  rdfs:label "CYP1B1" ;
+  xb:facet "enzyme" .
+
+hgnc:2608 a skos:Concept ;
+  rdfs:label "CYP2A13" ;
+  xb:facet "enzyme" .
+
+hgnc:2610 a skos:Concept ;
+  rdfs:label "CYP2A6" ;
+  xb:facet "enzyme" .
+
+hgnc:2611 a skos:Concept ;
+  rdfs:label "CYP2A7" ;
+  xb:facet "enzyme" .
+
+hgnc:2615 a skos:Concept ;
+  rdfs:label "CYP2B6" ;
+  xb:facet "enzyme" .
+
+hgnc:2620 a skos:Concept ;
+  rdfs:label "CYP2C18" ;
+  xb:facet "enzyme" .
+
+hgnc:2621 a skos:Concept ;
+  rdfs:label "CYP2C19" ;
+  xb:facet "enzyme" .
+
+hgnc:2622 a skos:Concept ;
+  rdfs:label "CYP2C8" ;
+  xb:facet "enzyme" .
+
+hgnc:2623 a skos:Concept ;
+  rdfs:label "CYP2C9" ;
+  xb:facet "enzyme" .
+
+hgnc:2624 a skos:Concept ;
+  rdfs:label "CYP2D7" ;
+  xb:facet "enzyme" .
+
+hgnc:2625 a skos:Concept ;
+  rdfs:label "CYP2D6" ;
+  xb:facet "enzyme" .
+
+hgnc:2631 a skos:Concept ;
+  rdfs:label "CYP2E1" ;
+  xb:facet "enzyme" .
+
+hgnc:2632 a skos:Concept ;
+  rdfs:label "CYP2F1" ;
+  xb:facet "enzyme" .
+
+hgnc:2634 a skos:Concept ;
+  rdfs:label "CYP2J2" ;
+  xb:facet "enzyme" .
+
+hgnc:2637 a skos:Concept ;
+  rdfs:label "CYP3A4" ;
+  xb:facet "enzyme" .
+
+hgnc:2638 a skos:Concept ;
+  rdfs:label "CYP3A5" ;
+  xb:facet "enzyme" .
+
+hgnc:2640 a skos:Concept ;
+  rdfs:label "CYP3A7" ;
+  xb:facet "enzyme" .
+
+hgnc:2642 a skos:Concept ;
+  rdfs:label "CYP4A11" ;
+  xb:facet "enzyme" .
+
+hgnc:2644 a skos:Concept ;
+  rdfs:label "CYP4B1" ;
+  xb:facet "enzyme" .
+
+hgnc:2645 a skos:Concept ;
+  rdfs:label "CYP4F2" ;
+  xb:facet "enzyme" .
+
+hgnc:2646 a skos:Concept ;
+  rdfs:label "CYP4F3" ;
+  xb:facet "enzyme" .
+
+hgnc:33543 a skos:Concept ;
+  rdfs:label "SULT1C3" ;
+  xb:facet "enzyme" .
+
+hgnc:3769 a skos:Concept ;
+  rdfs:label "FMO1" ;
+  xb:facet "enzyme" .
+
+hgnc:3771 a skos:Concept ;
+  rdfs:label "FMO3" ;
+  xb:facet "enzyme" .
+
+hgnc:3773 a skos:Concept ;
+  rdfs:label "FMO5" ;
+  xb:facet "enzyme" .
+
+hgnc:402 a skos:Concept ;
+  rdfs:label "ALDH1A1" ;
+  xb:facet "enzyme" .
+
+hgnc:405 a skos:Concept ;
+  rdfs:label "ALDH3A1" ;
+  xb:facet "enzyme" .
+
+hgnc:408 a skos:Concept ;
+  rdfs:label "ALDH5A1" ;
+  xb:facet "enzyme" .
+
+hgnc:4626 a skos:Concept ;
+  rdfs:label "GSTA1" ;
+  xb:facet "enzyme" .
+
+hgnc:4627 a skos:Concept ;
+  rdfs:label "GSTA2" ;
+  xb:facet "enzyme" .
+
+hgnc:4632 a skos:Concept ;
+  rdfs:label "GSTM1" ;
+  xb:facet "enzyme" .
+
+hgnc:4635 a skos:Concept ;
+  rdfs:label "GSTM3" ;
+  xb:facet "enzyme" .
+
+hgnc:4638 a skos:Concept ;
+  rdfs:label "GSTP1" ;
+  xb:facet "enzyme" .
+
+hgnc:4641 a skos:Concept ;
+  rdfs:label "GSTT1" ;
+  xb:facet "enzyme" .
+
+hgnc:6833 a skos:Concept ;
+  rdfs:label "MAOA" ;
+  xb:facet "enzyme" .
+
+hgnc:6834 a skos:Concept ;
+  rdfs:label "MAOB" ;
+  xb:facet "enzyme" .
+
+hgnc:7645 a skos:Concept ;
+  rdfs:label "NAT1" ;
+  xb:facet "enzyme" .
+
+hgnc:7646 a skos:Concept ;
+  rdfs:label "NAT2" ;
+  xb:facet "enzyme" .
+
+hgnc.genegroup:1000 a skos:Concept ;
+  rdfs:label "CYP1" ;
+  xb:facet "enzyme_group" .
+
+hgnc.genegroup:1001 a skos:Concept ;
+  rdfs:label "CYP2" ;
+  xb:facet "enzyme_group" .
+
+hgnc.genegroup:1002 a skos:Concept ;
+  rdfs:label "CYP3" ;
+  xb:facet "enzyme_group" .
+
+hgnc.genegroup:1003 a skos:Concept ;
+  rdfs:label "CYP4" ;
+  xb:facet "enzyme_group" .
+
+hgnc.genegroup:1132 a skos:Concept ;
+  rdfs:label "NAT" ;
+  xb:facet "enzyme_group" .
+
+hgnc.genegroup:1470 a skos:Concept ;
+  rdfs:label "GST" ;
+  xb:facet "enzyme_group" .
+
+hgnc.genegroup:1667 a skos:Concept ;
+  rdfs:label "FMO" ;
+  xb:facet "enzyme_group" .
+
+hgnc.genegroup:363 a skos:Concept ;
+  rdfs:label "UGT" ;
+  xb:facet "enzyme_group" .
+
+hgnc.genegroup:398 a skos:Concept ;
+  rdfs:label "ALDH" ;
+  xb:facet "enzyme_group" .
+
+hgnc.genegroup:4072 a skos:Concept ;
+  rdfs:label "MAO" ;
+  xb:facet "enzyme_group" .
+
+hgnc.genegroup:461 a skos:Concept ;
+  rdfs:label "CES" ;
+  xb:facet "enzyme_group" .
+
+hgnc.genegroup:821 a skos:Concept ;
+  rdfs:label "SULT" ;
+  xb:facet "enzyme_group" .
+
+hgnc.genegroup:862 a skos:Concept ;
+  rdfs:label "CYP" ;
+  xb:facet "enzyme_group" .
 
 taxon:1 a owl:Class, skos:Concept ;
   rdfs:label "root" ;
@@ -315,11 +708,6 @@ taxon:7742 a owl:Class, skos:Concept ;
   xb:facet "subphylum" ;
   xb:taxId 7742 .
 
-taxon:7955 a owl:Class, skos:Concept ;
-  rdfs:label "Danio rerio" ;
-  xb:facet "species" ;
-  xb:taxId 7955 .
-
 taxon:8782 a owl:Class, skos:Concept ;
   rdfs:label "Aves" ;
   xb:facet "class" ;
@@ -349,6 +737,11 @@ taxon:9557 a owl:Class, skos:Concept ;
   rdfs:label "Papio" ;
   xb:facet "genus" ;
   xb:taxId 9557 .
+
+taxon:9598 a owl:Class, skos:Concept ;
+  rdfs:label "Pan troglodytes" ;
+  xb:facet "species" ;
+  xb:taxId 9598 .
 
 taxon:9606 a owl:Class, skos:Concept ;
   rdfs:label "Homo sapiens" ;
@@ -421,13 +814,13 @@ taxon:4751 rdfs:subClassOf taxon:2759 .
 taxon:6960 rdfs:subClassOf taxon:33208 .
 taxon:7711 rdfs:subClassOf taxon:33208 .
 taxon:7742 rdfs:subClassOf taxon:7711 .
-taxon:7955 rdfs:subClassOf taxon:7742 .
 taxon:8782 rdfs:subClassOf taxon:7742 .
 taxon:9443 rdfs:subClassOf taxon:40674 .
 taxon:9483 rdfs:subClassOf taxon:9443 .
 taxon:9527 rdfs:subClassOf taxon:9443 .
 taxon:9541 rdfs:subClassOf taxon:9527 .
 taxon:9557 rdfs:subClassOf taxon:9443 .
+taxon:9598 rdfs:subClassOf taxon:9443 .
 taxon:9606 rdfs:subClassOf taxon:9443 .
 taxon:9615 rdfs:subClassOf taxon:314147 .
 taxon:9685 rdfs:subClassOf taxon:314147 .
@@ -439,27 +832,144 @@ taxon:9940 rdfs:subClassOf taxon:314147 .
 taxon:9979 rdfs:subClassOf taxon:40674 .
 taxon:9986 rdfs:subClassOf taxon:9979 .
 taxon:9989 rdfs:subClassOf taxon:40674 .
-xbctx:matrix/bile skos:exactMatch uberon:0001970 .
-xbctx:matrix/blood skos:exactMatch uberon:0000178 .
-xbctx:matrix/brain skos:exactMatch uberon:0000955 .
-xbctx:matrix/fat skos:exactMatch uberon:0001013 .
-xbctx:matrix/feces skos:exactMatch uberon:0001988 .
-xbctx:matrix/kidney skos:exactMatch uberon:0002113 .
-xbctx:matrix/liver skos:exactMatch uberon:0002107 .
-xbctx:matrix/lung skos:exactMatch uberon:0002048 .
-xbctx:matrix/milk skos:exactMatch uberon:0001913 .
-xbctx:matrix/muscle skos:exactMatch uberon:0001630 .
-xbctx:matrix/plasma skos:exactMatch uberon:0001969 .
-xbctx:matrix/spleen skos:exactMatch uberon:0002106 .
-xbctx:matrix/urine skos:exactMatch uberon:0001088 .
-xbctx:route/dermal skos:exactMatch ncit:C15223 .
-xbctx:route/inhalation skos:exactMatch ncit:C38216 .
-xbctx:route/intraduodenal skos:exactMatch ncit:C38255 .
-xbctx:route/intravenous skos:exactMatch ncit:C38276 .
-xbctx:route/oral skos:exactMatch ncit:C38288 .
-xbctx:route/subcutaneous skos:exactMatch ncit:C38299 .
-xbctx:sex/female skos:exactMatch pato:0000383 .
-xbctx:sex/male skos:exactMatch pato:0000384 .
-xbctx:proj/human_metabolism xb:includesOrganism taxon:9606 .
-xbctx:proj/mammalian_xenobiotic xb:includesOrganism taxon:40674 .
-xbctx:proj/rat_metabolism xb:includesOrganism taxon:10116 .
+<https://w3id.org/xenosite/xenobase/dataset/lcb/hsdbtps> skos:broader dataset:lcb .
+<https://w3id.org/xenosite/xenobase/dataset/lcb/reftps> skos:broader dataset:lcb .
+<https://w3id.org/xenosite/xenobase/dataset/lcb/uaccscec> skos:broader dataset:lcb .
+hgnc:11377 skos:broader hgnc.genegroup:821 .
+hgnc:11453 skos:broader hgnc.genegroup:821 .
+hgnc:11454 skos:broader hgnc.genegroup:821 .
+hgnc:11455 skos:broader hgnc.genegroup:821 .
+hgnc:11456 skos:broader hgnc.genegroup:821 .
+hgnc:11457 skos:broader hgnc.genegroup:821 .
+hgnc:11458 skos:broader hgnc.genegroup:821 .
+hgnc:12530 skos:broader hgnc.genegroup:363 .
+hgnc:12531 skos:broader hgnc.genegroup:363 .
+hgnc:12535 skos:broader hgnc.genegroup:363 .
+hgnc:12536 skos:broader hgnc.genegroup:363 .
+hgnc:12538 skos:broader hgnc.genegroup:363 .
+hgnc:12539 skos:broader hgnc.genegroup:363 .
+hgnc:12540 skos:broader hgnc.genegroup:363 .
+hgnc:12541 skos:broader hgnc.genegroup:363 .
+hgnc:12544 skos:broader hgnc.genegroup:363 .
+hgnc:12546 skos:broader hgnc.genegroup:363 .
+hgnc:12547 skos:broader hgnc.genegroup:363 .
+hgnc:12553 skos:broader hgnc.genegroup:363 .
+hgnc:12554 skos:broader hgnc.genegroup:363 .
+hgnc:17450 skos:broader hgnc.genegroup:1002 .
+hgnc:17845 skos:broader hgnc.genegroup:821 .
+hgnc:1863 skos:broader hgnc.genegroup:461 .
+hgnc:1864 skos:broader hgnc.genegroup:461 .
+hgnc:18857 skos:broader hgnc.genegroup:1003 .
+hgnc:2595 skos:broader hgnc.genegroup:1000 .
+hgnc:2596 skos:broader hgnc.genegroup:1000 .
+hgnc:2597 skos:broader hgnc.genegroup:1000 .
+hgnc:2608 skos:broader hgnc.genegroup:1001 .
+hgnc:2610 skos:broader hgnc.genegroup:1001 .
+hgnc:2611 skos:broader hgnc.genegroup:1001 .
+hgnc:2615 skos:broader hgnc.genegroup:1001 .
+hgnc:2620 skos:broader hgnc.genegroup:1001 .
+hgnc:2621 skos:broader hgnc.genegroup:1001 .
+hgnc:2622 skos:broader hgnc.genegroup:1001 .
+hgnc:2623 skos:broader hgnc.genegroup:1001 .
+hgnc:2624 skos:broader hgnc.genegroup:1001 .
+hgnc:2625 skos:broader hgnc.genegroup:1001 .
+hgnc:2631 skos:broader hgnc.genegroup:1001 .
+hgnc:2632 skos:broader hgnc.genegroup:1001 .
+hgnc:2634 skos:broader hgnc.genegroup:1001 .
+hgnc:2637 skos:broader hgnc.genegroup:1002 .
+hgnc:2638 skos:broader hgnc.genegroup:1002 .
+hgnc:2640 skos:broader hgnc.genegroup:1002 .
+hgnc:2642 skos:broader hgnc.genegroup:1003 .
+hgnc:2644 skos:broader hgnc.genegroup:1003 .
+hgnc:2645 skos:broader hgnc.genegroup:1003 .
+hgnc:2646 skos:broader hgnc.genegroup:1003 .
+hgnc:33543 skos:broader hgnc.genegroup:821 .
+hgnc:3769 skos:broader hgnc.genegroup:1667 .
+hgnc:3771 skos:broader hgnc.genegroup:1667 .
+hgnc:3773 skos:broader hgnc.genegroup:1667 .
+hgnc:402 skos:broader hgnc.genegroup:398 .
+hgnc:405 skos:broader hgnc.genegroup:398 .
+hgnc:408 skos:broader hgnc.genegroup:398 .
+hgnc:4626 skos:broader hgnc.genegroup:1470 .
+hgnc:4627 skos:broader hgnc.genegroup:1470 .
+hgnc:4632 skos:broader hgnc.genegroup:1470 .
+hgnc:4635 skos:broader hgnc.genegroup:1470 .
+hgnc:4638 skos:broader hgnc.genegroup:1470 .
+hgnc:4641 skos:broader hgnc.genegroup:1470 .
+hgnc:6833 skos:broader hgnc.genegroup:4072 .
+hgnc:6834 skos:broader hgnc.genegroup:4072 .
+hgnc:7645 skos:broader hgnc.genegroup:1132 .
+hgnc:7646 skos:broader hgnc.genegroup:1132 .
+hgnc.genegroup:1000 skos:broader hgnc.genegroup:862 .
+hgnc.genegroup:1001 skos:broader hgnc.genegroup:862 .
+hgnc.genegroup:1002 skos:broader hgnc.genegroup:862 .
+hgnc.genegroup:1003 skos:broader hgnc.genegroup:862 .
+xb:major skos:broader xb:observed .
+xb:minor skos:broader xb:observed .
+<https://w3id.org/xenosite/xenobase/context/matrix/bile> skos:broader <https://w3id.org/xenosite/xenobase/context/matrix/excreta> .
+<https://w3id.org/xenosite/xenobase/context/matrix/brain> skos:broader <https://w3id.org/xenosite/xenobase/context/matrix/tissue> .
+<https://w3id.org/xenosite/xenobase/context/matrix/cage_wash> skos:broader <https://w3id.org/xenosite/xenobase/context/matrix/excreta> .
+<https://w3id.org/xenosite/xenobase/context/matrix/expired_air> skos:broader <https://w3id.org/xenosite/xenobase/context/matrix/excreta> .
+<https://w3id.org/xenosite/xenobase/context/matrix/fat> skos:broader <https://w3id.org/xenosite/xenobase/context/matrix/tissue> .
+<https://w3id.org/xenosite/xenobase/context/matrix/feces> skos:broader <https://w3id.org/xenosite/xenobase/context/matrix/excreta> .
+<https://w3id.org/xenosite/xenobase/context/matrix/gi_tract> skos:broader <https://w3id.org/xenosite/xenobase/context/matrix/tissue> .
+<https://w3id.org/xenosite/xenobase/context/matrix/gut_microbiota> skos:broader <https://w3id.org/xenosite/xenobase/context/matrix/gi_tract> .
+<https://w3id.org/xenosite/xenobase/context/matrix/kidney> skos:broader <https://w3id.org/xenosite/xenobase/context/matrix/tissue> .
+<https://w3id.org/xenosite/xenobase/context/matrix/liver> skos:broader <https://w3id.org/xenosite/xenobase/context/matrix/tissue> .
+<https://w3id.org/xenosite/xenobase/context/matrix/lung> skos:broader <https://w3id.org/xenosite/xenobase/context/matrix/tissue> .
+<https://w3id.org/xenosite/xenobase/context/matrix/milk> skos:broader <https://w3id.org/xenosite/xenobase/context/matrix/excreta> .
+<https://w3id.org/xenosite/xenobase/context/matrix/muscle> skos:broader <https://w3id.org/xenosite/xenobase/context/matrix/tissue> .
+<https://w3id.org/xenosite/xenobase/context/matrix/plasma> skos:broader <https://w3id.org/xenosite/xenobase/context/matrix/blood> .
+<https://w3id.org/xenosite/xenobase/context/matrix/spleen> skos:broader <https://w3id.org/xenosite/xenobase/context/matrix/tissue> .
+<https://w3id.org/xenosite/xenobase/context/matrix/urine> skos:broader <https://w3id.org/xenosite/xenobase/context/matrix/excreta> .
+<https://w3id.org/xenosite/xenobase/context/site/erythrocyte> skos:broader <https://w3id.org/xenosite/xenobase/context/site/blood> .
+<https://w3id.org/xenosite/xenobase/context/site/gut_microbiota> skos:broader <https://w3id.org/xenosite/xenobase/context/site/intestine> .
+<https://w3id.org/xenosite/xenobase/context/site/plasma> skos:broader <https://w3id.org/xenosite/xenobase/context/site/blood> .
+<https://w3id.org/xenosite/xenobase/context/site/small_intestine> skos:broader <https://w3id.org/xenosite/xenobase/context/site/intestine> .
+<https://w3id.org/xenosite/xenobase/context/strain/b6c3f1> skos:broader taxon:10090 .
+<https://w3id.org/xenosite/xenobase/context/strain/beagle> skos:broader taxon:9615 .
+<https://w3id.org/xenosite/xenobase/context/strain/cd-1> skos:broader taxon:10090 .
+<https://w3id.org/xenosite/xenobase/context/strain/fischer-344> skos:broader taxon:10116 .
+<https://w3id.org/xenosite/xenobase/context/strain/sprague-dawley> skos:broader taxon:10116 .
+<https://w3id.org/xenosite/xenobase/context/strain/wistar> skos:broader taxon:10116 .
+<https://w3id.org/xenosite/xenobase/context/system/hepatocytes> skos:broader <https://w3id.org/xenosite/xenobase/context/system/in-vitro> .
+<https://w3id.org/xenosite/xenobase/context/system/hlm> skos:broader <https://w3id.org/xenosite/xenobase/context/system/microsomes> .
+<https://w3id.org/xenosite/xenobase/context/system/microsomes> skos:broader <https://w3id.org/xenosite/xenobase/context/system/in-vitro> .
+<https://w3id.org/xenosite/xenobase/context/system/rat-microsomes> skos:broader <https://w3id.org/xenosite/xenobase/context/system/microsomes> .
+<https://w3id.org/xenosite/xenobase/context/system/s9> skos:broader <https://w3id.org/xenosite/xenobase/context/system/in-vitro> .
+<https://w3id.org/xenosite/xenobase/context/matrix/bile> skos:exactMatch uberon:0001970 .
+<https://w3id.org/xenosite/xenobase/context/matrix/blood> skos:exactMatch uberon:0000178 .
+<https://w3id.org/xenosite/xenobase/context/matrix/brain> skos:exactMatch uberon:0000955 .
+<https://w3id.org/xenosite/xenobase/context/matrix/fat> skos:exactMatch uberon:0001013 .
+<https://w3id.org/xenosite/xenobase/context/matrix/feces> skos:exactMatch uberon:0001988 .
+<https://w3id.org/xenosite/xenobase/context/matrix/kidney> skos:exactMatch uberon:0002113 .
+<https://w3id.org/xenosite/xenobase/context/matrix/liver> skos:exactMatch uberon:0002107 .
+<https://w3id.org/xenosite/xenobase/context/matrix/lung> skos:exactMatch uberon:0002048 .
+<https://w3id.org/xenosite/xenobase/context/matrix/milk> skos:exactMatch uberon:0001913 .
+<https://w3id.org/xenosite/xenobase/context/matrix/muscle> skos:exactMatch uberon:0001630 .
+<https://w3id.org/xenosite/xenobase/context/matrix/plasma> skos:exactMatch uberon:0001969 .
+<https://w3id.org/xenosite/xenobase/context/matrix/spleen> skos:exactMatch uberon:0002106 .
+<https://w3id.org/xenosite/xenobase/context/matrix/urine> skos:exactMatch uberon:0001088 .
+<https://w3id.org/xenosite/xenobase/context/route/dermal> skos:exactMatch ncit:C15223 .
+<https://w3id.org/xenosite/xenobase/context/route/inhalation> skos:exactMatch ncit:C38216 .
+<https://w3id.org/xenosite/xenobase/context/route/intraduodenal> skos:exactMatch ncit:C38255 .
+<https://w3id.org/xenosite/xenobase/context/route/intravenous> skos:exactMatch ncit:C38276 .
+<https://w3id.org/xenosite/xenobase/context/route/oral> skos:exactMatch ncit:C38288 .
+<https://w3id.org/xenosite/xenobase/context/route/subcutaneous> skos:exactMatch ncit:C38299 .
+<https://w3id.org/xenosite/xenobase/context/sex/female> skos:exactMatch pato:0000383 .
+<https://w3id.org/xenosite/xenobase/context/sex/male> skos:exactMatch pato:0000384 .
+<https://w3id.org/xenosite/xenobase/context/site/blood> skos:exactMatch uberon:0000178 .
+<https://w3id.org/xenosite/xenobase/context/site/brain> skos:exactMatch uberon:0000955 .
+<https://w3id.org/xenosite/xenobase/context/site/erythrocyte> skos:exactMatch cl:0000232 .
+<https://w3id.org/xenosite/xenobase/context/site/gut_microbiota> skos:exactMatch ncit:C93019 .
+<https://w3id.org/xenosite/xenobase/context/site/intestine> skos:exactMatch uberon:0000160 .
+<https://w3id.org/xenosite/xenobase/context/site/kidney> skos:exactMatch uberon:0002113 .
+<https://w3id.org/xenosite/xenobase/context/site/liver> skos:exactMatch uberon:0002107 .
+<https://w3id.org/xenosite/xenobase/context/site/lung> skos:exactMatch uberon:0002048 .
+<https://w3id.org/xenosite/xenobase/context/site/plasma> skos:exactMatch uberon:0001969 .
+<https://w3id.org/xenosite/xenobase/context/site/small_intestine> skos:exactMatch uberon:0002108 .
+<https://w3id.org/xenosite/xenobase/context/system/hepatocytes> skos:exactMatch cl:0000182 .
+<https://w3id.org/xenosite/xenobase/context/system/in-vitro> skos:exactMatch ncit:C15263 .
+<https://w3id.org/xenosite/xenobase/context/system/in-vivo> skos:exactMatch ncit:C15744 .
+<https://w3id.org/xenosite/xenobase/context/system/microsomes> skos:exactMatch bao:0000251 .
+<https://w3id.org/xenosite/xenobase/context/system/s9> skos:exactMatch bao:0020010 .

@@ -348,6 +348,11 @@ def check_root(root: Path) -> list[str]:
             problems.append(err("sites/", 1, "two SOM tables share the same xbs: accession"))
 
         full_mols = {_node_id(r) for r in records.get("xbm", [])}
+        published = full_mols | {_node_id(r) for r in records.get("xbr", [])} | {
+            _node_id(r) for r in records.get("xbn", [])
+        }
+        if published:
+            problems.extend(check_sssom_ids(root, published))
         for slug, rows in som_rows.items():
             for n, rec in enumerate(rows, 1):
                 mid = _node_id(rec)
@@ -415,61 +420,28 @@ def check_root(root: Path) -> list[str]:
                 if e.get("target") and e["target"] not in full_mols:
                     problems.append(err("networks.yaml", n, f"edge target {e['target']} not in molecules.yaml"))
 
-        # Optional claims.yaml (Postgres dump) + ontology.ttl.
+        # Claims shards (Postgres dump): claims/*.yaml, each self-contained.
         claim_schema_path = root / "schema" / "claim.schema.json"
-        claims_path = root / "claims.yaml"
-        if claims_path.exists():
-            if not claim_schema_path.exists():
-                problems.append(err("claims.yaml", 0, "missing schema/claim.schema.json"))
-            else:
-                problems.extend(canonical_json_file(claim_schema_path))
-                claim_schema = load_json(claim_schema_path)
-                try:
-                    doc = load_yaml(claims_path)
-                    graph = ((doc or {}).get("jsonld") or {}).get("@graph") or []
-                except Exception as e:  # noqa: BLE001
-                    problems.append(err("claims.yaml", 1, f"YAML parse: {e}"))
-                    graph = []
-                ctx_ids = set()
-                catalogue = full_mols | {_node_id(r) for r in records.get("xbr", [])} | {
-                    _node_id(r) for r in records.get("xbn", [])
-                }
-                for n, rec in enumerate(graph, 1):
-                    if not isinstance(rec, dict):
-                        problems.append(err("claims.yaml", n, "graph node must be an object"))
-                        continue
-                    problems.extend(validate_schema(rec, claim_schema, "claims.yaml", n))
-                    typ = rec.get("@type")
-                    nid = rec.get("@id")
-                    if typ == "xb:Context" and nid:
-                        ctx_ids.add(nid)
-                    if typ == "xb:Claim":
-                        ctx = rec.get("context")
-                        if ctx and ctx not in ctx_ids and not any(
-                            g.get("@id") == ctx for g in graph if isinstance(g, dict)
-                        ):
-                            # Context may appear later in @graph; second pass below.
-                            pass
-                        for sub in rec.get("subject") or []:
-                            if catalogue and sub not in catalogue:
-                                problems.append(
-                                    err("claims.yaml", n, f"subject {sub} not in settled catalogue")
-                                )
-                ctx_ids = {
-                    g.get("@id") for g in graph
-                    if isinstance(g, dict) and g.get("@type") == "xb:Context"
-                }
-                for n, rec in enumerate(graph, 1):
-                    if isinstance(rec, dict) and rec.get("@type") == "xb:Claim":
-                        ctx = rec.get("context")
-                        if ctx and ctx not in ctx_ids:
-                            problems.append(err("claims.yaml", n, f"context {ctx} missing"))
+        claim_paths = sorted((root / "claims").glob("*.yaml")) if (root / "claims").is_dir() else []
+        if (root / "claims.yaml").exists():
+            problems.append(err("claims.yaml", 0, "legacy single-file claims; use claims/<source>.yaml"))
+        if claim_paths and not claim_schema_path.exists():
+            problems.append(err("claims/", 0, "missing schema/claim.schema.json"))
+        elif claim_paths:
+            problems.extend(canonical_json_file(claim_schema_path))
+            claim_schema = load_json(claim_schema_path)
+            catalogue = full_mols | {_node_id(r) for r in records.get("xbr", [])} | {
+                _node_id(r) for r in records.get("xbn", [])
+            }
+            for claims_path in claim_paths:
+                problems.extend(_check_claims_file(root, claims_path, claim_schema, catalogue))
 
         ont = root / "ontology.ttl"
         if ont.exists():
             text = ont.read_text(encoding="utf-8")
             if "@prefix xb:" not in text or "owl:Ontology" not in text:
                 problems.append(err("ontology.ttl", 1, "expected xb: prefix and owl:Ontology"))
+    problems.extend(check_file_sizes(root))
     return problems
 
 
@@ -496,6 +468,72 @@ def main(argv: list[str] | None = None) -> int:
         return 1
     return 0
 
+
+
+def check_sssom_ids(root: Path, published: set) -> list:
+    """Every xbm/xbr/xbn subject or object in mappings/ must be a published record."""
+    problems = []
+    for rel in sorted(ALLOWED_SSSOM):
+        path = root / rel
+        if not path.exists():
+            continue
+        cols = None
+        for n, ln in enumerate(path.read_text().splitlines(), 1):
+            if not ln or ln.startswith("#"):
+                continue
+            cells = ln.split("\t")
+            if cols is None:
+                cols = cells
+                continue
+            for col in ("subject_id", "object_id"):
+                if col not in cols:
+                    continue
+                v = cells[cols.index(col)] if cols.index(col) < len(cells) else ""
+                if v.startswith(("xbm:", "xbr:", "xbn:")) and v not in published:
+                    problems.append(err(rel, n, f"{col} {v} is not a published record"))
+    return problems
+
+
+MAX_FILE_BYTES = 90 * 1024 * 1024  # GitHub rejects files over 100 MB.
+
+
+def _check_claims_file(root, path, claim_schema, catalogue) -> list:
+    rel = str(path.relative_to(root))
+    problems = []
+    try:
+        doc = load_yaml(path)
+        graph = ((doc or {}).get("jsonld") or {}).get("@graph") or []
+    except Exception as e:  # noqa: BLE001
+        return [err(rel, 1, f"YAML parse: {e}")]
+    ctx_ids = {
+        g.get("@id") for g in graph
+        if isinstance(g, dict) and g.get("@type") == "xb:Context"
+    }
+    for n, rec in enumerate(graph, 1):
+        if not isinstance(rec, dict):
+            problems.append(err(rel, n, "graph node must be an object"))
+            continue
+        problems.extend(validate_schema(rec, claim_schema, rel, n))
+        if rec.get("@type") == "xb:Claim":
+            ctx = rec.get("context")
+            if ctx and ctx not in ctx_ids:
+                problems.append(err(rel, n, f"context {ctx} missing"))
+            for sub in rec.get("subject") or []:
+                if catalogue and sub not in catalogue:
+                    problems.append(err(rel, n, f"subject {sub} not in settled catalogue"))
+    return problems
+
+
+def check_file_sizes(root) -> list:
+    out = []
+    for p in sorted(root.rglob("*")):
+        if ".git" in p.parts or not p.is_file():
+            continue
+        size = p.stat().st_size
+        if size > MAX_FILE_BYTES:
+            out.append(err(str(p.relative_to(root)), 0,
+                           f"{size / 1e6:.1f} MB exceeds {MAX_FILE_BYTES / 1e6:.0f} MB; shard it"))
+    return out
 
 if __name__ == "__main__":
     sys.exit(main())

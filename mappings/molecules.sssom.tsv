@@ -4,29 +4,283 @@
 # (site contact — do not rely on an email address).
 # Academic / non-commercial use: CC BY-NC 4.0 — see license fields and NOTICE.
 # =============================================================================
-# SSSOM mapping set — XenoBase mixture accessions → fragment molecules
+# SSSOM mapping set — XenoBase molecules
 #
-# Provenance narrative: leftover multi-fragment mixtures keep an xbm: accession;
-# each mapping is BFO:0000051 (has part) onto a connected fragment xbm:.
+# Provenance narrative:
+# - Leftover multi-fragment mixtures keep an xbm: accession; each mapping is
+#   BFO:0000051 (has part) onto a connected fragment xbm:.
+# - Catalogue molecules with a CAS that hits ChEBI flat files map
+#   skos:exactMatch onto CHEBI: ids (identifier crosswalk, not a ChEBI intake).
 #
 #curie_map:
 #  BFO: http://purl.obolibrary.org/obo/BFO_
+#  CHEBI: http://purl.obolibrary.org/obo/CHEBI_
 #  semapv: https://w3id.org/semapv/vocab/
 #  skos: http://www.w3.org/2004/02/skos/core#
 #  xbm: https://w3id.org/xenosite/xenobase/molecule/
 #mapping_set_id: https://w3id.org/xenosite/xenobase/mappings/molecules.sssom.tsv
-#mapping_set_title: XenoBase mixture has-part fragments
-#mapping_set_description: Mixture accessions mapped has-part onto single-fragment molecules.
+#mapping_set_title: XenoBase molecule has-part and ChEBI exactMatch
+#mapping_set_description: Mixture has-part fragments and CAS-matched ChEBI exactMatch links.
 #license: https://creativecommons.org/licenses/by-nc/4.0/
 #license_code: CC-BY-NC-4.0
 #license_note: Commercial licenses available via https://swami.wustl.edu/. CC BY-NC 4.0 for non-commercial use; see NOTICE.
 #creator_id: https://orcid.org/0000-0003-2191-0778
 #subject_source: https://w3id.org/xenosite/xenobase
-#object_source: https://w3id.org/xenosite/xenobase
+#object_source: https://www.ebi.ac.uk/chebi/
 #mapping_tool: xenobase pipeline/assign_ids.py + publish_data
 #see_also: https://w3id.org/xenosite/xenobase/about/download
 subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	comment
+xbm:000000000010	cyflumetofen	skos:exactMatch	CHEBI:81798	cyflumetofen	semapv:LexicalMatching	same CAS registry number (400882-07-7) in ChEBI flat files
+xbm:000000000066	triadimefon	skos:exactMatch	CHEBI:9665	triadimefon	semapv:LexicalMatching	same CAS registry number (43121-43-3) in ChEBI flat files
+xbm:000000000154	flubendiamide	skos:exactMatch	CHEBI:38798	flubendiamide	semapv:LexicalMatching	same CAS registry number (272451-65-7) in ChEBI flat files
+xbm:000000000189	methyl isothiocyanate	skos:exactMatch	CHEBI:78337	methyl isothiocyanate	semapv:LexicalMatching	same CAS registry number (556-61-6) in ChEBI flat files
+xbm:000000000191	Deltamethrin	skos:exactMatch	CHEBI:4388	deltamethrin	semapv:LexicalMatching	same CAS registry number (52918-63-5) in ChEBI flat files
+xbm:000000000203	Clethodim	skos:exactMatch	CHEBI:70721	clethodim	semapv:LexicalMatching	same CAS registry number (99129-21-2) in ChEBI flat files
+xbm:000000000315	tetraconazole	skos:exactMatch	CHEBI:81782	tetraconazole	semapv:LexicalMatching	same CAS registry number (112281-77-3) in ChEBI flat files
+xbm:000000000381	spiromesifen	skos:exactMatch	CHEBI:38640	spiromesifen	semapv:LexicalMatching	same CAS registry number (283594-90-1) in ChEBI flat files
+xbm:000000000426	penflufen	skos:exactMatch	CHEBI:83133	penflufen	semapv:LexicalMatching	same CAS registry number (494793-67-8) in ChEBI flat files
+xbm:000000000431	propanil	skos:exactMatch	CHEBI:34936	propanil	semapv:LexicalMatching	same CAS registry number (709-98-8) in ChEBI flat files
+xbm:000000000447	cloquintocet-mexyl	skos:exactMatch	CHEBI:143152	cloquintocet-mexyl	semapv:LexicalMatching	same CAS registry number (99607-70-2) in ChEBI flat files
+xbm:000000000464	napropamide	skos:exactMatch	CHEBI:82025	napropamide	semapv:LexicalMatching	same CAS registry number (15299-99-7) in ChEBI flat files
+xbm:000000000474	chlorimuron-ethyl	skos:exactMatch	CHEBI:47319	chlorimuron-ethyl	semapv:LexicalMatching	same CAS registry number (90982-32-4) in ChEBI flat files
+xbm:000000000475	Sethoxydim	skos:exactMatch	CHEBI:81815	Sethoxydim	semapv:LexicalMatching	same CAS registry number (74051-80-2) in ChEBI flat files
+xbm:000000000542	pyridalyl	skos:exactMatch	CHEBI:38887	pyridalyl	semapv:LexicalMatching	same CAS registry number (179101-81-6) in ChEBI flat files
+xbm:000000000556	N-[[5-[4-[3-chloro-4-[(3-fluorophenyl)methoxy]anilino]quinazolin-6-yl]furan-2-yl]methyl]hydroxylamine;2-methylsulfonylacetaldehyde	BFO:0000051	xbm:000000000555	C(C=O)S(=O)(=O)C	semapv:LexicalMatching	connected fragment after salt/counterion strip (MOL_NORM 8)
+xbm:000000000556	N-[[5-[4-[3-chloro-4-[(3-fluorophenyl)methoxy]anilino]quinazolin-6-yl]furan-2-yl]methyl]hydroxylamine;2-methylsulfonylacetaldehyde	BFO:0000051	xbm:000000006954	c1c(cccc1COc5c(cc(cc5)Nc4ncnc3c4cc(cc3)-c2oc(cc2)CNO)Cl)F	semapv:LexicalMatching	connected fragment after salt/counterion strip (MOL_NORM 8)
+xbm:000000000662	ametoctradin	skos:exactMatch	CHEBI:83398	ametoctradin	semapv:LexicalMatching	same CAS registry number (865318-97-4) in ChEBI flat files
+xbm:000000000713	Ethalfluralin	skos:exactMatch	CHEBI:81988	Ethalfluralin	semapv:LexicalMatching	same CAS registry number (55283-68-6) in ChEBI flat files
+xbm:000000000783	triforine	skos:exactMatch	CHEBI:9715	triforine	semapv:LexicalMatching	same CAS registry number (26644-46-2) in ChEBI flat files
+xbm:000000000787	tolylfluanid	skos:exactMatch	CHEBI:75182	tolylfluanid	semapv:LexicalMatching	same CAS registry number (731-27-1) in ChEBI flat files
+xbm:000000000836	Prosulfuron	skos:exactMatch	CHEBI:8523	Prosulfuron	semapv:LexicalMatching	same CAS registry number (94125-34-5) in ChEBI flat files
+xbm:000000000837	tembotrione	skos:exactMatch	CHEBI:132273	tembotrione	semapv:LexicalMatching	same CAS registry number (335104-84-2) in ChEBI flat files
+xbm:000000000949	(E)-clothianidin	skos:exactMatch	CHEBI:39177	(E)-clothianidin	semapv:LexicalMatching	same CAS registry number (210880-92-5) in ChEBI flat files
+xbm:000000000990	phenmedipham	skos:exactMatch	CHEBI:81734	phenmedipham	semapv:LexicalMatching	same CAS registry number (13684-63-4) in ChEBI flat files
+xbm:000000001126	fosetyl-Al	skos:exactMatch	CHEBI:84033	fosetyl-Al	semapv:LexicalMatching	same CAS registry number (39148-24-8) in ChEBI flat files
+xbm:000000001204	fluometuron	skos:exactMatch	CHEBI:82012	fluometuron	semapv:LexicalMatching	same CAS registry number (2164-17-2) in ChEBI flat files
+xbm:000000001244	Tebuconazole	skos:exactMatch	CHEBI:81781	tebuconazole	semapv:LexicalMatching	same CAS registry number (107534-96-3) in ChEBI flat files
+xbm:000000001357	cyfluthrin	skos:exactMatch	CHEBI:4034	cyfluthrin	semapv:LexicalMatching	same CAS registry number (68359-37-5) in ChEBI flat files
+xbm:000000001381	spinosad	skos:exactMatch	CHEBI:39211	spinosad	semapv:LexicalMatching	same CAS registry number (168316-95-8) in ChEBI flat files
+xbm:000000001414	sedaxane	skos:exactMatch	CHEBI:83173	sedaxane	semapv:LexicalMatching	same CAS registry number (874967-67-6) in ChEBI flat files
+xbm:000000001493	tralkoxydim	skos:exactMatch	CHEBI:81948	tralkoxydim	semapv:LexicalMatching	same CAS registry number (87820-88-0) in ChEBI flat files
+xbm:000000001596	cyclanilide	skos:exactMatch	CHEBI:148439	cyclanilide	semapv:LexicalMatching	same CAS registry number (113136-77-9) in ChEBI flat files
+xbm:000000001628	cyhexatin	skos:exactMatch	CHEBI:4036	cyhexatin	semapv:LexicalMatching	same CAS registry number (13121-70-5) in ChEBI flat files
+xbm:000000001701	mesotrione	skos:exactMatch	CHEBI:38321	mesotrione	semapv:LexicalMatching	same CAS registry number (104206-82-8) in ChEBI flat files
+xbm:000000001714	molinate	skos:exactMatch	CHEBI:6964	molinate	semapv:LexicalMatching	same CAS registry number (2212-67-1) in ChEBI flat files
+xbm:000000001784	dazomet	skos:exactMatch	CHEBI:75212	dazomet	semapv:LexicalMatching	same CAS registry number (533-74-4) in ChEBI flat files
+xbm:000000001798	fenamidone	skos:exactMatch	CHEBI:83258	fenamidone	semapv:LexicalMatching	same CAS registry number (161326-34-7) in ChEBI flat files
+xbm:000000001831	famoxadone	skos:exactMatch	CHEBI:59340	famoxadone	semapv:LexicalMatching	same CAS registry number (131807-57-3) in ChEBI flat files
+xbm:000000001843	fenpropimorph	skos:exactMatch	CHEBI:50145	fenpropimorph	semapv:LexicalMatching	same CAS registry number (67564-91-4) in ChEBI flat files
+xbm:000000001893	MGK 264	skos:exactMatch	CHEBI:81966	MGK 264	semapv:LexicalMatching	same CAS registry number (113-48-4) in ChEBI flat files
+xbm:000000001933	isopyrazam	skos:exactMatch	CHEBI:83126	isopyrazam	semapv:LexicalMatching	same CAS registry number (881685-58-1) in ChEBI flat files
+xbm:000000002258	dithianon	skos:exactMatch	CHEBI:81842	dithianon	semapv:LexicalMatching	same CAS registry number (3347-22-6) in ChEBI flat files
+xbm:000000002286	Bioallethrin	skos:exactMatch	CHEBI:34572	allethrin	semapv:LexicalMatching	same CAS registry number (584-79-2) in ChEBI flat files
+xbm:000000002361	spiroxamine	skos:exactMatch	CHEBI:9242	spiroxamine	semapv:LexicalMatching	same CAS registry number (118134-30-8) in ChEBI flat files
+xbm:000000002411	metolachlor	skos:exactMatch	CHEBI:6902	metolachlor	semapv:LexicalMatching	same CAS registry number (51218-45-2) in ChEBI flat files
+xbm:000000002414	glyphosate-isopropylammonium	skos:exactMatch	CHEBI:81834	glyphosate-isopropylammonium	semapv:LexicalMatching	same CAS registry number (38641-94-0) in ChEBI flat files
+xbm:000000002448	sulfoxaflor	skos:exactMatch	CHEBI:133305	sulfoxaflor	semapv:LexicalMatching	same CAS registry number (946578-00-3) in ChEBI flat files
+xbm:000000002484	imazapyr	skos:exactMatch	CHEBI:82021	imazapyr	semapv:LexicalMatching	same CAS registry number (81334-34-1) in ChEBI flat files
+xbm:000000002517	imazamox	skos:exactMatch	CHEBI:81857	imazamox	semapv:LexicalMatching	same CAS registry number (114311-32-9) in ChEBI flat files
+xbm:000000002559	zoxamide	skos:exactMatch	CHEBI:82048	zoxamide	semapv:LexicalMatching	same CAS registry number (156052-68-5) in ChEBI flat files
+xbm:000000002623	carfentrazone-ethyl	skos:exactMatch	CHEBI:3416	carfentrazone-ethyl	semapv:LexicalMatching	same CAS registry number (128639-02-1) in ChEBI flat files
+xbm:000000002624	trinexapac-ethyl	skos:exactMatch	CHEBI:81817	trinexapac-ethyl	semapv:LexicalMatching	same CAS registry number (95266-40-3) in ChEBI flat files
+xbm:000000002631	Diazinon	skos:exactMatch	CHEBI:34682	diazinon	semapv:LexicalMatching	same CAS registry number (333-41-5) in ChEBI flat files
+xbm:000000002671	linuron	skos:exactMatch	CHEBI:6482	linuron	semapv:LexicalMatching	same CAS registry number (330-55-2) in ChEBI flat files
+xbm:000000002689	Omethoate	skos:exactMatch	CHEBI:38730	omethoate	semapv:LexicalMatching	same CAS registry number (1113-02-6) in ChEBI flat files
+xbm:000000002723	alachlor	skos:exactMatch	CHEBI:2533	alachlor	semapv:LexicalMatching	same CAS registry number (15972-60-8) in ChEBI flat files
+xbm:000000002730	propetamphos	skos:exactMatch	CHEBI:38864	propetamphos	semapv:LexicalMatching	same CAS registry number (31218-83-4) in ChEBI flat files
+xbm:000000002736	Malathion	skos:exactMatch	CHEBI:6651	malathion	semapv:LexicalMatching	same CAS registry number (121-75-5) in ChEBI flat files
+xbm:000000002767	metrafenone	skos:exactMatch	CHEBI:83345	metrafenone	semapv:LexicalMatching	same CAS registry number (220899-03-6) in ChEBI flat files
+xbm:000000002803	methamidophos	skos:exactMatch	CHEBI:38721	methamidophos	semapv:LexicalMatching	same CAS registry number (10265-92-6) in ChEBI flat files
+xbm:000000002833	cyantraniliprole	skos:exactMatch	CHEBI:132300	cyantraniliprole	semapv:LexicalMatching	same CAS registry number (736994-63-1) in ChEBI flat files
+xbm:000000002843	methiocarb	skos:exactMatch	CHEBI:38508	methiocarb	semapv:LexicalMatching	same CAS registry number (2032-65-7) in ChEBI flat files
+xbm:000000002845	3,5-dimethyl-4-(methylsulfanyl)phenol	skos:exactMatch	CHEBI:38509	3,5-dimethyl-4-(methylsulfanyl)phenol	semapv:LexicalMatching	same CAS registry number (7379-51-3) in ChEBI flat files
+xbm:000000002861	tribenuron methyl	skos:exactMatch	CHEBI:9678	tribenuron methyl	semapv:LexicalMatching	same CAS registry number (101200-48-0) in ChEBI flat files
+xbm:000000002912	Fipronil	skos:exactMatch	CHEBI:5063	fipronil	semapv:LexicalMatching	same CAS registry number (120068-37-3) in ChEBI flat files
+xbm:000000002914	cyclaniliprole	skos:exactMatch	CHEBI:149441	cyclaniliprole	semapv:LexicalMatching	same CAS registry number (1031756-98-5) in ChEBI flat files
+xbm:000000002939	sulfentrazone	skos:exactMatch	CHEBI:9339	sulfentrazone	semapv:LexicalMatching	same CAS registry number (122836-35-5) in ChEBI flat files
+xbm:000000002947	fluopyram	skos:exactMatch	CHEBI:83070	fluopyram	semapv:LexicalMatching	same CAS registry number (658066-35-4) in ChEBI flat files
+xbm:000000002954	Chlorpyrifos	skos:exactMatch	CHEBI:34631	chlorpyrifos	semapv:LexicalMatching	same CAS registry number (2921-88-2) in ChEBI flat files
+xbm:000000002963	2,6-dichloro-4-nitroaniline	skos:exactMatch	CHEBI:27864	2,6-dichloro-4-nitroaniline	semapv:LexicalMatching	same CAS registry number (99-30-9) in ChEBI flat files
+xbm:000000002970	fluopicolide	skos:exactMatch	CHEBI:81764	fluopicolide	semapv:LexicalMatching	same CAS registry number (239110-15-7) in ChEBI flat files
+xbm:000000002984	Fenoxaprop ethyl	skos:exactMatch	CHEBI:5008	Fenoxaprop ethyl	semapv:LexicalMatching	same CAS registry number (66441-23-4) in ChEBI flat files
+xbm:000000002998	1,4-dichlorobenzene	skos:exactMatch	CHEBI:28618	1,4-dichlorobenzene	semapv:LexicalMatching	same CAS registry number (106-46-7) in ChEBI flat files
+xbm:000000002999	difenoconazole	skos:exactMatch	CHEBI:81760	difenoconazole	semapv:LexicalMatching	same CAS registry number (119446-68-3) in ChEBI flat files
+xbm:000000003003	2,6-dichlorobenzonitrile	skos:exactMatch	CHEBI:943	2,6-dichlorobenzonitrile	semapv:LexicalMatching	same CAS registry number (1194-65-6) in ChEBI flat files
+xbm:000000003021	Imazosulfuron	skos:exactMatch	CHEBI:81751	Imazosulfuron	semapv:LexicalMatching	same CAS registry number (122548-33-8) in ChEBI flat files
+xbm:000000003028	ethiprole	skos:exactMatch	CHEBI:81827	Ethiprole	semapv:LexicalMatching	same CAS registry number (181587-01-9) in ChEBI flat files
+xbm:000000003042	quinclorac-methyl	skos:exactMatch	CHEBI:132879	quinclorac-methyl	semapv:LexicalMatching	same CAS registry number (84087-33-2) in ChEBI flat files
+xbm:000000003095	fluxapyroxad	skos:exactMatch	CHEBI:83113	fluxapyroxad	semapv:LexicalMatching	same CAS registry number (907204-31-3) in ChEBI flat files
+xbm:000000003140	Penoxsulam	skos:exactMatch	CHEBI:81776	Penoxsulam	semapv:LexicalMatching	same CAS registry number (219714-96-2) in ChEBI flat files
+xbm:000000003153	Flurprimidol	skos:exactMatch	CHEBI:81765	Flurprimidol	semapv:LexicalMatching	same CAS registry number (56425-91-3) in ChEBI flat files
+xbm:000000003189	triflumizole	skos:exactMatch	CHEBI:81784	triflumizole	semapv:LexicalMatching	same CAS registry number (99387-89-0) in ChEBI flat files
+xbm:000000003206	cyflufenamid	skos:exactMatch	CHEBI:81797	cyflufenamid	semapv:LexicalMatching	same CAS registry number (180409-60-3) in ChEBI flat files
+xbm:000000003227	saflufenacil	skos:exactMatch	CHEBI:142824	saflufenacil	semapv:LexicalMatching	same CAS registry number (372137-35-4) in ChEBI flat files
+xbm:000000003231	bixafen	skos:exactMatch	CHEBI:83106	bixafen	semapv:LexicalMatching	same CAS registry number (581809-46-3) in ChEBI flat files
+xbm:000000003265	cyanamide	skos:exactMatch	CHEBI:16698	cyanamide	semapv:LexicalMatching	same CAS registry number (420-04-2) in ChEBI flat files
+xbm:000000003275	chlorothalonil	skos:exactMatch	CHEBI:3639	chlorothalonil	semapv:LexicalMatching	same CAS registry number (1897-45-6) in ChEBI flat files
+xbm:000000003285	Cyhalofop-butyl	skos:exactMatch	CHEBI:81863	Cyhalofop-butyl	semapv:LexicalMatching	same CAS registry number (122008-85-9) in ChEBI flat files
+xbm:000000003287	cyazofamid	skos:exactMatch	CHEBI:81841	cyazofamid	semapv:LexicalMatching	same CAS registry number (120116-88-3) in ChEBI flat files
+xbm:000000003359	ethaboxam	skos:exactMatch	CHEBI:82856	ethaboxam	semapv:LexicalMatching	same CAS registry number (162650-77-3) in ChEBI flat files
+xbm:000000003365	Diuron	skos:exactMatch	CHEBI:116509	diuron	semapv:LexicalMatching	same CAS registry number (330-54-1) in ChEBI flat files
+xbm:000000003369	Propamocarb hydrochloride	skos:exactMatch	CHEBI:81735	Propamocarb hydrochloride	semapv:LexicalMatching	same CAS registry number (25606-41-1) in ChEBI flat files
+xbm:000000003382	mandestrobin	skos:exactMatch	CHEBI:83205	mandestrobin	semapv:LexicalMatching	same CAS registry number (173662-97-0) in ChEBI flat files
+xbm:000000003399	amitraz	skos:exactMatch	CHEBI:2665	amitraz	semapv:LexicalMatching	same CAS registry number (33089-61-1) in ChEBI flat files
+xbm:000000003405	Butylate	skos:exactMatch	CHEBI:34594	Butylate	semapv:LexicalMatching	same CAS registry number (2008-41-5) in ChEBI flat files
+xbm:000000003426	mancozeb	skos:exactMatch	CHEBI:52492	mancozeb	semapv:LexicalMatching	same CAS registry number (8018-01-7) in ChEBI flat files
+xbm:000000003447	bifenazate	skos:exactMatch	CHEBI:38660	bifenazate	semapv:LexicalMatching	same CAS registry number (149877-41-8) in ChEBI flat files
+xbm:000000003450	thiodicarb	skos:exactMatch	CHEBI:38548	thiodicarb	semapv:LexicalMatching	same CAS registry number (59669-26-0) in ChEBI flat files
+xbm:000000003478	Atrazine	skos:exactMatch	CHEBI:15930	atrazine	semapv:LexicalMatching	same CAS registry number (1912-24-9) in ChEBI flat files
+xbm:000000003496	Thidiazuron	skos:exactMatch	CHEBI:81977	Thidiazuron	semapv:LexicalMatching	same CAS registry number (51707-55-2) in ChEBI flat files
+xbm:000000003514	2-(tert-butylimino)-5-phenyl-3-(propan-2-yl)-1,3,5-thiadiazinan-4-one	skos:exactMatch	CHEBI:3218	2-(tert-butylimino)-5-phenyl-3-(propan-2-yl)-1,3,5-thiadiazinan-4-one	semapv:LexicalMatching	same CAS registry number (69327-76-0) in ChEBI flat files
+xbm:000000003570	Benoxacor	skos:exactMatch	CHEBI:3016	Benoxacor	semapv:LexicalMatching	same CAS registry number (98730-04-2) in ChEBI flat files
+xbm:000000003705	aminocyclopyrachlor-methyl	skos:exactMatch	CHEBI:63215	aminocyclopyrachlor-methyl	semapv:LexicalMatching	same CAS registry number (858954-83-3) in ChEBI flat files
+xbm:000000003742	chlorpropham	skos:exactMatch	CHEBI:34630	chlorpropham	semapv:LexicalMatching	same CAS registry number (101-21-3) in ChEBI flat files
+xbm:000000003754	desmedipham	skos:exactMatch	CHEBI:81733	desmedipham	semapv:LexicalMatching	same CAS registry number (13684-56-5) in ChEBI flat files
+xbm:000000003768	dicrotophos	skos:exactMatch	CHEBI:38658	dicrotophos	semapv:LexicalMatching	same CAS registry number (141-66-2) in ChEBI flat files
+xbm:000000003771	azinphos-methyl	skos:exactMatch	CHEBI:2953	azinphos-methyl	semapv:LexicalMatching	same CAS registry number (86-50-0) in ChEBI flat files
+xbm:000000003773	dimethomorph	skos:exactMatch	CHEBI:81848	dimethomorph	semapv:LexicalMatching	same CAS registry number (110488-70-5) in ChEBI flat files
+xbm:000000003832	azoxystrobin	skos:exactMatch	CHEBI:40909	azoxystrobin	semapv:LexicalMatching	same CAS registry number (131860-33-8) in ChEBI flat files
+xbm:000000003840	phosalone	skos:exactMatch	CHEBI:8121	phosalone	semapv:LexicalMatching	same CAS registry number (2310-17-0) in ChEBI flat files
+xbm:000000003875	Oxamyl	skos:exactMatch	CHEBI:38539	oxamyl	semapv:LexicalMatching	same CAS registry number (23135-22-0) in ChEBI flat files
+xbm:000000003880	monocrotophos	skos:exactMatch	CHEBI:38728	monocrotophos	semapv:LexicalMatching	same CAS registry number (6923-22-4) in ChEBI flat files
+xbm:000000003882	fenitrothion	skos:exactMatch	CHEBI:34757	fenitrothion	semapv:LexicalMatching	same CAS registry number (122-14-5) in ChEBI flat files
+xbm:000000003934	noviflumuron	skos:exactMatch	CHEBI:39386	noviflumuron	semapv:LexicalMatching	same CAS registry number (121451-02-3) in ChEBI flat files
+xbm:000000003935	2,4-DB	skos:exactMatch	CHEBI:73173	2,4-DB	semapv:LexicalMatching	same CAS registry number (94-82-6) in ChEBI flat files
+xbm:000000003937	tolclofos-methyl	skos:exactMatch	CHEBI:81731	tolclofos-methyl	semapv:LexicalMatching	same CAS registry number (57018-04-9) in ChEBI flat files
+xbm:000000003938	Dicamba	skos:exactMatch	CHEBI:81856	dicamba	semapv:LexicalMatching	same CAS registry number (1918-00-9) in ChEBI flat files
+xbm:000000003983	rimsulfuron	skos:exactMatch	CHEBI:8866	rimsulfuron	semapv:LexicalMatching	same CAS registry number (122931-48-0) in ChEBI flat files
+xbm:000000004070	pyrethrin II	skos:exactMatch	CHEBI:27474	pyrethrin II	semapv:LexicalMatching	same CAS registry number (121-29-9) in ChEBI flat files
+xbm:000000004075	pinoxaden	skos:exactMatch	CHEBI:83524	pinoxaden	semapv:LexicalMatching	same CAS registry number (243973-20-8) in ChEBI flat files
+xbm:000000004111	kresoxim-methyl	skos:exactMatch	CHEBI:2962	kresoxim-methyl	semapv:LexicalMatching	same CAS registry number (143390-89-0) in ChEBI flat files
+xbm:000000004145	flufenacet	skos:exactMatch	CHEBI:81920	flufenacet	semapv:LexicalMatching	same CAS registry number (142459-58-3) in ChEBI flat files
+xbm:000000004149	Dimethoate	skos:exactMatch	CHEBI:34714	dimethoate	semapv:LexicalMatching	same CAS registry number (60-51-5) in ChEBI flat files
+xbm:000000004185	flufenoxuron	skos:exactMatch	CHEBI:39382	flufenoxuron	semapv:LexicalMatching	same CAS registry number (101463-69-8) in ChEBI flat files
+xbm:000000004190	methomyl	skos:exactMatch	CHEBI:6835	methomyl	semapv:LexicalMatching	same CAS registry number (16752-77-5) in ChEBI flat files
+xbm:000000004201	mandipropamid	skos:exactMatch	CHEBI:81802	mandipropamid	semapv:LexicalMatching	same CAS registry number (374726-62-2) in ChEBI flat files
+xbm:000000004253	cypermethrin	skos:exactMatch	CHEBI:4042	cypermethrin	semapv:LexicalMatching	same CAS registry number (52315-07-8) in ChEBI flat files
+xbm:000000004255	benthiavalicarb-isopropyl	skos:exactMatch	CHEBI:81732	benthiavalicarb-isopropyl	semapv:LexicalMatching	same CAS registry number (177406-68-7) in ChEBI flat files
+xbm:000000004286	fenpyrazamine	skos:exactMatch	CHEBI:83327	fenpyrazamine	semapv:LexicalMatching	same CAS registry number (473798-59-3) in ChEBI flat files
+xbm:000000004321	boscalid	skos:exactMatch	CHEBI:81822	boscalid	semapv:LexicalMatching	same CAS registry number (188425-85-6) in ChEBI flat files
+xbm:000000004348	pyrethrins	skos:exactMatch	CHEBI:39098	pyrethrins	semapv:LexicalMatching	same CAS registry number (8003-34-7) in ChEBI flat files
+xbm:000000004467	acephate	skos:exactMatch	CHEBI:34520	acephate	semapv:LexicalMatching	same CAS registry number (30560-19-1) in ChEBI flat files
+xbm:000000004488	Flazasulfuron	skos:exactMatch	CHEBI:81749	Flazasulfuron	semapv:LexicalMatching	same CAS registry number (104040-78-0) in ChEBI flat files
+xbm:000000004507	triflusulfuron-methyl	skos:exactMatch	CHEBI:82047	triflusulfuron-methyl	semapv:LexicalMatching	same CAS registry number (126535-15-7) in ChEBI flat files
+xbm:000000004534	meptyldinocap	skos:exactMatch	CHEBI:83372	meptyldinocap	semapv:LexicalMatching	same CAS registry number (131-72-6) in ChEBI flat files
+xbm:000000004579	flufenpyr-ethyl	skos:exactMatch	CHEBI:132056	flufenpyr-ethyl	semapv:LexicalMatching	same CAS registry number (188489-07-8) in ChEBI flat files
+xbm:000000004647	1,2,4-triazole acetic acid	skos:exactMatch	CHEBI:747847	1,2,4-triazole acetic acid	semapv:LexicalMatching	same CAS registry number (28711-29-7) in ChEBI flat files
+xbm:000000004717	2,4-D	skos:exactMatch	CHEBI:28854	2,4-D	semapv:LexicalMatching	same CAS registry number (94-75-7) in ChEBI flat files
+xbm:000000004718	(4-Chloro-2-methylphenoxy)acetic acid	skos:exactMatch	CHEBI:50099	(4-chloro-2-methylphenoxy)acetic acid	semapv:LexicalMatching	same CAS registry number (94-74-6) in ChEBI flat files
+xbm:000000004740	cyproconazole	skos:exactMatch	CHEBI:81758	cyproconazole	semapv:LexicalMatching	same CAS registry number (94361-06-5) in ChEBI flat files
+xbm:000000004747	triticonazole	skos:exactMatch	CHEBI:81980	triticonazole	semapv:LexicalMatching	same CAS registry number (131983-72-7) in ChEBI flat files
+xbm:000000005142	asulam	skos:exactMatch	CHEBI:81696	asulam	semapv:LexicalMatching	same CAS registry number (3337-71-1) in ChEBI flat files
+xbm:000000005180	acibenzolar-S-methyl	skos:exactMatch	CHEBI:73178	acibenzolar-S-methyl	semapv:LexicalMatching	same CAS registry number (135158-54-2) in ChEBI flat files
+xbm:000000005242	prothioconazole	skos:exactMatch	CHEBI:82036	prothioconazole	semapv:LexicalMatching	same CAS registry number (178928-70-6) in ChEBI flat files
+xbm:000000005342	benfluralin	skos:exactMatch	CHEBI:132878	benfluralin	semapv:LexicalMatching	same CAS registry number (1861-40-1) in ChEBI flat files
+xbm:000000005364	dinotefuran	skos:exactMatch	CHEBI:39183	dinotefuran	semapv:LexicalMatching	same CAS registry number (165252-70-0) in ChEBI flat files
+xbm:000000005372	thiamethoxam	skos:exactMatch	CHEBI:39185	thiamethoxam	semapv:LexicalMatching	same CAS registry number (153719-23-4) in ChEBI flat files
+xbm:000000005412	thiabendazole	skos:exactMatch	CHEBI:45979	thiabendazole	semapv:LexicalMatching	same CAS registry number (148-79-8) in ChEBI flat files
+xbm:000000005451	cyazofamid	skos:exactMatch	CHEBI:81841	cyazofamid	semapv:LexicalMatching	same CAS registry number (120116-88-3) in ChEBI flat files
+xbm:000000005462	bifenthrin	skos:exactMatch	CHEBI:3093	bifenthrin	semapv:LexicalMatching	same CAS registry number (82657-04-3) in ChEBI flat files
+xbm:000000005564	fipronil-sulfide	skos:exactMatch	CHEBI:83488	fipronil-sulfide	semapv:LexicalMatching	same CAS registry number (120067-83-6) in ChEBI flat files
+xbm:000000005675	etoxazole	skos:exactMatch	CHEBI:39329	etoxazole	semapv:LexicalMatching	same CAS registry number (153233-91-1) in ChEBI flat files
+xbm:000000005708	fenpropidin	skos:exactMatch	CHEBI:81917	fenpropidin	semapv:LexicalMatching	same CAS registry number (67306-00-7) in ChEBI flat files
+xbm:000000005719	(S)-metolachlor	skos:exactMatch	CHEBI:83647	(S)-metolachlor	semapv:LexicalMatching	same CAS registry number (87392-12-9) in ChEBI flat files
+xbm:000000005810	chlorfenapyr	skos:exactMatch	CHEBI:39347	chlorfenapyr	semapv:LexicalMatching	same CAS registry number (122453-73-0) in ChEBI flat files
+xbm:000000005824	nitrapyrin	skos:exactMatch	CHEBI:81935	nitrapyrin	semapv:LexicalMatching	same CAS registry number (1929-82-4) in ChEBI flat files
+xbm:000000005854	diflubenzuron	skos:exactMatch	CHEBI:34703	diflubenzuron	semapv:LexicalMatching	same CAS registry number (35367-38-5) in ChEBI flat files
+xbm:000000005908	metsulfuron methyl	skos:exactMatch	CHEBI:39678	metsulfuron methyl	semapv:LexicalMatching	same CAS registry number (74223-64-6) in ChEBI flat files
+xbm:000000005926	Diclosulam	skos:exactMatch	CHEBI:81984	Diclosulam	semapv:LexicalMatching	same CAS registry number (145701-21-9) in ChEBI flat files
+xbm:000000005932	mepanipyrim	skos:exactMatch	CHEBI:6751	mepanipyrim	semapv:LexicalMatching	same CAS registry number (110235-47-7) in ChEBI flat files
+xbm:000000006016	propargite	skos:exactMatch	CHEBI:39300	propargite	semapv:LexicalMatching	same CAS registry number (2312-35-8) in ChEBI flat files
+xbm:000000006064	etofenprox	skos:exactMatch	CHEBI:39348	etofenprox	semapv:LexicalMatching	same CAS registry number (80844-07-1) in ChEBI flat files
+xbm:000000006112	chlorantraniliprole	skos:exactMatch	CHEBI:67113	chlorantraniliprole	semapv:LexicalMatching	same CAS registry number (500008-45-7) in ChEBI flat files
+xbm:000000006131	fenhexamid	skos:exactMatch	CHEBI:81853	fenhexamid	semapv:LexicalMatching	same CAS registry number (126833-17-8) in ChEBI flat files
+xbm:000000006168	trichlopyr	skos:exactMatch	CHEBI:9682	trichlopyr	semapv:LexicalMatching	same CAS registry number (55335-06-3) in ChEBI flat files
+xbm:000000006180	Oxyfluorfen	skos:exactMatch	CHEBI:82029	Oxyfluorfen	semapv:LexicalMatching	same CAS registry number (42874-03-3) in ChEBI flat files
+xbm:000000006203	Piperonyl butoxide	skos:exactMatch	CHEBI:32687	piperonyl butoxide	semapv:LexicalMatching	same CAS registry number (51-03-6) in ChEBI flat files
+xbm:000000006221	metconazole	skos:exactMatch	CHEBI:81773	metconazole	semapv:LexicalMatching	same CAS registry number (125116-23-6) in ChEBI flat files
+xbm:000000006249	Metalaxyl	skos:exactMatch	CHEBI:6790	metalaxyl	semapv:LexicalMatching	same CAS registry number (57837-19-1) in ChEBI flat files
+xbm:000000006283	Ametryn	skos:exactMatch	CHEBI:22472	ametryn	semapv:LexicalMatching	same CAS registry number (834-12-8) in ChEBI flat files
+xbm:000000006348	quinoxyfen	skos:exactMatch	CHEBI:82040	quinoxyfen	semapv:LexicalMatching	same CAS registry number (124495-18-7) in ChEBI flat files
+xbm:000000006650	thiacloprid	skos:exactMatch	CHEBI:39175	thiacloprid	semapv:LexicalMatching	same CAS registry number (111988-49-9) in ChEBI flat files
+xbm:000000006658	trifloxystrobin	skos:exactMatch	CHEBI:81833	trifloxystrobin	semapv:LexicalMatching	same CAS registry number (141517-21-7) in ChEBI flat files
+xbm:000000006673	hexaconazole	skos:exactMatch	CHEBI:81766	hexaconazole	semapv:LexicalMatching	same CAS registry number (79983-71-4) in ChEBI flat files
+xbm:000000006676	bromuconazole	skos:exactMatch	CHEBI:81900	bromuconazole	semapv:LexicalMatching	same CAS registry number (116255-48-2) in ChEBI flat files
+xbm:000000006774	Bensulide	skos:exactMatch	CHEBI:81899	Bensulide	semapv:LexicalMatching	same CAS registry number (741-58-2) in ChEBI flat files
+xbm:000000006801	trifluralin	skos:exactMatch	CHEBI:35027	trifluralin	semapv:LexicalMatching	same CAS registry number (1582-09-8) in ChEBI flat files
+xbm:000000006831	dimethenamid	skos:exactMatch	CHEBI:81789	dimethenamid	semapv:LexicalMatching	same CAS registry number (87674-68-8) in ChEBI flat files
+xbm:000000006933	(E)-acetamiprid	skos:exactMatch	CHEBI:39164	(E)-acetamiprid	semapv:LexicalMatching	same CAS registry number (135410-20-7) in ChEBI flat files
+xbm:000000007099	Phenothrin	skos:exactMatch	CHEBI:34916	phenothrin	semapv:LexicalMatching	same CAS registry number (26002-80-2) in ChEBI flat files
+xbm:000000007112	fenbuconazole	skos:exactMatch	CHEBI:81762	fenbuconazole	semapv:LexicalMatching	same CAS registry number (114369-43-6) in ChEBI flat files
+xbm:000000007180	tau-fluvalinate	skos:exactMatch	CHEBI:39367	tau-fluvalinate	semapv:LexicalMatching	same CAS registry number (102851-06-9) in ChEBI flat files
+xbm:000000007203	Florasulam	skos:exactMatch	CHEBI:82009	Florasulam	semapv:LexicalMatching	same CAS registry number (145701-23-1) in ChEBI flat files
+xbm:000000007258	fenazaquin	skos:exactMatch	CHEBI:38593	fenazaquin	semapv:LexicalMatching	same CAS registry number (120928-09-8) in ChEBI flat files
+xbm:000000007435	forchlorfenuron	skos:exactMatch	CHEBI:81861	forchlorfenuron	semapv:LexicalMatching	same CAS registry number (68157-60-8) in ChEBI flat files
+xbm:000000007445	acequinocyl	skos:exactMatch	CHEBI:38592	acequinocyl	semapv:LexicalMatching	same CAS registry number (57960-19-7) in ChEBI flat files
+xbm:000000007464	1-naphthaleneacetamide	skos:exactMatch	CHEBI:81810	1-naphthaleneacetamide	semapv:LexicalMatching	same CAS registry number (86-86-2) in ChEBI flat files
+xbm:000000007545	ipconazole	skos:exactMatch	CHEBI:81770	ipconazole	semapv:LexicalMatching	same CAS registry number (125225-28-7) in ChEBI flat files
+xbm:000000007570	bitertanol	skos:exactMatch	CHEBI:3130	bitertanol	semapv:LexicalMatching	same CAS registry number (55179-31-2) in ChEBI flat files
+xbm:000000007663	dicofol	skos:exactMatch	CHEBI:34692	dicofol	semapv:LexicalMatching	same CAS registry number (115-32-2) in ChEBI flat files
+xbm:000000007750	halauxifen-methyl	skos:exactMatch	CHEBI:143513	halauxifen-methyl	semapv:LexicalMatching	same CAS registry number (943831-98-9) in ChEBI flat files
+xbm:000000007787	butafenacil	skos:exactMatch	CHEBI:143863	butafenacil	semapv:LexicalMatching	same CAS registry number (134605-64-4) in ChEBI flat files
+xbm:000000007803	novaluron	skos:exactMatch	CHEBI:39385	novaluron	semapv:LexicalMatching	same CAS registry number (116714-46-6) in ChEBI flat files
+xbm:000000007825	Carboxin	skos:exactMatch	CHEBI:3405	carboxin	semapv:LexicalMatching	same CAS registry number (5234-68-4) in ChEBI flat files
+xbm:000000007931	diniconazole-M	skos:exactMatch	CHEBI:83911	diniconazole-M	semapv:LexicalMatching	same CAS registry number (83657-18-5) in ChEBI flat files
+xbm:000000008039	imidacloprid	skos:exactMatch	CHEBI:5870	imidacloprid	semapv:LexicalMatching	same CAS registry number (138261-41-3) in ChEBI flat files
+xbm:000000008048	tralomethrin	skos:exactMatch	CHEBI:39400	tralomethrin	semapv:LexicalMatching	same CAS registry number (66841-25-6) in ChEBI flat files
+xbm:000000008095	fenpropathrin	skos:exactMatch	CHEBI:39353	fenpropathrin	semapv:LexicalMatching	same CAS registry number (39515-41-8) in ChEBI flat files
+xbm:000000008108	orthosulfamuron	skos:exactMatch	CHEBI:141068	orthosulfamuron	semapv:LexicalMatching	same CAS registry number (213464-77-8) in ChEBI flat files
+xbm:000000008113	Carbaril	skos:exactMatch	CHEBI:3390	carbaryl	semapv:LexicalMatching	same CAS registry number (63-25-2) in ChEBI flat files
+xbm:000000008126	Diphenylamine	skos:exactMatch	CHEBI:4640	diphenylamine	semapv:LexicalMatching	same CAS registry number (122-39-4) in ChEBI flat files
+xbm:000000008348	Metaflumizone	skos:exactMatch	CHEBI:81803	Metaflumizone	semapv:LexicalMatching	same CAS registry number (139968-49-3) in ChEBI flat files
+xbm:000000008379	cyprodinil	skos:exactMatch	CHEBI:4045	cyprodinil	semapv:LexicalMatching	same CAS registry number (121552-61-2) in ChEBI flat files
+xbm:000000008440	spirodiclofen	skos:exactMatch	CHEBI:38639	spirodiclofen	semapv:LexicalMatching	same CAS registry number (148477-71-8) in ChEBI flat files
+xbm:000000008441	flutriafol	skos:exactMatch	CHEBI:81923	flutriafol	semapv:LexicalMatching	same CAS registry number (76674-21-0) in ChEBI flat files
+xbm:000000008476	fenarimol	skos:exactMatch	CHEBI:4998	fenarimol	semapv:LexicalMatching	same CAS registry number (60168-88-9) in ChEBI flat files
+xbm:000000008554	flusilazole	skos:exactMatch	CHEBI:81922	flusilazole	semapv:LexicalMatching	same CAS registry number (85509-19-9) in ChEBI flat files
+xbm:000000008574	N-[(1R,2S)-2,6-dimethyindan-1-yl]-6-[(1R)-1-fluoroethyl]-1,3,5-triazine-2,4-diamine	skos:exactMatch	CHEBI:133238	N-[(1R,2S)-2,6-dimethyindan-1-yl]-6-[(1R)-1-fluoroethyl]-1,3,5-triazine-2,4-diamine	semapv:LexicalMatching	same CAS registry number (730979-19-8) in ChEBI flat files
+xbm:000000008829	Hexazinone	skos:exactMatch	CHEBI:5705	Hexazinone	semapv:LexicalMatching	same CAS registry number (51235-04-2) in ChEBI flat files
+xbm:000000008845	propiconazole	skos:exactMatch	CHEBI:8489	propiconazole	semapv:LexicalMatching	same CAS registry number (60207-90-1) in ChEBI flat files
+xbm:000000008853	amisulbrom	skos:exactMatch	CHEBI:81846	amisulbrom	semapv:LexicalMatching	same CAS registry number (348635-87-0) in ChEBI flat files
+xbm:000000008886	Pirimicarb	skos:exactMatch	CHEBI:8248	pirimicarb	semapv:LexicalMatching	same CAS registry number (23103-98-2) in ChEBI flat files
+xbm:000000008889	Cyromazine	skos:exactMatch	CHEBI:30260	cyromazine	semapv:LexicalMatching	same CAS registry number (66215-27-8) in ChEBI flat files
+xbm:000000008941	nicotine	skos:exactMatch	CHEBI:17688	(S)-nicotine	semapv:LexicalMatching	same CAS registry number (54-11-5) in ChEBI flat files
+xbm:000000008947	fluazinam	skos:exactMatch	CHEBI:81843	fluazinam	semapv:LexicalMatching	same CAS registry number (79622-59-6) in ChEBI flat files
+xbm:000000008955	flonicamid	skos:exactMatch	CHEBI:39291	flonicamid	semapv:LexicalMatching	same CAS registry number (158062-67-0) in ChEBI flat files
+xbm:000000009001	thiencarbazone-methyl	skos:exactMatch	CHEBI:145500	thiencarbazone-methyl	semapv:LexicalMatching	same CAS registry number (317815-83-1) in ChEBI flat files
+xbm:000000009010	pyrimethanil	skos:exactMatch	CHEBI:8674	pyrimethanil	semapv:LexicalMatching	same CAS registry number (53112-28-0) in ChEBI flat files
+xbm:000000009012	aminocyclopyrachlor	skos:exactMatch	CHEBI:62952	aminocyclopyrachlor	semapv:LexicalMatching	same CAS registry number (858956-08-8) in ChEBI flat files
+xbm:000000009038	clofentezine	skos:exactMatch	CHEBI:39315	clofentezine	semapv:LexicalMatching	same CAS registry number (74115-24-5) in ChEBI flat files
+xbm:000000009093	hymexazol	skos:exactMatch	CHEBI:5827	hymexazol	semapv:LexicalMatching	same CAS registry number (10004-44-1) in ChEBI flat files
+xbm:000000011764	metam-sodium	skos:exactMatch	CHEBI:81737	metam-sodium	semapv:LexicalMatching	same CAS registry number (137-42-8) in ChEBI flat files
+xbm:000000011954	flumioxazin	skos:exactMatch	CHEBI:8939	flumioxazin	semapv:LexicalMatching	same CAS registry number (103361-09-7) in ChEBI flat files
+xbm:000000011958	isoxadifen-ethyl	skos:exactMatch	CHEBI:132497	isoxadifen-ethyl	semapv:LexicalMatching	same CAS registry number (163520-33-0) in ChEBI flat files
 xbm:000000011962	X27* (RPA 401527)	BFO:0000051	xbm:000000011961	C(F)(F)(F)c1c(cncc1)C(N)=O |$GlcA;;;;;;;;;;;;$|	semapv:LexicalMatching	connected fragment after salt/counterion strip (MOL_NORM 8)
 xbm:000000011962	X27* (RPA 401527)	BFO:0000051	xbm:000000012068	[*]O	semapv:LexicalMatching	connected fragment after salt/counterion strip (MOL_NORM 8)
-xbm:0000556	intermediate 4	BFO:0000051	xbm:0000555	C(C=O)S(=O)(=O)C	semapv:LexicalMatching	connected fragment after salt/counterion strip (MOL_NORM 8)
-xbm:0000556	intermediate 4	BFO:0000051	xbm:0006954	c1c(cccc1COc5c(cc(cc5)Nc4ncnc3c4cc(cc3)-c2oc(cc2)CNO)Cl)F	semapv:LexicalMatching	connected fragment after salt/counterion strip (MOL_NORM 8)
+xbm:000000011973	chloridazon	skos:exactMatch	CHEBI:81838	chloridazon	semapv:LexicalMatching	same CAS registry number (1698-60-8) in ChEBI flat files
+xbm:000000011979	oxathiapiprolin	skos:exactMatch	CHEBI:83268	oxathiapiprolin	semapv:LexicalMatching	same CAS registry number (1003318-67-9) in ChEBI flat files
+xbm:000000011980	emamectin	skos:exactMatch	CHEBI:39230	emamectin	semapv:LexicalMatching	same CAS registry number (119791-41-2) in ChEBI flat files
+xbm:000000011993	pyridaben	skos:exactMatch	CHEBI:38626	pyridaben	semapv:LexicalMatching	same CAS registry number (96489-71-3) in ChEBI flat files
+xbm:000000011996	Imazethapyr	skos:exactMatch	CHEBI:82022	Imazethapyr	semapv:LexicalMatching	same CAS registry number (81335-77-5) in ChEBI flat files
+xbm:000000011997	pyrasulfotole	skos:exactMatch	CHEBI:141518	pyrasulfotole	semapv:LexicalMatching	same CAS registry number (365400-11-9) in ChEBI flat files
+xbm:000000012008	topramezone	skos:exactMatch	CHEBI:131999	topramezone	semapv:LexicalMatching	same CAS registry number (210631-68-8) in ChEBI flat files
+xbm:000000012012	tebufenpyrad	skos:exactMatch	CHEBI:9422	tebufenpyrad	semapv:LexicalMatching	same CAS registry number (119168-77-3) in ChEBI flat files
+xbm:000000012032	pyraclostrobin	skos:exactMatch	CHEBI:78780	pyraclostrobin	semapv:LexicalMatching	same CAS registry number (175013-18-0) in ChEBI flat files
+xbm:000000012067	thifensulfuron-methyl	skos:exactMatch	CHEBI:83453	thifensulfuron-methyl	semapv:LexicalMatching	same CAS registry number (79277-27-3) in ChEBI flat files
+xbm:000000012087	pyraflufen-ethyl	skos:exactMatch	CHEBI:81828	pyraflufen-ethyl	semapv:LexicalMatching	same CAS registry number (129630-19-9) in ChEBI flat files
+xbm:000000012107	fenpyroximate	skos:exactMatch	CHEBI:5011	fenpyroximate	semapv:LexicalMatching	same CAS registry number (134098-61-6) in ChEBI flat files
+xbm:000000012117	bispyribac-sodium	skos:exactMatch	CHEBI:81757	bispyribac-sodium	semapv:LexicalMatching	same CAS registry number (125401-92-5) in ChEBI flat files
+xbm:000000012119	Iodosulfuron-methyl-sodium	skos:exactMatch	CHEBI:81741	Iodosulfuron-methyl-sodium	semapv:LexicalMatching	same CAS registry number (144550-36-7) in ChEBI flat files
+xbm:000000012136	aminopyralid	skos:exactMatch	CHEBI:62962	aminopyralid	semapv:LexicalMatching	same CAS registry number (150114-71-9) in ChEBI flat files
+xbm:000000012137	imazaquin	skos:exactMatch	CHEBI:5869	imazaquin	semapv:LexicalMatching	same CAS registry number (81335-37-7) in ChEBI flat files
+xbm:000000012138	prohexadione-calcium	skos:exactMatch	CHEBI:137425	prohexadione-calcium	semapv:LexicalMatching	same CAS registry number (127277-53-6) in ChEBI flat files
+xbm:000000012140	picloram	skos:exactMatch	CHEBI:34922	picloram	semapv:LexicalMatching	same CAS registry number (1918-02-1) in ChEBI flat files
+xbm:000000012142	Flumetsulam	skos:exactMatch	CHEBI:82011	Flumetsulam	semapv:LexicalMatching	same CAS registry number (98967-40-9) in ChEBI flat files
+xbm:000000012152	IBUPROFEN LYSINE	BFO:0000051	xbm:000000000615	Acetylcysteine lysine	semapv:LexicalMatching	connected fragment after salt/counterion strip (MOL_NORM 8)
+xbm:000000012152	IBUPROFEN LYSINE	BFO:0000051	xbm:000000001206	Ibuprofen lysine	semapv:LexicalMatching	connected fragment after salt/counterion strip (MOL_NORM 8)
+xbm:000000012153	SULFISOXAZOLE DIOLAMINE	BFO:0000051	xbm:000000001084	Diethanolamine	semapv:LexicalMatching	connected fragment after salt/counterion strip (MOL_NORM 8)
+xbm:000000012153	SULFISOXAZOLE DIOLAMINE	BFO:0000051	xbm:000000008023	Sulfisoxazole diolamine	semapv:LexicalMatching	connected fragment after salt/counterion strip (MOL_NORM 8)
+xbm:000000012156	C(c2ccccc2)NCCNCc1ccccc1.S2C(C(N3C(C(C23)NC(Cc1ccccc1)=O)=O)C(O)=O)(C)C	BFO:0000051	xbm:000000005233	Penicillin G procaine	semapv:LexicalMatching	connected fragment after salt/counterion strip (MOL_NORM 8)
+xbm:000000012156	C(c2ccccc2)NCCNCc1ccccc1.S2C(C(N3C(C(C23)NC(Cc1ccccc1)=O)=O)C(O)=O)(C)C	BFO:0000051	xbm:000000012155	C(c2ccccc2)NCCNCc1ccccc1	semapv:LexicalMatching	connected fragment after salt/counterion strip (MOL_NORM 8)
+xbm:000000012158	DICLOFENAC EPOLAMINE	BFO:0000051	xbm:000000005823	Diclofenac epolamine	semapv:LexicalMatching	connected fragment after salt/counterion strip (MOL_NORM 8)
+xbm:000000012158	DICLOFENAC EPOLAMINE	BFO:0000051	xbm:000000012157	C1CCCN1CCO	semapv:LexicalMatching	connected fragment after salt/counterion strip (MOL_NORM 8)

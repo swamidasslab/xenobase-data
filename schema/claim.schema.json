@@ -63,6 +63,35 @@
                 },
                 "type": "array"
               },
+              "source": {
+                "additionalProperties": false,
+                "description": "Where the value sits in the source (MetaPath data table cell), to rebuild the table grid.",
+                "properties": {
+                  "cell": {
+                    "type": "string"
+                  },
+                  "col": {
+                    "type": "string"
+                  },
+                  "note": {
+                    "type": "string"
+                  },
+                  "row": {
+                    "type": "string"
+                  },
+                  "table": {
+                    "type": "string"
+                  },
+                  "table_title": {
+                    "type": "string"
+                  },
+                  "xbt": {
+                    "pattern": "^xbt:",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
               "tips": {
                 "items": {
                   "minLength": 1,
@@ -115,10 +144,6 @@
         "@type": {
           "const": "xb:Context"
         },
-        "aboutParent": {
-          "pattern": "^(xbm|xbn):",
-          "type": "string"
-        },
         "doseNumber": {
           "type": "number"
         },
@@ -129,8 +154,94 @@
         "label": {
           "type": "string"
         },
+        "meta": {
+          "additionalProperties": false,
+          "description": "Literal text the source states about this setup (e.g. a MetaPath column's report header, linked study, caption and note), with the curator corrections applied to it and the open audit findings on it. Curation status itself is a tip (xbctx:curation/corrected | xbctx:curation/inconsistent).",
+          "properties": {
+            "caption": {
+              "type": "string"
+            },
+            "corrections": {
+              "items": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "findings": {
+              "items": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "header": {
+              "type": "string"
+            },
+            "layouts": {
+              "additionalProperties": {
+                "additionalProperties": false,
+                "properties": {
+                  "fields": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "rows": {
+                    "items": {
+                      "properties": {
+                        "bad": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "role": {
+                          "enum": [
+                            "subject",
+                            "shares",
+                            "unused"
+                          ],
+                          "type": "string"
+                        },
+                        "why": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "role",
+                        "bad"
+                      ],
+                      "type": "object"
+                    },
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "fields",
+                  "rows"
+                ],
+                "type": "object"
+              },
+              "description": "Finding id → the columns behind it as the source stores them, one cell per field; bad names the cells that disagree.",
+              "type": "object"
+            },
+            "note": {
+              "type": "string"
+            },
+            "study": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
         "organism": {
           "pattern": "^taxon:[0-9]+$",
+          "type": "string"
+        },
+        "parent": {
+          "pattern": "^(xbm|xbn):",
           "type": "string"
         },
         "tips": {

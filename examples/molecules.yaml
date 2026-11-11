@@ -43,10 +43,13 @@ jsonld:
     status: active
     smiles: COc1ccccc1
     names: [anisole]
+    exactMatch: [CHEBI:1722]
     xrefs:
       pubchem_cid: "7731"
   '@context':
     BFO: http://purl.obolibrary.org/obo/BFO_
+    CHEBI: http://purl.obolibrary.org/obo/CHEBI_
+    exactMatch: {"@id": "skos:exactMatch", "@type": "@id"}
     hasPart: {"@id": "BFO:0000051", "@type": "@id"}
     into: {"@id": "xb:into", "@type": "@id"}
     skos: http://www.w3.org/2004/02/skos/core#
